@@ -7,7 +7,7 @@ lock '3.14.1'
 
 # 自身のアプリ名、ユーザー名、リポジトリ名を記述
 set :application, 'kochi_t_and_e_market'
-set :repo_url,  'Mitsuhiro-8/kochi_t_and_e_market.git'
+set :repo_url,  'git@github.com:Mitsuhiro-8/kochi_t_and_e_market.git'
 
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
 
