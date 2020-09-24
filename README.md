@@ -55,8 +55,8 @@ Things you may want to cover:
 |prefecture|string|null: false|
 |city|string|null: false|
 |house_number|string|null: false|
-|building_name|integer|
-|telephone|integer|null: false|
+|building_name|string|
+|telephone|integer|
 |user_id|reference|null: false, foreign_key: true|
 
 
@@ -92,7 +92,7 @@ Things you may want to cover:
 |prefecture|string|null: false|
 |city|string|null: false|
 |house_number|string|null: false|
-|building_name|integer|
+|building_name|string|
 |telephone|integer|null: false|
 |user_id|reference|null: false, foreign_key: true|
 
@@ -107,12 +107,14 @@ Things you may want to cover:
 |name|string|null: false|
 |price|integer|null: false|
 |introduction|text|null: false|
+|trading_status|string|null: false|
 |category_id|reference|null: false, foreign_key: true|
-|brand_id|reference|null: false, foreign_key: true|
+|brand_id|reference|foreign_key: true|
 |condition_id|reference|null: false, foreign_key: true|
 |shipping_cost_id|reference|null: false, foreign_key: true|
 |preparation_day_id|reference|null: false, foreign_key: true|
 |shipment_source_id|reference|null: false, foreign_key: true|
+|user_id|reference|null: false|null: false, foreign_key: true|
 
 ### Association
 - has_many :item_images
@@ -161,15 +163,15 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
-|large|string|
-|middle|string|
+|large|string|null: false|
+|middle|string|null: false|
 |small|string|null: false|
 
 ### Association
 - has_many :items
 
 
-## brandテーブル
+## brandsテーブル
 
 |Column|Type|Options|
 |------|----|-------|
