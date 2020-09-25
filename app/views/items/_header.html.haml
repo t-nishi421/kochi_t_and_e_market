@@ -1,1 +1,34 @@
-<ヘッダー＞
+.header
+  .headerInner
+    .headerInner__mainHeader
+      .headerInner__mainHeader__icon
+        = link_to '#', class: 'header__mainHeader__icon__imag' do
+          = image_tag 'logo/logo.png', width: '140px', hight: '40px'
+      .headerInner__mainHeader__searchBox
+        .headerInner__mainHeader__searchBox__form
+          %form{class: 'form'}
+            %input{type: 'text', placeholder: 'キーワードから探す', class: 'inputText'}
+            %button{type: 'submit', class: 'submitBtn'}
+              .headerInner__mainHeader__searchBox__form__icon
+                =image_tag 'icon/icon-search 1.png' , width:'20px', hight:'20px'
+
+
+    .headerInner__nav
+      %ul.listLeft
+        %li.listLeft__category
+          = link_to '#', class: 'leftBtn' do
+            カテゴリー
+        %li.listLeft__brand
+          = link_to '#', class: 'leftBtn' do
+            ブランド
+      %ul.listRight
+        %li.listRight__logIn
+          = link_to '#', class: 'rightBtn' do
+            ログイン
+        %li.listRight__signUp
+          = link_to '#', class: 'rightBtn' do
+            新規会員登録
+
+        
+    
+    
