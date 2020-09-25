@@ -73,7 +73,7 @@ Things you may want to cover:
 |month|integer|null: false|
 |year|integer|null: false|
 |code|integer|null: false|
-|user_id|reference|null: false, foreign_ksy: true|
+|user_id|reference|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :user
@@ -93,7 +93,7 @@ Things you may want to cover:
 |city|string|null: false|
 |house_number|string|null: false|
 |building_name|string|
-|telephone|integer|null: false|
+|telephone|integer|
 |user_id|reference|null: false, foreign_key: true|
 
 ### Association
@@ -114,7 +114,7 @@ Things you may want to cover:
 |shipping_cost_id|reference|null: false, foreign_key: true|
 |preparation_day_id|reference|null: false, foreign_key: true|
 |shipment_source_id|reference|null: false, foreign_key: true|
-|user_id|reference|null: false|null: false, foreign_key: true|
+|user_id|reference|null: false, foreign_key: true|
 
 ### Association
 - has_many :item_images
