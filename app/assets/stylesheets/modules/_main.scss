@@ -46,9 +46,7 @@
             width: 100%;
             vertical-align: bottom;
             margin-bottom: -55px;
-          }
-          img:hover{
-            opacity: 0.5;
+            @include opacity();
           }
         }
         &__bbtn{
@@ -59,9 +57,7 @@
             height: 100%;
             margin-bottom: -10px;
             vertical-align: bottom;
-          }
-          img:hover{
-            opacity: 0.5;
+            @include opacity();
           }
         }
       }
@@ -156,12 +152,51 @@
         }
       }
     }
-
   }
-
-
-
-
+  
+  .mainMiddle{
+    width: 100%;
+    height: 400px;
+    background-image: image-url(pict/bg-topMiddleDl-pict);
+    background-position: right bottom;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    &__box{
+      color:#fff;
+      text-shadow: 0 0 5px rgba(0,0,0,0.4);
+      max-width: 1040px;
+      width: 100%;
+      margin: 0 auto;
+      .subtitle{
+        font-size: 27px;
+        font-weight: bold;
+        line-height: 1.4;
+      }
+      .text{
+        font-size: 18px;
+        margin: 20px 0 30px;
+        line-height: 1.5;
+      }
+      &__btn{
+        display: flex;
+        &__abtn{
+          img {
+            width: 180px;
+            @include opacity();
+          }
+        }
+        &__gbtn{
+          img {
+            width: 220px;
+            margin-top: -10px;
+            @include opacity();
+          }
+        }
+      }
+    }
+  }
+  
 
 
 }
