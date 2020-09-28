@@ -9,3 +9,5 @@
 新規登録画面へ→
 = link_to new_user_registration_path do
   新規登録
+
+= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'Button'
