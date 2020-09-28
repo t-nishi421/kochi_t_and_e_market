@@ -49,7 +49,6 @@
         display: block;
         @include ButtonLayout();
         margin: 0 auto;
-        width: 150px;
       }
     }
   }
@@ -68,17 +67,21 @@
   margin: 30px 0;
   &__label--normal {
     @include MarginSpace();
+    span {
+      margin-left: 5px;
+      font-size: 14px;
+      color: red;
+    }
   }
 }
 
 .Button { // Buttonの標準スタイル
-  width: 140px;
+  width: 190px;
   @include MarginSpace();
   @include ButtonLayout();
   border: 0px;
 }
 
 .CreateAccountButton { // createAccountの追加スタイル
-  width: 160px;
   margin-bottom: 45px;
 }
