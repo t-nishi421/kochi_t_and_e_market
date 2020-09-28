@@ -38,7 +38,7 @@ Things you may want to cover:
 - has_one :comment
 - has_many :credit_cards
 - has_many :destinations
-- has_many :purchase_historys
+- has_many :purchase_histories
 - has_many :items
 
 
@@ -68,12 +68,19 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false|
-|number|integer|null: false|
-|month|integer|null: false|
-|year|integer|null: false|
-|code|integer|null: false|
 |user_id|reference|null: false, foreign_key: true|
+|customer_id|string|null: false|
+|card_id|string|null: false|
+
+### Association
+- belongs_to :user
+
+
+## commentsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|content|string|
+|user_id|reference|null: false|
 
 ### Association
 - belongs_to :user
@@ -99,6 +106,17 @@ Things you may want to cover:
 ### Association
 - belongs_to :user
 
+## purchase_historiesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|trading_day|datetime|
+|user_id|reference|foreign_key: true|
+|item_id|reference|foreign_key: true|
+
+### Association
+- belongs_to :user
+- belongs_to :item
+
 
 ## itemsテーブル
 
@@ -118,11 +136,11 @@ Things you may want to cover:
 
 ### Association
 - has_many :item_images
-- has_many :purchase_historys
+- has_many :purchase_histories
 - belongs_to :user
 - belongs_to :condition
 - belongs_to :shipping_cost
-- belongs_to :category
+- belongs_to :categories
 - belongs_to :brand
 - belongs_to :preparation_day
 - belongs_to :shipment_source
@@ -159,13 +177,12 @@ Things you may want to cover:
 - has_many :items
 
 
-## categorysテーブル
+## categoriesテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|large|string|null: false|
-|middle|string|null: false|
-|small|string|null: false|
+|name|string|null: false|
+|ancestry|string|index: true|
 
 ### Association
 - has_many :items
