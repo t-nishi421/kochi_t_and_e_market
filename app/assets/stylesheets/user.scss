@@ -1,0 +1,84 @@
+@mixin ButtonLayout {
+  height: 40px;
+  line-height: 40px;
+  color: white;
+  text-align: center;
+  background-color: #3CCACE;
+  border-radius: 5px;
+}
+
+@mixin MarginSpace {
+  margin: 15px 0;
+}
+
+.AccountPage {
+  font-size: 18px;
+  height: 100vh;
+  width: 100vw;
+  background-color: #f5f5f5;
+  position: fixed;
+  overflow: auto;
+
+  &__header { // ヘッダー
+    text-align: center;
+    img {
+      margin: 35px auto;
+      height: 60px;
+    }
+  }
+
+  &__form { // 中央の入力フォーム
+    width: 500px;
+    padding: 30px 0;
+    margin: 0 auto;
+    text-align: center;
+    background-color: white;
+    &__title {
+      padding-bottom: 20px;
+      font-size: 26px;
+      font-weight: bold;
+      border-bottom: solid #ddd 1px;
+    }
+    &__toLoginOrSignIn {
+      border-top: solid #ddd 1px;
+      padding-top: 20px;
+      p { // 上部メッセージ
+        @include MarginSpace();
+      }
+      a { // ログアウトボタン
+        display: block;
+        @include ButtonLayout();
+        margin: 0 auto;
+        width: 150px;
+      }
+    }
+  }
+
+  &__footer { // フッター
+    text-align: center;
+    img {
+      margin: 40px auto;
+      height: 60px;
+      filter: invert(0.55);
+    }
+  }
+}
+
+.FormField { // 送信エリア
+  margin: 30px 0;
+  &__label--normal {
+    @include MarginSpace();
+  }
+}
+
+.Button { // Buttonの標準スタイル
+  width: 140px;
+  @include MarginSpace();
+  @include ButtonLayout();
+  border: 0px;
+}
+
+.CreateAccountButton { // createAccountの追加スタイル
+  width: 160px;
+  margin-bottom: 45px;
+}
