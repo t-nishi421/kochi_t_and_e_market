@@ -140,7 +140,7 @@ Things you may want to cover:
 - belongs_to :user
 - belongs_to :condition
 - belongs_to :shipping_cost
-- belongs_to :categories
+- belongs_to :category
 - belongs_to :brand
 - belongs_to :preparation_day
 - belongs_to :shipment_source
