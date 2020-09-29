@@ -6,7 +6,8 @@
     .AccountPage__form__title
       ログイン画面
     = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-      = devise_error_messages! # 未実装
+      .ErrorMessages
+        = devise_error_messages!
       .FormField
         .FormField__label--normal
           = f.label :email
