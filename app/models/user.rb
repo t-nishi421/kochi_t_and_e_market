@@ -12,4 +12,8 @@ class User < ApplicationRecord
   # has_many :destinations
   # has_many :purchase_histories
   # has_many :items
+
+  def user_params
+    params.require(:user).permit(:nick_name, :email, :image)
+  end
 end
