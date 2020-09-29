@@ -1,0 +1,12 @@
+// 変数リスト
+
+// マイページのボタン
+@mixin button() {
+  background-color: #3CCACE;
+  text-align: center;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  user-select: none;
+  color: white;
+}

@@ -1,0 +1,9 @@
+.myPage
+  .myPage__sidebar
+    = render "users/sidebar"
+
+  .myPage__main
+    .logout
+      .logout__content
+        .logout__btn{type: "submit"}
+          = link_to "ログアウト", '#', method: :delete

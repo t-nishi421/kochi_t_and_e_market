@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
   root 'items#index'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  
+  resources :users, only: [:show] do
+    collection do
+      get 'logout'
+      get 'card'
+    end
+  end
+
+  resources :credit_cards, only: [:new, :create], as: :cards
 end
