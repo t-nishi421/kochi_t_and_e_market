@@ -23,6 +23,6 @@
           = f.submit "ログイン", class: 'Button'
     .AccountPage__form__toLoginOrSignIn
       %p アカウントをお持ちでない方はこちら
-      = render "devise/shared/links"
+      = link_to "新規登録画面へ", step1_signups_path, class: 'Button'
   .AccountPage__footer
     = image_tag 'logo/logo-white.png', alt: 'furima'
