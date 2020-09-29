@@ -1,0 +1,35 @@
+.myPage
+  .myPage__sidebar
+    = render "users/sidebar"
+  .myPage__main
+    .creditCard
+      .creditCard__title
+        クレジットカード情報入力
+      = form_with class: "form" do |f|
+        .form__content
+          .form__label
+            = f.label "カード番号"
+            %span.label 必須
+          .form__input
+            = f.text_field "#", {placeholder: "半角数字のみ", autocomplete: "off",maxlength: 19}
+        .form__content
+          .form__label
+            = f.label "有効期限"
+            %span.label 必須
+          .form__input
+            .form__input--left
+              = f.date_select "#", {discard_year: true, discard_day: true, use_month_numbers: true, use_two_digit_numbers: true}
+              %span 月
+            .form__input--right
+              = f.date_select "#", {discard_month: true, discard_day: true, use_month_numbers: true, start_year: (Time.now.year), end_year: (Time.now.year + 10)}
+              %span 年
+        .form__content
+          .form__label
+            = f.label "セキュリティコード"
+            %span.label 必須
+          .fotm__input
+            = f.text_field "#", {placeholder: "カード裏面の３桁か４桁のコード", maxlength: 4}
+        = f.submit "登録", class: "button"
+
+      .back
+        =link_to '前の画面へ', :back
