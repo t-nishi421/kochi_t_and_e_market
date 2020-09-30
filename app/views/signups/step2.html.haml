@@ -7,36 +7,31 @@
       新規登録画面
     = form_for @profile, url: step2_signups_path, method: :post do |f|
       .ErrorMessages
-        = render 'error_messages', model: f.object
+        = render 'error_messages', model: f.object # エラー文未実装
       .FormField
         .FormField__label--normal
-          = f.label :family_name
+          お名前
           %span 必須
-        .FormField__input--normal
+        .FormField__input--small
           = f.text_field :family_name, autofocus: true
+          = f.text_field :first_name, autofocus: true
       .FormField
         .FormField__label--normal
-          = f.label :family_name_kana
+          お名前（カナ）
           %span 必須
-        .FormField__input--normal
-          = f.email_field :family_name_kana
+        .FormField__input--small
+          = f.text_field :family_name_kana, autofocus: true
+          = f.text_field :first_name_kana, autofocus: true
       .FormField
         .FormField__label--normal
-          = f.label :birthday
-          %i (英数字7文字以上)
+          = f.label :birthday, "生年月日"
           %span 必須
         .FormField__input--normal
-          = f.password_field :birthday, autocomplete: "off"
-      .FormField
-        .FormField__label--normal
-          = f.label :first_name
-          %span 必須
-        .FormField__input--normal
-          = f.password_field :first_name, autocomplete: "off"
+          = f.date_select :birthday, use_month_numbers: true,start_year: 1930, end_year: (Time.now.year), default: Date.new(1989, 1, 1)
       .actions
         = f.submit "新規登録", class: 'Button CreateAccountButton'
-    .AccountPage__form__toLoginOrSignIn
-      %p アカウントをお持ちの方はこちら
-      = link_to "ログイン画面へ", new_user_session_path, class: 'Button'
+    -# .AccountPage__form__toLoginOrSignIn
+    -#   %p アカウントをお持ちの方はこちら
+    -#   = link_to "ログイン画面へ", new_user_session_path, class: 'Button'
   .AccountPage__footer
     = image_tag 'logo/logo-white.png', alt: 'furima'

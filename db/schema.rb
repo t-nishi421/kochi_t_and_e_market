@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2020_09_29_054540) do
     t.string "house_number", null: false
     t.string "building_name"
     t.integer "telephone"
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_destinations_on_user_id"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2020_09_29_054540) do
     t.string "family_name_kana", null: false
     t.string "first_name_kana", null: false
     t.date "birthday", null: false
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"

@@ -5,7 +5,7 @@ class SignupsController < ApplicationController
 
   def step1_validates
     @user = User.new(user_params)
-    if User.check_params(@user)
+    if @user.valid?
       session[:user] = @user
       redirect_to action: :step2
     else
@@ -17,9 +17,15 @@ class SignupsController < ApplicationController
     @profile = Profile.new
   end
 
+  # 各種バリデーション未実装
   def step2_validates
     @profile = Profile.new(profile_params)
-    render "step2"
+    if @profile.valid?
+      session[:profile] = @profile
+      redirect_to action: :step3
+    else
+      render "step2"
+    end
   end
 
   def step3
@@ -37,6 +43,11 @@ class SignupsController < ApplicationController
   end
 
   def profile_params
-    params.require(:profile).permit(:family_name, :first_name, :family_name_kana, :first_name_kana, :birthday)
+    params.require(:profile).permit(:family_name, :first_name, :family_name_kana, :first_name_kana, :birthday).merge(user_id: 0)
   end
+
+  def profile_valid
+    # if @profile()
+  end
+
 end
