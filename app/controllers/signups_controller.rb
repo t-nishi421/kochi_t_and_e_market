@@ -8,6 +8,7 @@ class SignupsController < ApplicationController
     if @user.save
       redirect_to action: :step2
     else
+      render "step1"
     end
   end
 

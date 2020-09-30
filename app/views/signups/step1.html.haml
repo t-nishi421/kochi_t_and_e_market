@@ -8,6 +8,7 @@
     = form_for @user, url: step1_signups_path, method: :post do |f|
       .ErrorMessages
         -# = devise_error_messages!
+        = render 'error_messages', model: f.object
       .FormField
         .FormField__label--normal
           = f.label :nick_name

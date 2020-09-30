@@ -13,7 +13,12 @@ class User < ApplicationRecord
   # has_many :purchase_histories
   # has_many :items
 
-  def user_params
-    params.require(:user).permit(:nick_name, :email, :image)
+  def self.check_params(user_model)
+    if user_model.save
+
+    else
+
+    end
   end
+
 end
