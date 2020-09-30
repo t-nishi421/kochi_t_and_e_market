@@ -72,3 +72,6 @@ gem 'devise'
 
 # binding.pryのgem
 gem 'pry-rails'
+
+# jQueryのインストール
+gem 'jquery-rails'
