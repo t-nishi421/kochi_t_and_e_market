@@ -13,11 +13,13 @@ class User < ApplicationRecord
   # has_many :purchase_histories
   # has_many :items
 
-  def self.check_params(user_model)
-    if user_model.save
-
+  # レコードが保存可能かを判定
+  def self.check_params(user_record)
+    if user_record.save
+      user_record.destroy
+      true
     else
-
+      false
     end
   end
 
