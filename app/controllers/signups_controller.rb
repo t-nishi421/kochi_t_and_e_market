@@ -4,7 +4,11 @@ class SignupsController < ApplicationController
   end
 
   def step1_validates
-
+    @user = User.new(user_params)
+    if @user.save
+      redirect_to action: :step2
+    else
+    end
   end
 
   def step2
@@ -21,5 +25,11 @@ class SignupsController < ApplicationController
 
   def create
 
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:nick_name, :email, :password)
   end
 end
