@@ -124,3 +124,11 @@ legend {
 }
 /* YUI CSS Detection Stamp */
 #yui3-css-stamp.cssreset { display: none; }
+
+a { // aタグの効果を消す
+  text-decoration: none
+}
+
+body { // 全ページの標準フォントを統一
+  font-family: "Source Sans Pro", Helvetica, Arial, "游ゴシック体", "YuGothic", "メイリオ", "Meiryo", sans-serif;
+}
