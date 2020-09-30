@@ -1,1 +1,62 @@
-step3
+.AccountPage
+  .AccountPage__header
+    = link_to root_path do
+      = image_tag 'logo/logo.png', alt: 'furima'
+  .AccountPage__form
+    .AccountPage__form__title
+      新規登録画面
+    = form_for @destination, url: step3_signups_path, method: :post do |f|
+      .ErrorMessages
+        = render 'error_messages', model: f.object # エラー文未実装
+      .FormField
+        .FormField__label--normal
+          お名前
+          %span 必須
+        .FormField__input--small
+          = f.text_field :family_name, autofocus: true
+          = f.text_field :first_name, autofocus: true
+      .FormField
+        .FormField__label--normal
+          お名前（カナ）
+          %span 必須
+        .FormField__input--small
+          = f.text_field :family_name_kana, autofocus: true
+          = f.text_field :first_name_kana, autofocus: true
+      .FormField
+        .FormField__label--normal
+          = f.label :postal_code, "郵便番号"
+          %span 必須
+        .FormField__input--normal
+          = f.text_field :postal_code, autofocus: true
+      .FormField
+        .FormField__label--normal
+          = f.label :prefecture, "都道府県"
+          %span 必須
+        .FormField__input--normal
+          = f.text_field :prefecture, autofocus: true
+      .FormField
+        .FormField__label--normal
+          = f.label :city, "市区町村"
+          %span 必須
+        .FormField__input--normal
+          = f.text_field :city, autofocus: true
+      .FormField
+        .FormField__label--normal
+          = f.label :house_number, "番地"
+          %span 必須
+        .FormField__input--normal
+          = f.text_field :house_number, autofocus: true
+      .FormField
+        .FormField__label--normal
+          = f.label :building_name, "マンション名など"
+        .FormField__input--normal
+          = f.text_field :building_name, autofocus: true
+      .FormField
+        .FormField__label--normal
+          = f.label :building_name, "電話番号"
+        .FormField__input--normal
+          = f.text_field :building_name, autofocus: true
+      .actions
+        = f.submit "新規登録", class: 'Button CreateAccountButton'
+  .AccountPage__footer
+    = image_tag 'logo/logo-white.png', alt: 'furima'

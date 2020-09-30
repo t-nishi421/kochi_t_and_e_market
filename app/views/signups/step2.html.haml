@@ -30,8 +30,5 @@
           = f.date_select :birthday, use_month_numbers: true,start_year: 1930, end_year: (Time.now.year), default: Date.new(1989, 1, 1)
       .actions
         = f.submit "新規登録", class: 'Button CreateAccountButton'
-    -# .AccountPage__form__toLoginOrSignIn
-    -#   %p アカウントをお持ちの方はこちら
-    -#   = link_to "ログイン画面へ", new_user_session_path, class: 'Button'
   .AccountPage__footer
     = image_tag 'logo/logo-white.png', alt: 'furima'

@@ -17,23 +17,29 @@ class SignupsController < ApplicationController
     @profile = Profile.new
   end
 
-  # 各種バリデーション未実装
   def step2_validates
     @profile = Profile.new(profile_params)
     if @profile.valid?
       session[:profile] = @profile
       redirect_to action: :step3
     else
+      # 各種バリデーション,メッセージ未実装
       render "step2"
     end
   end
 
   def step3
-
+    @destination = Destination.new
   end
 
   def create
-
+    @destination = Destination.new(destination_params)
+    if @destination.valid?
+      # 各データ保存処理
+    else
+      # 各種バリデーション,メッセージ未実装
+      render "step3"
+    end
   end
 
   private
@@ -43,11 +49,11 @@ class SignupsController < ApplicationController
   end
 
   def profile_params
-    params.require(:profile).permit(:family_name, :first_name, :family_name_kana, :first_name_kana, :birthday).merge(user_id: 0)
+    params.require(:profile).permit(:family_name, :first_name, :family_name_kana, :first_name_kana, :birthday)
   end
 
-  def profile_valid
-    # if @profile()
+  def destination_params
+    params.require(:destination).permit(:family_name, :first_name, :family_name_kana, :first_name_kana, :postal_code, :prefecture, :city, :house_number, :building_name, :telephone)
   end
 
 end
