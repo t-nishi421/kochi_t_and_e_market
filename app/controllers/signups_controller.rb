@@ -6,7 +6,8 @@ class SignupsController < ApplicationController
   def step1_validates
     @user = User.new(user_params)
     if @user.valid?
-      session[:user] = @user
+      session["regist_data"] = {user: @user.attributes}
+      session["regist_data"][:user]["password"] = params[:user][:password]
       redirect_to action: :step2
     else
       render "step1"
@@ -20,7 +21,7 @@ class SignupsController < ApplicationController
   def step2_validates
     @profile = Profile.new(profile_params)
     if @profile.valid?
-      session[:profile] = @profile
+      session["regist_data"][:profile] = @profile
       redirect_to action: :step3
     else
       # 各種バリデーション,メッセージ未実装
@@ -35,7 +36,13 @@ class SignupsController < ApplicationController
   def create
     @destination = Destination.new(destination_params)
     if @destination.valid?
-      # 各データ保存処理
+      @user = User.create(session["regist_data"]["user"])
+      @profile = Profile.new(session["regist_data"]["profile"].merge(user_id: @user.id))
+      @profile.save
+      @destination = Destination.create(destination_params.merge(user_id: @user.id))
+      session["regist_data"].clear
+      sign_in(:user, @user)
+      redirect_to root_path
     else
       # 各種バリデーション,メッセージ未実装
       render "step3"
