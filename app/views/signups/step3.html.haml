@@ -24,7 +24,7 @@
           = f.text_field :first_name_kana, autofocus: true
       .FormField
         .FormField__label--normal
-          = f.label :postal_code
+          = f.label :postal_code, "郵便番号（ハイフンなし）"
           %span 必須
         .FormField__input--normal
           = f.text_field :postal_code, autofocus: true
