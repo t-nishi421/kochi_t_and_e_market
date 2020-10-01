@@ -13,6 +13,13 @@ describe User do
       expect(user.errors[:nick_name]).to include("を入力してください")
     end
 
+    it "重複したニックネームの場合エラー" do
+      user1 = FactoryBot.create(:user)
+      user2 = FactoryBot.build(:user)
+      user2.valid?
+      expect(user2.errors[:nick_name]).to include("はすでに存在します")
+    end
+
     it "メールアドレスが未入力だとエラー" do
       user = FactoryBot.build(:user, email: "")
       user.valid?
