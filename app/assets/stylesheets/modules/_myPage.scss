@@ -1,76 +1,66 @@
-// _sidebarファイル(共有ファイル)
+// マイページ用の共有部分（全体、サイド、メイン）
 .myPage {
+  padding: 50px 150px;
+  overflow: scroll;
   display: flex;
   background-color: whitesmoke;
-  overflow: scroll;
-  padding: 50px 150px;
 
+// サイドバー(users/_sidebar)
   &__sidebar {
-    min-width: 350px;
-    width: 30%;
-  }
-
-  &__main {
-    padding: 30px 20px;
-    background-color: white;
-    flex: 1;
-    height: 90%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-}
-
-// サイドバー部分
-.side__contents {
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-
-  h3 {
-    padding: 10px;
-    margin-bottom: 5px;
-  }
-  
-  ul {
+    min-width: 300px;
+    width: 20%;
     display: flex;
     flex-direction: column;
 
-    
-    
-    li {
-      cursor: pointer;
-      background-color: white;
+    h3 {
       padding: 10px;
-      border-bottom: 1px solid whitesmoke;
-
-      &:hover {
-        background-color: rgba(255, 255, 255, 0.6);
-      }
+      margin-bottom: 5px;
+    }
+    
+    ul {
+      display: flex;
+      flex-direction: column;
       
-      a {
-        color: black;
-        text-decoration: none;
+      li {
+        cursor: pointer;
+        background-color: white;
+        padding: 10px;
+        border-bottom: 1px solid whitesmoke;
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.6);
+        }
+        
+        a {
+          color: black;
+          text-decoration: none;
+        }
       }
     }
   }
 
-  .config__list {
+// メイン(共有部分)
+  &__main {
+    margin-left: 50px;
+    padding: 30px 20px;
+    background-color: white;
+    flex: 1;
+    height: 90%;
+    min-width: 500px;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
-}
 
-// showファイル
-// マイページのデフォルトページ
-.user {
-  background-color: white;
-  height: 90%;
-  width: 80%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-    
+  // マイページのトップページ(users/show)
+  &__contents {
+    background-color: white;
+    height: 90%;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   &__form {
     width: 100%;
     display: flex;
@@ -78,23 +68,25 @@
     justify-content: center;
     align-items: center;
     font-size: large;
-  }
 
-  &__status {
-    height: 50px;
-    display: flex;
-    align-items: center;
-    margin-bottom: 30px;
-
-    &--icon {
-      margin-right: 20px;
-    }
+    .formField {
+      height: 50px;
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+      
+      &__icon {
+        margin-right: 20px;
+      }
+      
       input {
         height: 35px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
       }
+    }
   }
     
-  
   &__comment {
     width: 100%;
     margin-bottom: 30px;
@@ -103,19 +95,19 @@
     textarea {
       padding: 5px;
       height: 200px;
-      width: 95%;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 3px;
     }
   }
-  
-  .button {
+
+  &__btn {
     @include button();
-    width: 100%;
-    height: 50px;
   }
 }
 
-// マイページのクレジットカード追加ページ
-.creditCard {
+// マイページのクレジットカード追加ページ(users/card)
+.card {
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -132,20 +124,47 @@
   
   &__registration {
     padding: 20px 50px;
+  }
 
-    a {
-      color: #3CCACE;
-      text-decoration: none;
+  a {
+    text-decoration: none;
+    color: #3CCACE;
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+}
+// マイページのお届け先住所の登録・変更ページ(users/destination)
+.destination {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    height: 90%;
 
-      &:hover {
-        opacity: 0.6;
-      }
+  &__title {
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
+    font-size: x-large;
+    border-bottom: 1px solid whitesmoke;
+  }
+  
+  &__registration {
+    padding: 20px 50px;
+  }
+
+  a {
+    text-decoration: none;
+    color: #3CCACE;
+    &:hover {
+      opacity: 0.6;
     }
   }
 }
 
 
-// ログアウトページ
+// マイページのログアウトページ(users/logout)
 .logout {
   background-color: white;
   width: 80%;
@@ -163,8 +182,6 @@
   }
   .logout__btn {
     @include button();
-    width: 100%;
-    height: 50px;
     text-align: center;
 
     &:hover {

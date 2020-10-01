@@ -3,9 +3,9 @@
     = render "sidebar"
 
   .myPage__main
-    .creditCard
-      .creditCard__title
+    .card
+      .card__title
         クレジットカード
-      .creditCard__registration
-        .creditCard__list
-          = link_to "+ クレジットカードを追加", new_card_path
+      .card__registration
+        .card__list
+          = link_to "+ クレジットカードを追加", new_user_card_path('#')

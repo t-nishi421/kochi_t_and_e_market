@@ -5,5 +5,5 @@
   .myPage__main
     .logout
       .logout__content
-        .logout__btn{type: "submit"}
-          = link_to "ログアウト", '#', method: :delete
+        .logout__btn
+          = link_to "ログアウト", destroy_user_session_path, method: :delete

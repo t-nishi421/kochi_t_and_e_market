@@ -1,23 +1,23 @@
-%nav.side__contents
+%nav
   %ul.item__list
-    %li.side__maypage
-      = link_to "マイページ", user_path(:id)
-    %li.side__sell
+    %li
+      = link_to "マイページ", user_path('#')
+    %li
       = link_to "出品", '#'
-    %li.side__sellItems
+    %li
       = link_to "出品中の商品", '#'
-    %li.side__bayItems
+    %li
       = link_to "購入した商品", '#'
 
   %h3 設定
   %ul.config__list
-    %li.side__profile
+    %li
       = link_to "プロフィール", '#'
-    %li.side__destination
-      = link_to "お届け先住所", '#'
-    %li.side__creditCard
-      = link_to "クレジットカードの登録・変更", card_users_path(:id)
-    %li.side__emailPassword
+    %li
+      = link_to "お届け先住所の登録・変更", destination_users_path('#')
+    %li
+      = link_to "クレジットカードの登録・変更", card_users_path('#')
+    %li
       = link_to "メール/パスワードの変更", '#'
-    %li.side__logout
-      = link_to "ログアウト", logout_users_path(:id)
+    %li
+      = link_to "ログアウト", logout_users_path('#')

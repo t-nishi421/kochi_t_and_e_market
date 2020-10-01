@@ -3,14 +3,14 @@
     = render "sidebar"
 
   .myPage__main
-    .user
-      = form_with class: "user__form" do |f|
-        .user__status
-          .user__status--icon
+    .myPage__contents
+      = form_with class: "myPage__form" do |f|
+        .formField
+          .formField__icon
             = image_tag 'icon/member_photo_noimage_thumb.png', width: '50', height: '50'
-          .user__status--name
-            = f.text_field :nick_name, placeholder: "ニックネーム"
-        .user__comment
-          = f.text_area :comment, placeholder: "例）ご覧いただきありがとうございます！〇〇商品を中心に取り扱っております☆お気軽にご質問どうぞ♪"
+          .formField__name
+            = f.text_field '#', placeholder: "ニックネーム"
+        .myPage__comment
+          = f.text_area '#', placeholder: "例）ご覧いただきありがとうございます！〇〇商品を中心に取り扱っております☆お気軽にご質問どうぞ♪"
 
-        = f.submit '変更する', class: "button"
+        = f.submit '変更する', class: "myPage__btn"
