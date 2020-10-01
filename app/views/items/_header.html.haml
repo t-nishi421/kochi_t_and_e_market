@@ -23,12 +23,9 @@
             ブランド
       %ul.listRight
         %li.listRight__logIn
-          = link_to '#', class: 'rightBtn' do
+          = link_to new_user_session_path, class: 'rightBtn' do
             ログイン
         %li.listRight__signUp
-          = link_to '#', class: 'rightBtn' do
+          = link_to new_user_registration_path, class: 'rightBtn' do
             新規会員登録
-
-        
-    
-    
+            
