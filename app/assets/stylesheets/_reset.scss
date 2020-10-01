@@ -132,3 +132,13 @@ a { // aタグの効果を消す
 body { // 全ページの標準フォントを統一
   font-family: "Source Sans Pro", Helvetica, Arial, "游ゴシック体", "YuGothic", "メイリオ", "Meiryo", sans-serif;
 }
+
+// ナンバーフィールドのスピンボタンを非表示
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+     -webkit-appearance: none;
+     margin: 0;
+}
+input[type="number"] {
+     -moz-appearance:textfield;
+}

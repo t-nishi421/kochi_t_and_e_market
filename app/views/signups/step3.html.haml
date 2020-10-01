@@ -27,7 +27,7 @@
           = f.label :postal_code, "郵便番号（ハイフンなし）"
           %span 必須
         .FormField__input--normal
-          = f.text_field :postal_code, autofocus: true
+          = f.number_field :postal_code, autofocus: true
       .FormField
         .FormField__label--normal
           = f.label :prefecture
