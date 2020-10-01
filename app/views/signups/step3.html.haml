@@ -24,38 +24,38 @@
           = f.text_field :first_name_kana, autofocus: true
       .FormField
         .FormField__label--normal
-          = f.label :postal_code, "郵便番号"
+          = f.label :postal_code
           %span 必須
         .FormField__input--normal
           = f.text_field :postal_code, autofocus: true
       .FormField
         .FormField__label--normal
-          = f.label :prefecture, "都道府県"
+          = f.label :prefecture
           %span 必須
         .FormField__input--normal
           = f.text_field :prefecture, autofocus: true
       .FormField
         .FormField__label--normal
-          = f.label :city, "市区町村"
+          = f.label :city
           %span 必須
         .FormField__input--normal
           = f.text_field :city, autofocus: true
       .FormField
         .FormField__label--normal
-          = f.label :house_number, "番地"
+          = f.label :house_number
           %span 必須
         .FormField__input--normal
           = f.text_field :house_number, autofocus: true
       .FormField
         .FormField__label--normal
-          = f.label :building_name, "マンション名など"
+          = f.label :building_name
         .FormField__input--normal
           = f.text_field :building_name, autofocus: true
       .FormField
         .FormField__label--normal
-          = f.label :building_name, "電話番号"
+          = f.label :telephone
         .FormField__input--normal
-          = f.text_field :building_name, autofocus: true
+          = f.text_field :telephone, autofocus: true
       .actions
         = f.submit "新規登録", class: 'Button CreateAccountButton'
   .AccountPage__footer

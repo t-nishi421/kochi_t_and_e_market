@@ -34,7 +34,7 @@
         .FormField__input--normal
           = f.password_field :password_confirmation, autocomplete: "off"
       .actions
-        = f.submit "新規登録", class: 'Button CreateAccountButton'
+        = f.submit "次へ", class: 'Button CreateAccountButton'
     .AccountPage__form__toLoginOrSignIn
       %p アカウントをお持ちの方はこちら
       = link_to "ログイン画面へ", new_user_session_path, class: 'Button'
