@@ -1,20 +1,25 @@
 // マイページ用の共有部分（全体、サイド、メイン）
 .myPage {
-  padding: 50px 150px;
-  overflow: scroll;
-  display: flex;
+  padding: 0 150px;
   background-color: whitesmoke;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  flex-wrap: wrap-reverse;
+  overflow: scroll;
 
 // サイドバー(users/_sidebar)
   &__sidebar {
+    flex: 3;
+    max-width: 300px;
     min-width: 300px;
-    width: 20%;
+    margin: 30px 50px 30px 0;
     display: flex;
     flex-direction: column;
-
+    
     h3 {
-      padding: 10px;
       margin-bottom: 5px;
+      padding: 10px;
     }
     
     ul {
@@ -23,8 +28,8 @@
       
       li {
         cursor: pointer;
-        background-color: white;
         padding: 10px;
+        background-color: white;
         border-bottom: 1px solid whitesmoke;
 
         &:hover {
@@ -41,12 +46,12 @@
 
 // メイン(共有部分)
   &__main {
-    margin-left: 50px;
-    padding: 30px 20px;
+    height: 80%;
+    flex: 7;
+    min-width: 300px;
+    margin: 30px 0;
+    padding: 50px 0;
     background-color: white;
-    flex: 1;
-    height: 90%;
-    min-width: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -54,35 +59,24 @@
 
   // マイページのトップページ(users/show)
   &__contents {
-    background-color: white;
-    height: 90%;
-    width: 80%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include myPageContents();
   }
+  
   &__form {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: large;
+    @include myPageForm();
 
     .formField {
       height: 50px;
+      margin-bottom: 30px;
       display: flex;
       align-items: center;
-      margin-bottom: 30px;
       
       &__icon {
         margin-right: 20px;
       }
       
       input {
-        height: 35px;
-        border: 1px solid #ccc;
-        border-radius: 3px;
+        @include myPageInput();
       }
     }
   }
@@ -93,33 +87,25 @@
     text-align: center;
 
     textarea {
-      padding: 5px;
       height: 200px;
       width: 100%;
+      padding: 5px;
       border: 1px solid #ccc;
       border-radius: 3px;
     }
   }
 
   &__btn {
-    @include button();
+    @include myPageBtn();
   }
 }
 
 // マイページのクレジットカード追加ページ(users/card)
 .card {
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
-    height: 90%;
+  @include myPageContents();
 
   &__title {
-    text-align: center;
-    width: 100%;
-    font-weight: bold;
-    font-size: x-large;
-    border-bottom: 1px solid whitesmoke;
+    @include myPageTitle();
   }
   
   &__registration {
@@ -127,73 +113,82 @@
   }
 
   a {
-    text-decoration: none;
-    color: #3CCACE;
-    &:hover {
-      opacity: 0.6;
-    }
+    @include aTag();
   }
 }
+
 // マイページのお届け先住所の登録・変更ページ(users/destination)
 .destination {
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
-    height: 90%;
+  @include myPageContents();
 
   &__title {
-    text-align: center;
-    width: 100%;
-    font-weight: bold;
-    font-size: x-large;
-    border-bottom: 1px solid whitesmoke;
+    @include myPageTitle();
   }
-  
+
   &__registration {
     padding: 20px 50px;
   }
 
   a {
-    text-decoration: none;
-    color: #3CCACE;
-    &:hover {
-      opacity: 0.6;
-    }
+    @include aTag();
   }
 }
 
+// メール/パスワードの変更(users/edit)
+.mailPass {
+  @include myPageContents();
+
+  &__title {
+    @include myPageTitle();
+  }
+  
+  form {
+    @include myPageForm();
+    
+    .formField {
+      margin-bottom: 10px;
+      
+      &__label {
+        margin-bottom: 5px;
+      }
+      
+      .mandatory {
+        @include mandatory();
+      }
+      
+      input {
+        @include myPageInput();
+      }
+
+      &__btn {
+        @include myPageBtn();
+      }
+    }
+  }
+  
+}
 
 // マイページのログアウトページ(users/logout)
 .logout {
-  background-color: white;
-  width: 80%;
   height: 200px;
+  width: 100%;
+  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   
   &__content {
     width: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
   }
   .logout__btn {
-    @include button();
-    text-align: center;
-
-    &:hover {
-      opacity: 0.9;
-    }
+    @include myPageBtn();
     
     a {
-      display: block;
-      font-size: large;
       line-height: 50px;
-      text-decoration: none;
       color: white;
-      }
+      font-size: large;
+      text-decoration: none;
+      display: block;
     }
+  }
 }

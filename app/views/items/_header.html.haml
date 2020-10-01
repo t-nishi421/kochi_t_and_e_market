@@ -28,4 +28,6 @@
         %li.listRight__signUp
           = link_to new_user_registration_path, class: 'rightBtn' do
             新規会員登録
-            
+        %li.listRight__myPage
+          = link_to user_path('#'), class: 'rightBtn' do
+            マイページ

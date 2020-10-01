@@ -1,16 +1,15 @@
 @import "reset";
-
-@import "variables";
-@import "modules/item";
 @import 'mixin/opacity';
 @import 'mixin/underline';
+@import 'mixin/myPage';
+@import "modules/item";
 @import "modules/header";
 @import "modules/main";
 @import "modules/banner";
 @import "modules/footer";
 @import "modules/btn";
-@import "modules/items";
 @import "modules/user";
 @import "modules/myPage";
+@import "modules/profile";
 @import "modules/creditCard";
 @import "modules/destination";
