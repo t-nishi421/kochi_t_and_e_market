@@ -1,0 +1,44 @@
+
+.banner{
+  background-image: image-url(pict/bg-appBanner-pict);
+  padding: 100px 40px;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  &__box{
+    color: #ffffff;
+    text-align: center;
+    .title{
+      text-shadow: 0 0 5px rgba(0,0,0,0.4);
+      font-size: 24px;
+      font-weight: bold;
+      line-height: 1.4;
+    }
+    .text{
+      font-size: 35px;
+      text-shadow: 0 0 5px rgba(0,0,0,0.4);
+    }
+    .btn{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin: 20px auto 0;
+      &__abtn{
+        margin-right: -5px;
+        img {
+          vertical-align: bottom;
+          width: 180px;
+          @include opacity();
+        }
+      }
+      &__gbtn{
+        img {
+          vertical-align: bottom;
+          width: 220px;
+          margin-top: -10px;
+          @include opacity();
+        }
+      }
+    }
+  }
+}
