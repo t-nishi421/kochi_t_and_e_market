@@ -7,7 +7,7 @@
       新規登録画面
     = form_for @profile, url: step2_signups_path, method: :post do |f|
       .ErrorMessages
-        = render 'error_messages', model: f.object # エラー文未実装
+        = render 'error_messages', model: f.object
       .FormField
         .FormField__label--normal
           お名前

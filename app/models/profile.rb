@@ -21,6 +21,7 @@ class Profile < ApplicationRecord
       with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/,
       message: "は全角カタカナのみで入力して下さい"
     }
+  # 未実装：生年月日で不正な日付が入らないようにする
   # validates :birthday
 
 end

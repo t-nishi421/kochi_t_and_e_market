@@ -24,7 +24,6 @@ class SignupsController < ApplicationController
       session["regist_data"][:profile] = @profile
       redirect_to action: :step3
     else
-      # 各種バリデーション,メッセージ未実装
       render "step2"
     end
   end
@@ -44,7 +43,6 @@ class SignupsController < ApplicationController
       sign_in(:user, @user)
       redirect_to root_path
     else
-      # 各種バリデーション,メッセージ未実装
       render "step3"
     end
   end

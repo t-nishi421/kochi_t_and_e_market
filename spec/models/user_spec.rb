@@ -19,7 +19,7 @@ describe User do
       expect(user.errors[:email]).to include("を入力してください")
     end
 
-    it "重複したメールアドレスの場合、無効である" do
+    it "重複したメールアドレスの場合エラー" do
       user1 = FactoryBot.create(:user)
       user2 = FactoryBot.build(:user)
       user2.valid?
