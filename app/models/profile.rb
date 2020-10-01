@@ -14,12 +14,12 @@ class Profile < ApplicationRecord
   validates :family_name_kana, presence: true,
     format: {
     with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/,
-    message: "は全角カタカナのみで入力して下さい"
+    message: "は全角カタカナで入力して下さい"
   }
   validates :first_name_kana, presence: true,
     format: {
       with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/,
-      message: "は全角カタカナのみで入力して下さい"
+      message: "は全角カタカナで入力して下さい"
     }
   # 未実装：生年月日で不正な日付が入らないようにする
   # validates :birthday

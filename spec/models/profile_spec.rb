@@ -40,13 +40,13 @@ describe Profile do
     it "姓（全角カナ）が全角ひらがなだとエラー" do
       profile = FactoryBot.build(:profile, family_name_kana: "せい")
       profile.valid?
-      expect(profile.errors[:family_name_kana]).to include("は全角カタカナのみで入力して下さい")
+      expect(profile.errors[:family_name_kana]).to include("は全角カタカナで入力して下さい")
     end
 
     it "姓（全角カナ）が漢字だとエラー" do
       profile = FactoryBot.build(:profile, family_name_kana: "姓")
       profile.valid?
-      expect(profile.errors[:family_name_kana]).to include("は全角カタカナのみで入力して下さい")
+      expect(profile.errors[:family_name_kana]).to include("は全角カタカナで入力して下さい")
     end
 
     it "名（全角カナ）が未入力だとエラー" do
@@ -55,10 +55,16 @@ describe Profile do
       expect(profile.errors[:first_name_kana]).to include("を入力してください")
     end
 
+    it "名（全角カナ）が全角ひらがなだとエラー" do
+      profile = FactoryBot.build(:profile, first_name_kana: "めい")
+      profile.valid?
+      expect(profile.errors[:first_name_kana]).to include("は全角カタカナで入力して下さい")
+    end
+
     it "名（全角カナ）が漢字だとエラー" do
       profile = FactoryBot.build(:profile, first_name_kana: "名")
       profile.valid?
-      expect(profile.errors[:first_name_kana]).to include("は全角カタカナのみで入力して下さい")
+      expect(profile.errors[:first_name_kana]).to include("は全角カタカナで入力して下さい")
     end
 
   end
