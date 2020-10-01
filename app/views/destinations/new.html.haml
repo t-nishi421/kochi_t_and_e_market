@@ -1,0 +1,67 @@
+.myPage
+  .myPage__sidebar
+    = render "users/sidebar"
+  .myPage__main
+    .destination
+      .destination__title
+        お届け先住所の登録
+      = form_with class: "destination__form" do |f|
+        .formField
+          .formField__label
+            = f.label "お名前"
+            %span.mandatory 必須
+          .formField__input
+            .formField__input--top
+              = f.text_field '#',{placeholder: "例）佐藤"}
+            .formField__input--bottom
+              = f.text_field '#',{placeholder: "例）太郎"}
+        .formField
+          .formField__label
+            = f.label "お名前（カナ）"
+            %span.mandatory 必須
+          .formField__input
+            .formField__input--top
+              = f.text_field '#',{placeholder: "例）サトウ"}
+            .formField__input--bottom
+              = f.text_field '#',{placeholder: "例）タロウ"}
+        .formField
+          .formField__label
+            = f.label "郵便番号"
+            %span.mandatory 必須
+          .formField__input
+            = f.text_field '#',{placeholder: "例）123-4567", maxlength: 8, minlength: 8}
+        .formField
+          .formField__label
+            = f.label "都道府県"
+            %span.mandatory 必須
+          .formField__input
+            = f.text_field '#',{placeholder: ""}
+        .formField
+          .formField__label
+            = f.label "市町村"
+            %span.mandatory 必須
+          .formField__input
+            = f.text_field '#',{placeholder: "例）〇〇市〇〇甲"}
+        .formField
+          .formField__label
+            = f.label "番地"
+            %span.mandatory 必須
+          .formField__input
+            = f.text_field '#',{placeholder: "例）1234-5"}
+        .formField
+          .formField__label
+            = f.label "建物名"
+            %span.optional 任意
+          .formField__input
+            = f.text_field '#',{placeholder: "例）〇〇ビル"}
+        .formField
+          .formField__label
+            = f.label "電話"
+            %span.optional 任意
+          .formField__input
+            = f.text_field '#',{placeholder: "例）09012345678", type: "tel"}
+
+        = f.submit "登録", class: "formField__btn"
+
+      .back
+        =link_to '前の画面へ', :back
