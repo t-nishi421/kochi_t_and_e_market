@@ -1,0 +1,16 @@
+.sellItemPage{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  .head{
+    height: 128px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    img {
+      height: 49px;
+      width: 185px;
+    }
+  }
+  
+}
