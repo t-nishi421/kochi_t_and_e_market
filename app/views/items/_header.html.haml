@@ -21,13 +21,17 @@
         %li.listLeft__brand
           = link_to '#', class: 'leftBtn' do
             ブランド
-      %ul.listRight
-        %li.listRight__logIn
-          = link_to new_user_session_path, class: 'rightBtn' do
-            ログイン
-        %li.listRight__signUp
-          = link_to new_user_registration_path, class: 'rightBtn' do
-            新規会員登録
-        %li.listRight__myPage
-          = link_to user_path('#'), class: 'rightBtn' do
-            マイページ
+
+      - if user_signed_in?
+        %ul.listRight
+          %li.listRight__logIn
+            = link_to '#', class: 'rightBtn' do
+              マイページ
+      - else
+        %ul.listRight
+          %li.listRight__logIn
+            = link_to new_user_session_path, class: 'rightBtn' do
+              ログイン
+          %li.listRight__signUp
+            = link_to step1_signups_path, class: 'rightBtn' do
+              新規会員登録
