@@ -1,4 +1,5 @@
 @import "reset";
+@import 'mixin/flex-bundle';
 @import 'mixin/opacity';
 @import 'mixin/underline';
 @import "modules/header";
@@ -8,3 +9,4 @@
 @import "modules/btn";
 @import "modules/items";
 @import "modules/user";
+@import "modules/show";
