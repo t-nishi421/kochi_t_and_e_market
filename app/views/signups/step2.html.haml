@@ -1,0 +1,34 @@
+.AccountPage
+  .AccountPage__header
+    = link_to root_path do
+      = image_tag 'logo/logo.png', alt: 'furima'
+  .AccountPage__form
+    .AccountPage__form__title
+      新規登録画面
+    = form_for @profile, url: step2_signups_path, method: :post do |f|
+      .ErrorMessages
+        = render 'error_messages', model: f.object
+      .FormField
+        .FormField__label--normal
+          お名前
+          %span 必須
+        .FormField__input--small
+          = f.text_field :family_name, autofocus: true, placeholder: '姓'
+          = f.text_field :first_name, autofocus: true, placeholder: '名'
+      .FormField
+        .FormField__label--normal
+          お名前（カナ）
+          %span 必須
+        .FormField__input--small
+          = f.text_field :family_name_kana, autofocus: true, placeholder: 'セイ'
+          = f.text_field :first_name_kana, autofocus: true, placeholder: 'メイ'
+      .FormField
+        .FormField__label--normal
+          = f.label :birthday, "生年月日"
+          %span 必須
+        .FormField__input--normal
+          = f.date_select :birthday, use_month_numbers: true,start_year: 1930, end_year: (Time.now.year), default: Date.new(1989, 1, 1)
+      .actions
+        = f.submit "次へ", class: 'Button CreateAccountButton'
+  .AccountPage__footer
+    = image_tag 'logo/logo-white.png', alt: 'furima'

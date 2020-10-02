@@ -5,9 +5,9 @@
   .AccountPage__form
     .AccountPage__form__title
       新規登録画面
-    = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    = form_for @user, url: step1_signups_path, method: :post do |f|
       .ErrorMessages
-        = devise_error_messages!
+        = render 'error_messages', model: f.object
       .FormField
         .FormField__label--normal
           = f.label :nick_name
@@ -34,9 +34,9 @@
         .FormField__input--normal
           = f.password_field :password_confirmation, autocomplete: "off"
       .actions
-        = f.submit "新規登録", class: 'Button CreateAccountButton'
+        = f.submit "次へ", class: 'Button CreateAccountButton'
     .AccountPage__form__toLoginOrSignIn
       %p アカウントをお持ちの方はこちら
-      = render "devise/shared/links"
+      = link_to "ログイン画面へ", new_user_session_path, class: 'Button'
   .AccountPage__footer
     = image_tag 'logo/logo-white.png', alt: 'furima'
