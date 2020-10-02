@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root 'items#index'
   
   resources :users, only: [:show, :edit, :update] do
-    resources :credit_cards, only: [:new, :create, :edit, :update], as: :cards
+    resources :credit_cards, only: [:new, :create], as: :cards
     resources :destinations, only: [:new, :create, :edit, :update]
     resources :profiles, only: [:edit, :update]
     collection do

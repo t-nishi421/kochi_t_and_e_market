@@ -108,10 +108,20 @@
     @include myPageTitle();
   }
   
-  &__registration {
-    padding: 20px 50px;
+  &__content {
+    padding: 0 50px;
   }
 
+  &__registration {
+    padding: 10px 0;
+    border-bottom: 1px solid whitesmoke;
+  }
+
+  section {
+    padding: 10px 0;
+    border-bottom: 1px solid whitesmoke;
+  }
+  
   a {
     @include aTag();
   }
