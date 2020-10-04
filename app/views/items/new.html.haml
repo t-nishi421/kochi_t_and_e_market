@@ -41,8 +41,30 @@
           .itemDetailName
             %label.label 商品の状態
             %span.sideLabel 必須
-          .itemConditionSelect
-            = f.select '#', {class:'itemConditionSelect__Form'}
+          .selectBoxBtn
+            = f.select '#', { class: 'selectBoxBtn__form'}
+        
+        .delivery
+          %p.grayTextTitle 配送について
+          .itemDetailName
+            %label.label 配送料の負担
+            %span.sideLabel 必須
+          .selectBoxBtn
+            = f.select '#', { class: 'selectBoxBtn__form'}
+          .itemDetailName
+            %label.label 配送元の地域
+            %span.sideLabel 必須
+          .selectBoxBtn
+            = f.select '#', { class: 'selectBoxBtn__form'}
+          .itemDetailName
+            %label.label 配送までの日数
+            %span.sideLabel 必須
+          .selectBoxBtn
+            = f.select '#', { class: 'selectBoxBtn__form'}
+        
+        .itemPrice
+          %p.grayTextTitle  価格（¥300〜9,999,999）
+
             
 
 

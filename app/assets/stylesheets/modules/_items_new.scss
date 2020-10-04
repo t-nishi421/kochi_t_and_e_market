@@ -1,3 +1,9 @@
+@mixin mainGrayBrock { //ブロックごとにグレーのラインで分ける
+  padding: 40px;
+  border-bottom: solid 1px #f5f5f5;
+}
+
+
 .sellItemPage{
   display: flex;
   flex-direction: column;
@@ -11,8 +17,7 @@
       padding-bottom: 40px;
       background-color: #ffffff;
       .imageSend{
-        padding: 40px;
-        border-bottom: solid 1px #f5f5f5;
+        @include mainGrayBrock(); 
         &__text{
           font-size: 14px;
           line-height: 1.4em;
@@ -30,8 +35,7 @@
       } 
       
       .itemMain{
-        padding: 40px;
-        border-bottom: 1px solid #f5f5f5;
+        @include mainGrayBrock();
         .itemName{
           &__input{
             border: 1px solid #ccc;
@@ -59,17 +63,9 @@
       }
 
       .itemDetail{
-        padding: 40px;
-        border-bottom: 1px solid #f5f5f5;
+        @include mainGrayBrock();
         &__category{
           margin-bottom: 16px;
-          .categoryChoice{
-            margin-bottom: 16px;
-            &__Form{
-              height: 48px;
-
-            }
-          }
         }
         .brandForm{
           margin-bottom: 16px;
@@ -85,10 +81,13 @@
         }
         .itemConditionSelect{
           margin-bottom: 16px;
-
         }
-      
-
+      }
+      .delivery{
+        @include mainGrayBrock();
+      }
+      .itemPrice{
+        padding: 40px;
       }
     }
   }
@@ -126,12 +125,28 @@
   border-radius: 4px;
 }
 
-
-.grayTextTitle{ //グレーのタイトル
+//グレーのブロックごとのタイトル
+.grayTextTitle{ 
   color: rgb(136, 136, 136);
   font-size: 14px;
   font-weight: 600;
   line-height: 1.4em;
   margin-bottom: 24px;
+}
+
+//選択肢ボタン
+.selectBoxBtn{
+  margin-bottom: 16px;
+  &__form{
+    height: 48px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #222;
+    padding: 0 16px;
+    width: 100%;
+
+  }
+
 
 }
+
