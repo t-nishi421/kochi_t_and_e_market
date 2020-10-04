@@ -6,7 +6,7 @@
   justify-content: space-between;
   align-items: start;
   flex-wrap: wrap-reverse;
-  overflow: scroll;
+  overflow: auto;
 
 // サイドバー(users/_sidebar)
   &__sidebar {
