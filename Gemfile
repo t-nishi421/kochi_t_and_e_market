@@ -79,3 +79,6 @@ gem 'pry-rails'
 
 # jQueryのインストール
 gem 'jquery-rails'
+
+# pay.jpのgem
+gem 'payjp'
