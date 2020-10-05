@@ -23,13 +23,13 @@ Rails.application.routes.draw do
   root 'items#index'
   
   resources :users, only: [:show, :edit, :update] do
-    resources :credit_cards, only: [:new, :create], as: :cards
-    resources :destinations, only: [:new, :create, :edit, :update]
-    resources :profiles, only: [:edit, :update]
+    resources :credit_cards, only: [:new, :create, :destroy], as: :cards #  クレジットカード(長いのでcardsに短縮)
+    resources :destinations, only: [:new, :create, :edit, :update] # お届け先住所
+    resources :profiles, only: [:edit, :update] # 本人情報
     collection do
-      get 'destination'
-      get 'card'
-      get 'logout'
+      get 'destination' # マイページのお届け先住所遷移画面
+      get 'card' # マイページのクレジットカード遷移画面
+      get 'logout' # マイページのログアウト画面
     end
   end
 
