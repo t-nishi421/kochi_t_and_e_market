@@ -8,8 +8,9 @@
         .ItemProfile__status__images__selected
           = image_tag 'example/product.jpg', alt: '商品画像', class: 'SelectedImage'
         .ItemProfile__status__images__list
-          - 5.times do |num|
-            = image_tag 'example/product.jpg', alt: '商品画像', class: "ListImage List#{num}"
+          - 5.times do
+            = image_tag 'example/product.jpg', alt: '商品画像', class: "ListImage"
+          = image_tag 'pict/pict-reason-01.jpg', alt: '商品画像', class: "ListImage"
       .ItemProfile__status__table
         %table
           %tr
