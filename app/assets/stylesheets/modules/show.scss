@@ -95,6 +95,10 @@
           padding: 8px;
           background-color: white;
           @include table-border-color();
+          a {
+            color: #0099e8;
+            @include opacity();
+          }
         }
       }
     }
