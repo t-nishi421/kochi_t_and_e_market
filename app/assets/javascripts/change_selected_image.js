@@ -7,6 +7,7 @@ $(function(){
     $('.SelectedImage').attr('src', image);
     $('.ViewImage').attr('src', image);
 
+    // 選択中の画像が白くなるように変更
     $('.ListImage').removeClass("Selected");
     $(this).addClass("Selected");
   })
