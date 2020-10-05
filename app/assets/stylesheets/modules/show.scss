@@ -7,10 +7,14 @@
   border: solid #f5f5f5 1px;
 }
 
+@mixin background-color-gray {
+  background-color: #f5f5f5;
+}
+
 .ItemShowPage {
   height: 100vh;
   width: 100vw;
-  background-color: #f5f5f5;
+  @include background-color-gray();
   position: fixed;
   overflow: auto;
 }
@@ -34,24 +38,40 @@
     @include flex-bundle(space-between, "");
     &__images {
       @include status-size();
-      background-color: purple; // テストコード
+      @include background-color-gray();
       &__selected {
         height: 300px;
         width: 300px;
-        background-color: aquamarine;
+        text-align: center;
+        position: relative;
+        @include background-color-gray();
+        .SelectedImage {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          margin: auto;
+          max-width: 100%;
+          height: auto;
+          width: auto;
+        }
       }
       &__list {
         height: 60px; // テストコード
         width: 300px;
-        background-color: bisque; // テストコード
         @include flex-bundle(center, "");
         flex-wrap: wrap;
+        .ListImage {
+          object-fit: cover;
+          max-height: 60px;
+          max-width: 60px;
+        }
       }
     }
 
     &__table {
       @include status-size();
-      background-color: green; // テストコード
       table {
         height: 420px;
         font-size: 14px;
@@ -116,8 +136,12 @@
   margin: 50px auto;
   text-align: center;
   background-color: white;
-  &__textArea {
-    width: 700px;
+  textarea {
+    max-width: 620px;
+    min-width: 620px;
+    min-height: 100px;
+    height: 100px;
+    width: 620px;
   }
 
   &__info {

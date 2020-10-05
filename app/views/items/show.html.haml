@@ -6,9 +6,10 @@
     .ItemProfile__status
       .ItemProfile__status__images
         .ItemProfile__status__images__selected
-          選択した画像
+          = image_tag 'example/product.jpg', alt: '商品画像', class: 'Image SelectedImage'
         .ItemProfile__status__images__list
-          画像リスト
+          - 5.times do
+            = image_tag 'example/product.jpg', alt: '商品画像', class: 'Image ListImage'
       .ItemProfile__status__table
         %table
           %tr
@@ -20,14 +21,14 @@
             %th
               カテゴリー
             %td
-              >エネゴリー
+              >親カテゴリー
               %br
-              >カネゴリー
+              >子カテゴリー
               %br
-              >ムネドリー
+              >孫カテゴリー
           %tr
             %th
-              ブランド
+              シークレット
             %td
               Mランド
           %tr
@@ -69,10 +70,12 @@
       こんにちはでございます
       ________________________________________________________________________________________________________________________________________________________________________
   .CommentForm
-    = text_area :text, class: "CommentForm__textArea"
+    = text_area :text, class: 'CommentForm__textArea'
     .CommentForm__info
       %div 相手のことを考え丁寧なコメントを心がけましょう。
       %div 不快な言葉遣いなどは利用制限や退会処分となることがあります。
     .CommentForm__button
       コメントする
+  = render 'banner'
   = render 'footer'
+  
