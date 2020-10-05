@@ -64,6 +64,15 @@
         
         .itemPrice
           %p.grayTextTitle  価格（¥300〜9,999,999）
+          .sellForm
+            .itemDetailName
+              %label.label 販売価格
+              %span.sideLabel 必須
+            .priceInput
+              %p.yen ¥
+              .priceInput__form
+                = f.number_field '#', {class: 'priceInput__form__box', placeholder: '0'}
+            
 
             
 
