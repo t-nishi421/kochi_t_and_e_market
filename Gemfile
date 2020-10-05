@@ -38,6 +38,10 @@ group :development, :test do
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
   gem 'capistrano-rails-console'
+  # rspecのインストール
+  gem 'rspec-rails', '~> 4.0.0.beta2'
+  # factory_botをインストール
+  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -69,3 +73,9 @@ gem "haml-rails", ">= 1.0", '<= 2.0.1'
 
 # deviseのインストール
 gem 'devise'
+
+# binding.pryのgem
+gem 'pry-rails'
+
+# jQueryのインストール
+gem 'jquery-rails'

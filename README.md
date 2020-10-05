@@ -51,12 +51,6 @@ Things you may want to cover:
 |family_name_kana|string|null: false|
 |first_name_kana|string|null: false|
 |birthday|date|null: false|
-|postal_code|integer|null: false, limit: 8|
-|prefecture|string|null: false|
-|city|string|null: false|
-|house_number|string|null: false|
-|building_name|string|
-|telephone|integer|
 |user_id|reference|null: false, foreign_key: true|
 
 
@@ -69,8 +63,7 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |user_id|reference|null: false, foreign_key: true|
-|customer_id|string|null: false|
-|card_id|string|null: false|
+|customer_token|string|null: false|
 
 ### Association
 - belongs_to :user
@@ -94,7 +87,6 @@ Things you may want to cover:
 |first_name|string|null: false|
 |family_name_kana|string|null: false|
 |first_name_kana|string|null: false|
-|birthday|date|null: false|
 |postal_code|integer|null: false, limit: 8|
 |prefecture|string|null: false|
 |city|string|null: false|

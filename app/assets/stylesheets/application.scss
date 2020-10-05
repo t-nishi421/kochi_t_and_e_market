@@ -3,6 +3,8 @@
 @import 'mixin/underline';
 @import 'mixin/flex-bundle';
 @import "modules/head";
+@import 'mixin/myPage';
+@import "modules/item";
 @import "modules/header";
 @import "modules/main";
 @import "modules/banner";
@@ -11,3 +13,7 @@
 @import "modules/items";
 @import "modules/items_new";
 @import "modules/user";
+@import "modules/myPage";
+@import "modules/profile";
+@import "modules/creditCard";
+@import "modules/destination";

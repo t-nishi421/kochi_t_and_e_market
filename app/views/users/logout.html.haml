@@ -1,0 +1,9 @@
+.myPage
+  .myPage__sidebar
+    = render "users/sidebar"
+
+  .myPage__main
+    .logout
+      .logout__content
+        .logout__btn
+          = link_to "ログアウト", destroy_user_session_path, method: :delete

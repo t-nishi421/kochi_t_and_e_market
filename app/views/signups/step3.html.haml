@@ -1,0 +1,62 @@
+.AccountPage
+  .AccountPage__header
+    = link_to root_path do
+      = image_tag 'logo/logo.png', alt: 'furima'
+  .AccountPage__form
+    .AccountPage__form__title
+      新規登録画面
+    = form_for @destination, url: step3_signups_path, method: :post do |f|
+      .ErrorMessages
+        = render 'error_messages', model: f.object
+      .FormField
+        .FormField__label--normal
+          お名前
+          %span 必須
+        .FormField__input--small
+          = f.text_field :family_name, autofocus: true, placeholder: '姓'
+          = f.text_field :first_name, autofocus: true, placeholder: '名'
+      .FormField
+        .FormField__label--normal
+          お名前（カナ）
+          %span 必須
+        .FormField__input--small
+          = f.text_field :family_name_kana, autofocus: true, placeholder: 'セイ'
+          = f.text_field :first_name_kana, autofocus: true, placeholder: 'メイ'
+      .FormField
+        .FormField__label--normal
+          = f.label :postal_code, "郵便番号（ハイフンなし）"
+          %span 必須
+        .FormField__input--normal
+          = f.number_field :postal_code, autofocus: true, placeholder: '0001111'
+      .FormField
+        .FormField__label--normal
+          = f.label :prefecture
+          %span 必須
+        .FormField__input--normal
+          = f.text_field :prefecture, autofocus: true, placeholder: '○○県'
+      .FormField
+        .FormField__label--normal
+          = f.label :city
+          %span 必須
+        .FormField__input--normal
+          = f.text_field :city, autofocus: true, placeholder: '○○市○○町'
+      .FormField
+        .FormField__label--normal
+          = f.label :house_number
+          %span 必須
+        .FormField__input--normal
+          = f.text_field :house_number, autofocus: true, placeholder: '○丁目○-○○'
+      .FormField
+        .FormField__label--normal
+          = f.label :building_name
+        .FormField__input--normal
+          = f.text_field :building_name, autofocus: true
+      .FormField
+        .FormField__label--normal
+          = f.label :telephone, "電話番号（ハイフンなし）"
+        .FormField__input--normal
+          = f.text_field :telephone, autofocus: true, placeholder: '00011112222'
+      .actions
+        = f.submit "新規登録", class: 'Button CreateAccountButton'
+  .AccountPage__footer
+    = image_tag 'logo/logo-white.png', alt: 'furima'

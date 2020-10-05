@@ -1,0 +1,16 @@
+.myPage
+  .myPage__sidebar
+    = render "sidebar"
+
+  .myPage__main
+    .card
+      .card__title
+        クレジットカード
+      .card__content
+        .card__registration
+          = link_to "+ クレジットカードを追加", new_user_card_path('#')
+        .card__list
+          %section
+            = link_to "登録されたカード", '#'
+          %section
+            = link_to "登録されたカード", '#'
