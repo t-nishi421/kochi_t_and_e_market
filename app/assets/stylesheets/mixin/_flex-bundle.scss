@@ -1,0 +1,9 @@
+@mixin flex-bundle($justify, $aline) {
+  display: flex;
+  @if $justify != "" {
+    justify-content: $justify;
+  }
+  @if $aline != "" {
+    align-items: $aline;
+  }
+}
