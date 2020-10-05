@@ -4,6 +4,7 @@
 
 .header{
   padding: 0 60px;
+  background-color: white;
   .headerInner{
     max-width: 1040px;
     width: 100%;
@@ -57,7 +58,7 @@
     &__nav{
       font-size: 14px;
       display: flex;
-      margin-bottom: 10px;
+      padding-bottom: 10px;
       .listLeft{
         position: relative;
         display: flex;

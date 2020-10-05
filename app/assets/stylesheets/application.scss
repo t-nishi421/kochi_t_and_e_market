@@ -1,4 +1,5 @@
 @import "reset";
+@import 'mixin/flex-bundle';
 @import 'mixin/opacity';
 @import 'mixin/underline';
 @import 'mixin/flex-bundle';
@@ -13,6 +14,7 @@
 @import "modules/item";
 @import "modules/items_new";
 @import "modules/user";
+@import "modules/item_show";
 @import "modules/myPage";
 @import "modules/profile";
 @import "modules/creditCard";
