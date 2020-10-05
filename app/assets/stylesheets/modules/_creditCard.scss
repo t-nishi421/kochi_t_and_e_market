@@ -6,7 +6,7 @@
     @include myPageTitle();
   }
   
-  &__form {
+  #creditCard__form {
     @include myPageForm();
     
     .formField {

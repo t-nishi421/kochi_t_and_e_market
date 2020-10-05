@@ -5,30 +5,30 @@
     .creditCard
       .creditCard__title
         クレジットカード情報入力
-      = form_with class: "creditCard__form" do |f|
+      = form_with model: @credit_card, id: "creditCard__form" do |f|
         .formField
           .formField__label
-            = f.label "カード番号"
+            = f.label :card, "カード番号"
             %span.mandatory 必須
           .formField__input
-            = f.text_field "#", {placeholder: "半角数字のみ", autocomplete: "off",maxlength: 19}
+            = f.text_field :card, id: "card__num", {placeholder: "半角数字のみ", autocomplete: "off",maxlength: 16}
         .formField
           .formField__label
-            = f.label "有効期限"
+            = f.label :card, "有効期限"
             %span.mandatory 必須
           .formField__input
             .formField__input--left
-              = f.date_select "#", {discard_year: true, discard_day: true, use_month_numbers: true, use_two_digit_numbers: true}
+              = f.date_select :card, id: "exp__month", {discard_year: true, discard_day: true, use_month_numbers: true, use_two_digit_numbers: true, include_blank: "---"}
               %span 月
             .formField__input--right
-              = f.date_select "#", {discard_month: true, discard_day: true, use_month_numbers: true, start_year: (Time.now.year), end_year: (Time.now.year + 10)}
+              = f.date_select :card, id: "exp__year", {discard_month: true, discard_day: true, use_month_numbers: true, start_year: (Time.now.year), end_year: (Time.now.year + 10), include_blank: "---"}
               %span 年
         .formField
           .formField__label
-            = f.label "セキュリティコード"
+            = f.label :card, "セキュリティコード"
             %span.mandatory 必須
           .formField__input
-            = f.text_field "#", {placeholder: "カード裏面の３桁か４桁のコード", maxlength: 4}
+            = f.text_field :card, id: "card__cvc", {placeholder: "カード裏面の３桁か４桁のコード", maxlength: 4}
         = f.submit "登録", class: "formField__btn"
 
       .back
