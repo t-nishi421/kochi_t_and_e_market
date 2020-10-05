@@ -1,6 +1,6 @@
 - if controller_name != 'sessions'
-  = link_to "ログイン画面へ", new_session_path(resource_name), class: 'Button'
+  = link_to "ログイン画面へ", new_user_session_path, class: 'Button'
   %br/
 - if devise_mapping.registerable? && controller_name != 'registrations'
-  = link_to "新規登録画面へ", new_registration_path(resource_name), class: 'Button'
+  = link_to "新規登録画面へ", step1_signups_path, class: 'Button'
   %br/

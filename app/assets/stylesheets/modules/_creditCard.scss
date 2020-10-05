@@ -1,0 +1,49 @@
+//クレジットカード情報入力画面(creditCard/newファイル)
+.creditCard {
+  @include myPageContents();
+  
+  &__title {
+    @include myPageTitle();
+  }
+  
+  &__form {
+    @include myPageForm();
+    
+    .formField {
+      margin-bottom: 10px;
+
+      &__label {
+        margin-bottom: 5px;
+      }
+      
+      .mandatory {
+        @include mandatory();
+      }
+      
+      &__input {
+        width: 100%;
+        display: flex;
+        
+        input {
+          @include myPageInput();
+        }
+        
+        select {
+          @include myPageSelect();
+        }
+        
+        &--left {
+          margin-right: 30px;
+        }
+      }
+      
+      &__btn {
+        @include myPageBtn();
+      }
+    }
+  }
+    
+    a {
+      @include aTag();
+    }
+}
