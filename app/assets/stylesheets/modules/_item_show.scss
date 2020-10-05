@@ -1,0 +1,205 @@
+@mixin status-size() {
+  height: 420px;
+  width: 300px;
+}
+
+@mixin table-border-color {
+  border: solid #f5f5f5 1px;
+}
+
+@mixin background-color-gray {
+  background-color: #f5f5f5;
+}
+
+.ItemShowPage {
+  height: 100vh;
+  width: 100vw;
+  @include background-color-gray();
+  position: fixed;
+  overflow: auto;
+}
+
+.ItemProfile{
+  height: auto;
+  width: 700px;
+  padding: 30px 40px;
+  margin: 50px auto;
+  text-align: center;
+  background-color: white;
+  &__name {
+    margin: 0 auto;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  &__status {
+    height: 420px;
+    margin: 15px auto 0 auto;
+    @include flex-bundle(space-between, "");
+    &__images {
+      @include status-size();
+      @include background-color-gray();
+      &__selected {
+        height: 300px;
+        width: 300px;
+        text-align: center;
+        position: relative;
+        @include background-color-gray();
+        .SelectedImage {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          margin: auto;
+          max-width: 100%;
+          height: auto;
+          width: auto;
+          cursor : pointer;
+        }
+      }
+      &__list {
+        height: 120px;
+        width: 300px;
+        @include flex-bundle(center, "");
+        flex-wrap: wrap;
+        .ListImage {
+          object-fit: cover;
+          max-height: 60px;
+          min-height: 60px;
+          max-width: 60px;
+          min-width: 60px;
+          cursor : pointer;
+          @include opacity();
+        }
+        .Selected {
+          opacity: 0.5;
+        }
+      }
+    }
+
+    &__table {
+      @include status-size();
+      table {
+        height: 420px;
+        font-size: 14px;
+        @include table-border-color();
+        th {
+          width: 117px;
+          padding: 8px;
+          background-color: #fafafa;
+          @include table-border-color();
+        }
+        td {
+          width: 182px;
+          padding: 8px;
+          background-color: white;
+          @include table-border-color();
+          a {
+            color: #0099e8;
+            @include opacity();
+          }
+        }
+      }
+    }
+  }
+
+  &__priceBox {
+    margin-top: 18px;
+    @include flex-bundle(center, flex-end);
+    &__price {
+      margin-right: 5px;
+      font-size: 45px;
+      font-weight: bold;
+    }
+    &__tax {
+      font-size: 14px;
+      padding-bottom: 8px;
+    }
+    &__shipping {
+      font-size: 20px;
+      padding-bottom: 7px;
+    }
+  }
+
+  &__buyButton {
+    padding: 10px 0;
+    margin: 15px auto 0 auto;
+    @include flex-bundle(center, center);
+    border-radius: 50px;
+    background-color: #3CCACE;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    @include opacity();
+  }
+
+  &__text {
+    margin-top: 25px;
+    font-size: 18px;
+    text-align: left;
+    word-break: break-all;
+  }
+}
+
+.CommentForm {
+  height: auto;
+  width: 700px;
+  padding: 30px 40px;
+  margin: 50px auto;
+  text-align: center;
+  background-color: white;
+  textarea {
+    max-width: 620px;
+    min-width: 620px;
+    min-height: 100px;
+    height: 100px;
+    width: 620px;
+  }
+
+  &__info {
+    width: auto;
+    padding: 8px;
+    margin: 10px 0;
+    font-size: 14px;
+    text-align: left;
+    background-color: #f8f8f8;
+  }
+
+  &__button {
+    padding: 10px 0;
+    width: 620px;
+    margin: 30px auto 0 auto;
+    @include flex-bundle(center, center);
+    border-radius: 50px;
+    background-color: #3CCACE;
+    color: white;
+    font-size: 20px;
+    border: 0px;
+    outline: 0;
+    @include opacity();
+    cursor : pointer;
+  }
+}
+
+.ViewImageArea {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.1);
+  .ViewImage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    object-fit: cover;
+    max-height: 0px;
+    max-width: 0px;
+  }
+}
