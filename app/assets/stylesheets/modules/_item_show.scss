@@ -59,7 +59,7 @@
         }
       }
       &__list {
-        height: 120px; // テストコード
+        height: 120px;
         width: 300px;
         @include flex-bundle(center, "");
         flex-wrap: wrap;
@@ -187,8 +187,8 @@
   position: fixed;
   top: 0;
   left: 0;
-  height: 100%; // テストコード
-  width: 100%; // テストコード
+  height: 100%;
+  width: 100%;
   z-index: 1;
   background-color: rgba(0, 0, 0, 0.1);
   .ViewImage {
