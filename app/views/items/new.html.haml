@@ -72,6 +72,14 @@
               %p.yen ¥
               .priceInput__form
                 = f.number_field '#', {class: 'priceInput__form__box', placeholder: '0'}
+        
+        .submitBtn
+          .sendBtn
+            = f.submit '出品する', {class: 'sendBtn__submit'}
+          .backBtn
+            = link_to root_path, class: 'backBtn__submit' do
+              もどる
+          
             
 
             
