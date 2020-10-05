@@ -140,9 +140,31 @@
         &__messages{
           font-size: 12px;
           line-height: 1.4em;
-
         }
       }
+    }
+  }
+
+
+  .under{
+    margin-top: auto;
+    padding: 40px 0px 11px;
+    text-align: center;
+    background-color: #f5f5f5;
+    &__box{
+      &__lists{
+        font-size: 12px;
+        margin-bottom: 20px;
+        &__list{
+          margin: 16px 0px 0px 16px;
+          &:hover{
+            text-decoration: underline;
+          }      
+        }   
+      } 
+    }
+    &__name{
+      font-size: 12px;
     }
   }
 }
