@@ -55,6 +55,7 @@
           max-width: 100%;
           height: auto;
           width: auto;
+          cursor : pointer;
         }
       }
       &__list {
@@ -66,6 +67,7 @@
           object-fit: cover;
           max-height: 60px;
           max-width: 60px;
+          cursor : pointer;
         }
       }
     }
@@ -155,11 +157,37 @@
 
   &__button {
     padding: 10px 0;
+    width: 620px;
     margin: 30px auto 0 auto;
     @include flex-bundle(center, center);
     border-radius: 50px;
     background-color: #3CCACE;
     color: white;
     font-size: 20px;
+    border: 0px;
+    outline: 0;
+    cursor : pointer;
+  }
+}
+
+.ViewImageArea {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%; // テストコード
+  width: 100%; // テストコード
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.1);
+  .ViewImage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    object-fit: cover;
+    max-height: 0px;
+    max-width: 0px;
   }
 }

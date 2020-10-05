@@ -6,31 +6,36 @@
     .ItemProfile__status
       .ItemProfile__status__images
         .ItemProfile__status__images__selected
-          = image_tag 'example/product.jpg', alt: '商品画像', class: 'Image SelectedImage'
+          = image_tag 'example/product.jpg', alt: '商品画像', class: 'SelectedImage'
         .ItemProfile__status__images__list
-          - 5.times do
-            = image_tag 'example/product.jpg', alt: '商品画像', class: 'Image ListImage'
+          - 5.times do |num|
+            = image_tag 'example/product.jpg', alt: '商品画像', class: "ListImage List#{num}"
       .ItemProfile__status__table
         %table
           %tr
             %th
               出品者
             %td
-              たなかななか
+              = link_to "#" do
+                たなかななか
           %tr
             %th
               カテゴリー
             %td
-              >親カテゴリー
+              = link_to "#" do
+                >親カテゴリー
               %br
-              >子カテゴリー
+              = link_to "#" do
+                >子カテゴリー
               %br
-              >孫カテゴリー
+              = link_to "#" do
+                >孫カテゴリー
           %tr
             %th
               シークレット
             %td
-              Mランド
+              = link_to "#" do
+                Mランド
           %tr
             %th
               商品のサイズ
@@ -63,19 +68,21 @@
         （税込）
       .ItemProfile__priceBox__shipping
         送料込み
-    .ItemProfile__buyButton
-      購入画面に進む
+    = link_to "#" do
+      .ItemProfile__buyButton
+        購入画面に進む
     .ItemProfile__text
       おはようございます
       こんにちはでございます
       ________________________________________________________________________________________________________________________________________________________________________
-  .CommentForm
-    = text_area :text, class: 'CommentForm__textArea'
-    .CommentForm__info
-      %div 相手のことを考え丁寧なコメントを心がけましょう。
-      %div 不快な言葉遣いなどは利用制限や退会処分となることがあります。
-    .CommentForm__button
-      コメントする
+  = form_with url: '#' do |f|
+    .CommentForm
+      = f.text_area :text, class: 'CommentForm__textArea'
+      .CommentForm__info
+        %div 相手のことを考え丁寧なコメントを心がけましょう。
+        %div 不快な言葉遣いなどは利用制限や退会処分となることがあります。
+      = f.submit 'コメントする', class: 'CommentForm__button'
   = render 'banner'
   = render 'footer'
-  
+  .ViewImageArea
+    = image_tag 'example/product.jpg', alt: '商品画像', class: 'ViewImage'
