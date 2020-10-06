@@ -179,7 +179,7 @@ Things you may want to cover:
 ### Association
 - has_many :items
 
-
+d
 ## brandsテーブル
 
 |Column|Type|Options|
