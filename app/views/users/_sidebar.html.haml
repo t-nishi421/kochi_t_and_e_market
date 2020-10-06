@@ -1,7 +1,7 @@
 %nav
   %ul.item__list
     %li
-      = link_to "マイページ", user_path('#')
+      = link_to "マイページ", user_path(current_user)
     %li
       = link_to "トップページへ", root_path
     %li
@@ -16,10 +16,10 @@
     %li
       = link_to "本人情報の変更", edit_user_profile_path('#', '#')
     %li
-      = link_to "お届け先住所の登録・変更", destination_users_path('#')
+      = link_to "お届け先住所の登録・変更", destination_users_path(current_user)
     %li
-      = link_to "クレジットカードの登録・変更", card_users_path('#')
+      = link_to "クレジットカードの登録・変更", card_users_path(current_user)
     %li
-      = link_to "メール/パスワードの変更", edit_user_path('#')
+      = link_to "メール/パスワードの変更", edit_user_path(current_user)
     %li
-      = link_to "ログアウト", logout_users_path('#')
+      = link_to "ログアウト", logout_users_path(current_user)
