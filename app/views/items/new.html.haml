@@ -9,9 +9,11 @@
             %label.label 出品画像
             %span.sideLabel 必須
           %p.imageSend__text 写真をアップロードできます
-          .imageSend__dropBox
-            .imageSend__dropBox__label
-              %input{type: 'file'}
+          = f.fields_for :item_images do |i|
+            .imageSend__dropBox
+              %label{for: 'uploader', class: 'imageSend__dropBox__label'}
+                = image_tag('icon/icon_camera.png', class: 'icon')
+              = i.file_field :image, {id: 'uploader'}
 
         .itemMain
           .itemDetailName
