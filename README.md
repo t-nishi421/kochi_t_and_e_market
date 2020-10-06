@@ -174,12 +174,11 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
-|ancestry|string|index: true|
+|ancestry|string||
 
 ### Association
 - has_many :items
 
-d
 ## brandsテーブル
 
 |Column|Type|Options|
