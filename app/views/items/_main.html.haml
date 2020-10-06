@@ -81,7 +81,7 @@
         = link_to('新規投稿商品', '#', class: 'title')
     .mainCategory__productLists
       .mainCategory__productLists__list
-        = link_to '#', class: 'product' do
+        = link_to item_path(1), class: 'product' do
           %figure.productPict
             = image_tag('example/product.jpg')
           .body

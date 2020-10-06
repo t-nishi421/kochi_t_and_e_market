@@ -55,7 +55,7 @@
         .FormField__label--normal
           = f.label :telephone, "電話番号（ハイフンなし）"
         .FormField__input--normal
-          = f.text_field :telephone, autofocus: true, placeholder: '00011112222'
+          = f.number_field :telephone, autofocus: true, placeholder: '00011112222'
       .actions
         = f.submit "新規登録", class: 'Button CreateAccountButton'
   .AccountPage__footer

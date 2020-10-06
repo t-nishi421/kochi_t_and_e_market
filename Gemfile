@@ -82,3 +82,8 @@ gem 'jquery-rails'
 
 # pay.jpのgem
 gem 'payjp'
+# ancestryのインストール
+gem 'ancestry'
+
+# active_hashのインストール
+gem 'active_hash'

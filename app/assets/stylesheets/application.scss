@@ -1,6 +1,9 @@
 @import "reset";
+@import 'mixin/flex-bundle';
 @import 'mixin/opacity';
 @import 'mixin/underline';
+@import 'mixin/flex-bundle';
+@import "modules/head";
 @import 'mixin/myPage';
 @import "modules/item";
 @import "modules/header";
@@ -8,7 +11,10 @@
 @import "modules/banner";
 @import "modules/footer";
 @import "modules/btn";
+@import "modules/item";
+@import "modules/items_new";
 @import "modules/user";
+@import "modules/item_show";
 @import "modules/myPage";
 @import "modules/profile";
 @import "modules/creditCard";
