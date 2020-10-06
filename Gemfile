@@ -74,7 +74,6 @@ gem "haml-rails", ">= 1.0", '<= 2.0.1'
 # deviseのインストール
 gem 'devise'
 
-#ancestryのgemを導入
 # binding.pryのgem
 gem 'pry-rails'
 
