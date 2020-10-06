@@ -11,6 +11,6 @@ class User < ApplicationRecord
   # has_many :credit_cards
   has_many :destinations
   # has_many :purchase_histories
-  # has_many :items
+  has_many :items
 
 end
