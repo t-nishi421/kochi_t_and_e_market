@@ -79,3 +79,9 @@ gem 'pry-rails'
 
 # jQueryのインストール
 gem 'jquery-rails'
+
+# ancestryのインストール
+gem 'ancestry'
+
+# active_hashのインストール
+gem 'active_hash'

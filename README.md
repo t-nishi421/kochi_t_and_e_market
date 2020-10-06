@@ -123,7 +123,7 @@ Things you may want to cover:
 |condition_id|reference|null: false, foreign_key: true|
 |shipping_cost_id|reference|null: false, foreign_key: true|
 |preparation_day_id|reference|null: false, foreign_key: true|
-|shipment_source_id|reference|null: false, foreign_key: true|
+|prefecture_id|reference|null: false, foreign_key: true|
 |user_id|reference|null: false, foreign_key: true|
 
 ### Association
@@ -135,7 +135,7 @@ Things you may want to cover:
 - belongs_to :category
 - belongs_to :brand
 - belongs_to :preparation_day
-- belongs_to :shipment_source
+- belongs_to :prefecture
 
 
 ## item_imagesテーブル
@@ -174,11 +174,10 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
-|ancestry|string|index: true|
+|ancestry|string||
 
 ### Association
 - has_many :items
-
 
 ## brandsテーブル
 
@@ -200,7 +199,7 @@ Things you may want to cover:
 - has_many :items
 
 
-## shipment_sourcesテーブル
+## prefecturesテーブル
 
 |Column|Type|Options|
 |------|----|-------|
