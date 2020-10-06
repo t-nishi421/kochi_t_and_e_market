@@ -200,7 +200,7 @@ Things you may want to cover:
 - has_many :items
 
 
-## shipment_sourcesテーブル
+## prefecturesテーブル
 
 |Column|Type|Options|
 |------|----|-------|
