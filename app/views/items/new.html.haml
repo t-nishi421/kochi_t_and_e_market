@@ -11,9 +11,11 @@
           %p.imageSend__text 写真をアップロードできます
           = f.fields_for :item_images do |i|
             .imageSend__dropBox
+              .js-file_group{"data-index" => "#{i.index}"}
               %label{for: 'uploader', class: 'imageSend__dropBox__label'}
                 = image_tag('icon/icon_camera.png', class: 'icon')
-              = i.file_field :image, {id: 'uploader'}
+              = i.file_field :image, {id: 'uploader', class: 'js-file'}
+              %span.js-remove 削除
 
         .itemMain
           .itemDetailName
