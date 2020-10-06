@@ -31,7 +31,7 @@
           %p **** ***** **** 1234
           %p 有効期限 22/10
         .purchasse__method--right
-          = link_to "変更する >", card_users_path('#')
+          = link_to "変更する >", card_users_path
     %section
       .purchase__destination
         .purchase__destination--left
@@ -41,7 +41,7 @@
           %p 高知県高知市
           %p 名前
         .purchase__destination--right
-          = link_to "変更する >", destination_users_path('#')
+          = link_to "変更する >", destination_users_path
       .actions
     = button_tag  "購入する", class: "purchase__btn"
   .purchase__footer
