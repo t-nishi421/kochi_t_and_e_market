@@ -18,12 +18,12 @@
             %label.label 商品名
             %span.sideLabel 必須
           .itemName
-            = f.text_field '#', {class: 'itemName__input', placeholder: '40文字以内'}
+            = f.text_field :name, {class: 'itemName__input', placeholder: '40文字以内'}
           .itemDetailName
             %label.label 商品の説明
             %span.sideLabel 必須
           .itemExplan
-            = f.text_area '#', {class: 'itemExplan__input', placeholder: "商品の説明（必須1,000文字以内）\n(色、素材、重さ、定価、注意点など）\n\n例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", rows: '10'}
+            = f.text_area :introduction, {class: 'itemExplan__input', placeholder: "商品の説明（必須1,000文字以内）\n(色、素材、重さ、定価、注意点など）\n\n例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", rows: '10'}
         
         .itemDetail
           %p.grayTextTitle 商品の説明
@@ -32,17 +32,17 @@
               %label.label カテゴリ
               %span.sideLabel 必須
             .categoryChoice
-              = f.select '#', {class:'categoryChoice__Form'}
+              = f.select '#', [["1", "1"]], {}, class: 'selectBoxBtn__form'
           .itemDetailName
             %label.label ブランド
             %span.grayLabel 任意
           .brandForm
-            = f.text_field '#',{class: 'brandForm__field', placeholder: '例）シャネル'}
+            = f.text_field :brand,{class: 'brandForm__field', placeholder: '例）シャネル'}
           .itemDetailName
             %label.label 商品の状態
             %span.sideLabel 必須
           .selectBoxBtn
-            = f.select '#', { class: 'selectBoxBtn__form'}
+            = f.collection_select :condition, Condition.all, :id, :name,{}, class: 'selectBoxBtn__form'
         
         .delivery
           %p.grayTextTitle 配送について
@@ -50,17 +50,17 @@
             %label.label 配送料の負担
             %span.sideLabel 必須
           .selectBoxBtn
-            = f.select '#', { class: 'selectBoxBtn__form'}
+            = f.select :shipping_cost, [["1", "1"]], {}, class: 'selectBoxBtn__form'
           .itemDetailName
             %label.label 配送元の地域
             %span.sideLabel 必須
           .selectBoxBtn
-            = f.select '#', { class: 'selectBoxBtn__form'}
+            = f.select :prefecture, [["1", "1"]], {}, class: 'selectBoxBtn__form'
           .itemDetailName
             %label.label 配送までの日数
             %span.sideLabel 必須
           .selectBoxBtn
-            = f.select '#', { class: 'selectBoxBtn__form'}
+            = f.select :preparation_day, [["1", "1"]], {}, class: 'selectBoxBtn__form'
         
         .itemPrice
           %p.grayTextTitle  価格（¥300〜9,999,999）
@@ -71,7 +71,7 @@
             .priceInput
               %p.yen ¥
               .priceInput__form
-                = f.number_field '#', {class: 'priceInput__form__box', placeholder: '0'}
+                = f.number_field :price, {class: 'priceInput__form__box', placeholder: '0'}
         
         .submitBtn
           .sendBtn
