@@ -2,7 +2,7 @@
   = render 'shared/head'
   .body
     .main
-      = form_with class: 'sellItem' do |f| #itemモデル追加
+      = form_with model: @item, class: 'sellItem' do |f| #itemモデル追加
         
         .imageSend
           .itemDetailName
@@ -42,25 +42,24 @@
             %label.label 商品の状態
             %span.sideLabel 必須
           .selectBoxBtn
-            = f.collection_select :condition, Condition.all, :id, :name,{}, class: 'selectBoxBtn__form'
-        
+            = f.collection_select :condition_id, Condition.all, :id, :name, {prompt: "選択してください"}, class: 'selectBoxBtn__form'
         .delivery
           %p.grayTextTitle 配送について
           .itemDetailName
             %label.label 配送料の負担
             %span.sideLabel 必須
           .selectBoxBtn
-            = f.select :shipping_cost, [["1", "1"]], {}, class: 'selectBoxBtn__form'
+            = f.collection_select :shipping_cost_id, ShippingCost.all, :id, :content, {prompt: "選択してください"}, class: 'selectBoxBtn__form'
           .itemDetailName
             %label.label 配送元の地域
             %span.sideLabel 必須
           .selectBoxBtn
-            = f.select :prefecture, [["1", "1"]], {}, class: 'selectBoxBtn__form'
+            = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択してください"}, class: 'selectBoxBtn__form'
           .itemDetailName
             %label.label 配送までの日数
             %span.sideLabel 必須
           .selectBoxBtn
-            = f.select :preparation_day, [["1", "1"]], {}, class: 'selectBoxBtn__form'
+            = f.collection_select :preparation_day_id, PreparationDay.all, :id, :period, {prompt: "選択してください"}, class: 'selectBoxBtn__form'
         
         .itemPrice
           %p.grayTextTitle  価格（¥300〜9,999,999）
