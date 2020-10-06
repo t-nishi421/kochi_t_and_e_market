@@ -41,6 +41,10 @@
 
       &--left {
         flex:1;
+
+        img {
+          object-fit: cover;
+        }
       }
 
       &--right {
