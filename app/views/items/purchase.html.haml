@@ -1,0 +1,48 @@
+.purchase
+  .purchase__header
+    = link_to root_path do
+      = image_tag 'logo/logo.png', alt: 'furima'
+  .purchase__contents
+    %section
+      .purchase__title
+        購入内容の確認
+    %section
+      .item__content
+        .item__content--left
+          %figure
+            = image_tag 'example/product.jpg', alt: '商品画像' , size: '120x120'
+        .item__content--right
+          %p 商品の名前
+          %br
+          %br
+          %p 送料込み(税込) ¥ 100
+    %section
+      .payment
+        .payment__left
+          支払い金額
+        .payment__right
+          ¥ 100
+    %section
+      .purchase__method
+        .purchase__method--left
+          %h2 支払い方法
+          %br
+          %p クレジットカード
+          %p **** ***** **** 1234
+          %p 有効期限 22/10
+        .purchasse__method--right
+          = link_to "変更する >", card_users_path('#')
+    %section
+      .purchase__destination
+        .purchase__destination--left
+          %h2 配送先
+          %br
+          %p 〒1234567
+          %p 高知県高知市
+          %p 名前
+        .purchase__destination--right
+          = link_to "変更する >", destination_users_path('#')
+      .actions
+    = button_tag  "購入する", class: "purchase__btn"
+  .purchase__footer
+    = image_tag 'logo/logo-white.png', alt: 'furima'

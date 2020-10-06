@@ -20,8 +20,15 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :items, only: [:index, :new]
+
   root 'items#index'
-  
+  resources :items, only: [:show] do
+    member do
+      get 'purchase'
+    end
+  end
+
   resources :users, only: [:show, :edit, :update] do
     resources :credit_cards, only: [:new, :create], as: :cards
     resources :destinations, only: [:new, :create, :edit, :update]
