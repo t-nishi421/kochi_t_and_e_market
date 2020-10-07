@@ -8,9 +8,9 @@ $(function(){
   function appendChildrenBox(insertHTML){
     var childSelectHtml = '';
     childSelectHtml = `<div class='categoryChoice__added' id= 'children_wrapper'>
-                        <div class='categoryChoice1'>
-                          <select class="categoryChoice--select" id="child_category" name="item[category_id]">
-                            <option value="---" data-category="---">---</option>
+                        <div class='categoryChoice'>
+                          <select class='categoryChoice__form' id='child_category' name='item[category_id]'>
+                            <option value='---' data-category='---'>---</option>
                             ${insertHTML}
                           <select>          
                         </div>
@@ -23,7 +23,7 @@ $(function(){
   // 親カテゴリー選択後のイベント
   $('#parent_category').on('change', function(){
     //選択された親カテゴリーの名前を取得
-    var parentCategoryId = document.getElementById ('parent_category').value; 
+    var parentCategoryId = document.getElementById ('parent_category').value;
     if (parentCategoryId != "---"){//親カテゴリーが初期値でないことを確認
       $.ajax({
         url: 'get_category_children',
