@@ -20,7 +20,18 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :items, only: [:index, :show, :new]
+  #resources :items, only: [:index, :show, :new]
+  resources :items, only: [:index, :show, :new] do
+    #子、孫カテゴリーのJSON用ルーティング設定
+    collection do
+      get 'get_category_children', defaults: { fomat: 'json'}
+      get 'get_category_grandchildren', defaults: { fomat: 'json'}
+    end
+  end
+
+  
+
+
 
   root 'items#index'
 
