@@ -5,6 +5,19 @@ $(function(){
     return html;
   }
   // 子カテゴリーの表示作成
+  function appendChildrenBox(insertHTML){
+    var childSelectHtml = '';
+    childSelectHtml = `<div class='categoryChoice__added' id= 'children_wrapper'>
+                        <div class='categoryChoice1'>
+                          <select class="categoryChoice--select" id="child_category" name="item[category_id]">
+                            <option value="---" data-category="---">---</option>
+                            ${insertHTML}
+                          <select>          
+                        </div>
+                      </div>`;
+    $('.categoryChoice').append(childSelectHtml);
+  }
+
 
 
   // 親カテゴリー選択後のイベント

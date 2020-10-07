@@ -32,8 +32,9 @@
               %label.label カテゴリ
               %span.sideLabel 必須
             .categoryChoice
-              = f.collection_select :category_id, Category.roots, :id, :name, {include_blank: "---"}, required: true, class:'categoryChoice__Form', id: "parent-category"
+              //= f.collection_select :category_id, Category.roots, :id, :name, {include_blank: "---"}, required: true, class:'categoryChoice__Form', id: "parent-category"
               //= f.select '#', {class:'categoryChoice__Form'}
+              = f.collection_select :category_id, @category_parent_array, :id, :name, { prompt: '---' }, {class: 'categoryChoice__Form', id: 'parent_category' }
           .itemDetailName
             %label.label ブランド
             %span.grayLabel 任意
