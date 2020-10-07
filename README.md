@@ -142,7 +142,7 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
-|image|string|null: false|
+|src|string|null: false|
 |item_id|reference|null: false, foreign_key: true|
 
 ### Association

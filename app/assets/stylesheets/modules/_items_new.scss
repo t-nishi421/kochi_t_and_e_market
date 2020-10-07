@@ -25,6 +25,9 @@
         }
         &__dropBox{
           @include flex-bundle(flex-end, "");
+          &__list {
+            @include flex-bundle("", "");
+          }
           &__label {
             display: block;
             margin-top: 10px;
@@ -41,7 +44,7 @@
             }
           }
           input {
-            display: none;
+            // display: none;
           }
         }
       } 

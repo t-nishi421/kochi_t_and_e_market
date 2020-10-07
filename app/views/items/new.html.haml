@@ -11,11 +11,11 @@
           %p.imageSend__text 写真をアップロードできます
           = f.fields_for :item_images do |i|
             .imageSend__dropBox
-              .js-file_group{"data-index" => "#{i.index}"}
-              %label{for: 'uploader', class: 'imageSend__dropBox__label'}
+              .imageSend__dropBox__list
+                .js-file_group{"data-index" => 1}
+                  = i.file_field :src, {id: 'item_images_attributes_1_src', class: 'js-file', name: "item[item_images_attributes][1][src]"}
+              %label{for: 'item_images_attributes_1_src', class: 'imageSend__dropBox__label'}
                 = image_tag('icon/icon_camera.png', class: 'icon')
-              = i.file_field :image, {id: 'uploader', class: 'js-file'}
-              %span.js-remove 削除
 
         .itemMain
           .itemDetailName
@@ -36,12 +36,12 @@
               %label.label カテゴリ
               %span.sideLabel 必須
             .categoryChoice
-              = f.select '#', [["1", "1"]], {}, class: 'selectBoxBtn__form'
+              -# = f.select '#', [["1", "1"]], {}, class: 'selectBoxBtn__form'
           .itemDetailName
             %label.label ブランド
             %span.grayLabel 任意
           .brandForm
-            = f.text_field :brand,{class: 'brandForm__field', placeholder: '例）シャネル'}
+            -# = f.text_field :brand,{class: 'brandForm__field', placeholder: '例）シャネル'}
           .itemDetailName
             %label.label 商品の状態
             %span.sideLabel 必須
