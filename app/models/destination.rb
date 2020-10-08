@@ -1,5 +1,7 @@
 class Destination < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :user, optional: true
+  belongs_to :prefecture
 
   validates :family_name, presence: true,
     format: {
