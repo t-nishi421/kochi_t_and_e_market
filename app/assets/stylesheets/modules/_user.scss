@@ -72,6 +72,8 @@
   margin: 30px 0;
   &__label--normal {
     @include MarginSpace();
+    text-align: left;
+    margin-left: 103px;
   }
   input {
     border: 1px solid #ccc;
@@ -81,6 +83,16 @@
     height: 48px;
     padding: 0 16px;
     width: 60%;
+    margin-bottom: 18px;
+  }
+  select {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: inherit;
+    height: 48px;
+    padding: 0 16px;
+    width: 19%;
     margin-bottom: 18px;
   }
   &__input--small {

@@ -15,17 +15,17 @@
           = f.label :nick_name
           %span.mandatory 必須
         .FormField__input--normal
-          = f.text_field :nick_name, autofocus: true
+          = f.text_field :nick_name, autofocus: true, placeholder: 'フリマくん'
       .FormField
         .FormField__label--normal
           = f.label :email
           %span.mandatory 必須
         .FormField__input--normal
-          = f.email_field :email
+          = f.email_field :email, placeholder: 'sample@sample.com'
       .FormField
         .FormField__label--normal
           = f.label :password
-          %i (英数字7文字以上)
+          (英数字7文字以上)
           %span.mandatory 必須
         .FormField__input--normal
           = f.password_field :password, autocomplete: "off"
