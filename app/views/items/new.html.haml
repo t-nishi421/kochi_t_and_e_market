@@ -3,7 +3,8 @@
   .body
     .main
       = form_with model: @item, class: 'sellItem' do |f| #itemモデル追加
-        
+        -# .ErrorMessages
+          = render 'error_messages', model: f.object
         .imageSend
           .itemDetailName
             %label.label 出品画像
@@ -22,12 +23,12 @@
             %label.label 商品名
             %span.sideLabel 必須
           .itemName
-            = f.text_field :name, {class: 'itemName__input', placeholder: '40文字以内'}
+            = f.text_field :name, {class: 'itemName__input', placeholder: '40文字以内', maxlength: '40'}
           .itemDetailName
             %label.label 商品の説明
             %span.sideLabel 必須
           .itemExplan
-            = f.text_area :introduction, {class: 'itemExplan__input', placeholder: "商品の説明（必須1,000文字以内）\n(色、素材、重さ、定価、注意点など）\n\n例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", rows: '10'}
+            = f.text_area :introduction, {class: 'itemExplan__input', placeholder: "商品の説明（必須1,000文字以内）\n(色、素材、重さ、定価、注意点など）\n\n例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", rows: '10', maxlength: '1000'}
         
         .itemDetail
           %p.grayTextTitle 商品の説明

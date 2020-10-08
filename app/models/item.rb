@@ -14,4 +14,6 @@ class Item < ApplicationRecord
   validates :name, :price, :introduction, :trading_status,
             :category_id, :condition_id, :shipping_cost_id,
             :preparation_day_id, :prefecture_id, presence: true
+
+  validates :size, inclusion: { in: 300..9999999 }
 end

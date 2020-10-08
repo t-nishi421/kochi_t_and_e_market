@@ -9,7 +9,11 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    binding.pry
+    if @item.valid?
+      redirect_to root_path
+    else
+      render "new"
+    end
   end
 
   def show
