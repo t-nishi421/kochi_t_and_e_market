@@ -25,4 +25,5 @@ class Destination < ApplicationRecord
   validates :prefecture, presence: true
   validates :city, presence: true
   validates :house_number, presence: true
+  validates :telephone, length: { is: 11 }
 end
