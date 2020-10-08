@@ -25,5 +25,5 @@ class Destination < ApplicationRecord
   validates :prefecture, presence: true
   validates :city, presence: true
   validates :house_number, presence: true
-  validates :telephone, length: { is: 11 }
+  validates :telephone, length: { in: 10..11, message: "は10桁または11桁で入力してください" }
 end
