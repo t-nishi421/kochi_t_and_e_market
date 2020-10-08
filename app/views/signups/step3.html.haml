@@ -32,10 +32,10 @@
           = f.text_field :postal_code, autofocus: true, placeholder: '0001111'
       .FormField
         .FormField__label--normal
-          = f.label :prefecture
+          = f.label :prefecture_id
           %span.mandatory 必須
         .FormField__input--normal
-          = f.text_field :prefecture, autofocus: true, placeholder: '○○県'
+          = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択してください"}, class: 'Prefecture'
       .FormField
         .FormField__label--normal
           = f.label :city
