@@ -33,9 +33,14 @@
     margin: 0 auto;
     text-align: center;
     background-color: white;
-    &__title {
+    &__top {
       padding-bottom: 20px;
       font-size: 26px;
+      font-weight: bold;
+    }
+    &__title {
+      padding-bottom: 20px;
+      font-size: 20px;
       font-weight: bold;
       border-bottom: solid #ddd 1px;
     }

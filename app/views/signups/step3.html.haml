@@ -3,8 +3,10 @@
     = link_to root_path do
       = image_tag 'logo/logo.png', alt: 'furima'
   .AccountPage__form
+    .AccountPage__form__top
+      新規登録画面 3/3
     .AccountPage__form__title
-      新規登録画面
+      発送先及び送付先情報入力
     = form_for @destination, url: step3_signups_path, method: :post do |f|
       .ErrorMessages
         = render 'error_messages', model: f.object
