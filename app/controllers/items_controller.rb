@@ -25,11 +25,8 @@ class ItemsController < ApplicationController
   def get_category_grandchildren
     @category_grandchildren = Category.find("#{params[:child_id]}").children
   end
-
-
-  def new
-  end
   
   def purchase
   end
+  
 end
