@@ -50,7 +50,7 @@ class SignupsController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:nick_name, :email, :password)
+    params.require(:user).permit(:nick_name, :email, :password, :password_confirmation)
   end
 
   def profile_params
@@ -58,7 +58,7 @@ class SignupsController < ApplicationController
   end
 
   def destination_params
-    params.require(:destination).permit(:family_name, :first_name, :family_name_kana, :first_name_kana, :postal_code, :prefecture, :city, :house_number, :building_name, :telephone)
+    params.require(:destination).permit(:family_name, :first_name, :family_name_kana, :first_name_kana, :postal_code, :prefecture_id, :city, :house_number, :building_name, :telephone)
   end
 
 end

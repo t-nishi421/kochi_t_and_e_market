@@ -32,11 +32,15 @@ Rails.application.routes.draw do
   
 
 
+  resources :items, only: [:index, :new]
 
   root 'items#index'
+  resources :items, only: [:show] do
+    member do
+      get 'purchase'
+    end
+  end
 
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  
   resources :users, only: [:show, :edit, :update] do
     resources :credit_cards, only: [:new, :create], as: :cards
     resources :destinations, only: [:new, :create, :edit, :update]

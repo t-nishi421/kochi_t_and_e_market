@@ -1,5 +1,7 @@
 class Destination < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :user, optional: true
+  belongs_to_active_hash :prefecture
 
   validates :family_name, presence: true,
     format: {
@@ -25,4 +27,7 @@ class Destination < ApplicationRecord
   validates :prefecture, presence: true
   validates :city, presence: true
   validates :house_number, presence: true
+  with_options unless: -> { telephone == "" } do
+    validates :telephone, length: { in: 10..11, message: "は10桁または11桁で入力してください" }, numericality: :only_integer
+  end
 end
