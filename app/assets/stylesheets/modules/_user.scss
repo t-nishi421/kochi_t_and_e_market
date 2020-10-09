@@ -33,9 +33,14 @@
     margin: 0 auto;
     text-align: center;
     background-color: white;
-    &__title {
+    &__top {
       padding-bottom: 20px;
       font-size: 26px;
+      font-weight: bold;
+    }
+    &__title {
+      padding-bottom: 20px;
+      font-size: 20px;
       font-weight: bold;
       border-bottom: solid #ddd 1px;
     }
@@ -67,17 +72,49 @@
   margin: 30px 0;
   &__label--normal {
     @include MarginSpace();
+    font-size: 14px;
+    font-weight: bold;
+    text-align: left;
+    margin-left: 103px;
+  }
+  input {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: inherit;
+    height: 48px;
+    padding: 0 16px;
+    width: 60%;
+    margin-bottom: 18px;
+  }
+  select {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: inherit;
+    height: 48px;
+    padding: 0 16px;
+    width: 19%;
+    margin-bottom: 18px;
+  }
+  .Prefecture {
+    width: 60%;
   }
   &__input--small {
     input {
       margin: 0 5px;
-      width: 85px;
+      width: 140px;
     }
   }
   span {
     margin-left: 5px;
     font-size: 14px;
-    color: red;
+  }
+  .mandatory {
+    @include mandatory();
+  }
+  .optional {
+    @include optional();
   }
 }
 
@@ -96,3 +133,4 @@
   margin-top: 30px;
   font-size: 14px;
 }
+
