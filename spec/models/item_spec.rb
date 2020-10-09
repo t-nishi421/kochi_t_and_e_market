@@ -52,7 +52,7 @@ describe Item do
       expect(@item.errors[:preparation_day]).to include("を入力してください")
     end
 
-    it "配送下の地域が未入力だとエラー" do
+    it "配送元の地域が未入力だとエラー" do
       @item.prefecture = nil
       @item.valid?
       expect(@item.errors[:prefecture]).to include("を入力してください")
