@@ -83,6 +83,12 @@ describe Destination do
       expect(@destination.errors[:postal_code]).to include("は7文字で入力してください")
     end
 
+    it "住所が文字だとエラー" do
+      @destination.postal_code = "一二三四五六七"
+      @destination.valid?
+      expect(@destination.errors[:postal_code]).to include("は数値で入力してください")
+    end
+
     it "都道府県が未入力だとエラー" do
       @destination.prefecture = nil
       @destination.valid?
@@ -111,6 +117,12 @@ describe Destination do
       @destination.telephone = "123456789012"
       @destination.valid?
       expect(@destination.errors[:telephone]).to include("は10桁または11桁で入力してください")
+    end
+
+    it "電話番号が文字だとエラー" do
+      @destination.telephone = "一二三四五六七八九十"
+      @destination.valid?
+      expect(@destination.errors[:telephone]).to include("は数値で入力してください")
     end
 
   end
