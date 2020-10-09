@@ -8,7 +8,7 @@ $(function(){
   function appendChildrenBox(insertHTML){
     var childSelectHtml = '';
     childSelectHtml = `<div class='categoryChoice__added' id= 'children_wrapper'>
-                        <div class='categoryChoice'>
+                        <div class='categoryChoice__form'>
                           <select class='categoryChoice__form' id='child_category' name='item[category_id]'>
                             <option value='---' data-category='---'>---</option>
                             ${insertHTML}
@@ -16,6 +16,20 @@ $(function(){
                         </div>
                       </div>`;
     $('.categoryChoice').append(childSelectHtml);
+  }
+
+  // 孫カテゴリーの表示作成
+  function appendGrandchildrenBox(insertHTML){
+    var grandchildSelectHtml = '';
+    grandchildSelectHtml = `<div class='categoryChoice__added' id= 'grandchildren_wrapper'>
+                             <div class='categoryChoice__form'>
+                               <select class='categoryChoice__form' id='grandchild_category' item[category_id]>
+                                 <option value='---' data-category='---'>---</option>
+                                 ${insertHTML}
+                               <select>          
+                             </div>
+                           </div>`;
+    $('.categoryChoice').append(grandchildSelectHtml);
   }
 
 
@@ -49,7 +63,33 @@ $(function(){
     }
   });
 
-
-
-
+  // 子カテゴリー選択後のイベント
+  $('.itemDetail__category').on('change', '#child_category', function(){
+    var childCategoryId = $('#child_category option:selected').data('category'); //選択された子カテゴリーのidを取得
+    if (childCategoryId != "---"){ //子カテゴリーが初期値でないことを確認
+      $.ajax({
+        url: 'get_category_grandchildren',
+        type: 'GET',
+        data: { child_id: childCategoryId },
+        dataType: 'json'
+      })
+      .done(function(grandchildren){
+        if (grandchildren.length != 0) {
+          $('#grandchildren_wrapper').remove();//子が変更された時、孫以下を削除する
+          var insertHTML = '';
+          grandchildren.forEach(function(grandchild){
+            insertHTML += appendOption(grandchild);
+            
+          });
+          appendGrandchildrenBox(insertHTML);
+          
+        }
+      })
+      .fail(function(){
+        alert('カテゴリー取得に失敗しました');
+      })
+    }else{
+      $('#grandchildren_wrapper').remove(); //子カテゴリーが初期値になった時、孫以下を削除する
+    }
+  });
 });
