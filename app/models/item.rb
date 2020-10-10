@@ -10,4 +10,12 @@ class Item < ApplicationRecord
   belongs_to :preparation_day
   belongs_to :prefecture
 
+  def self.search(search)
+    if search
+      Item.where(['name LIKE (?)', "%#{search}%"])
+    else
+      Item.all
+    end
+  end
+
 end

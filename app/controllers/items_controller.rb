@@ -15,6 +15,12 @@ class ItemsController < ApplicationController
     @category_grandchild = Category.find(@category_id)
   end
 
+  def search
+    redirect_to root_path if params[:keyword] == "" # キーワードが入力されていないとトップページに飛ぶ
+    @search_items = Item.search(params[:keyword]) #検索に合致した値を代入
+    @keyword = params[:keyword] #検索した文字列を代入
+  end
+
   
   # 親カテゴリーが選択された後に動くアクション
   def get_category_children
