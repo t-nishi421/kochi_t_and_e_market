@@ -20,14 +20,23 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :items, only: [:index, :new]
-
-  root 'items#index'
-  resources :items, only: [:show] do
+  resources :items, only: [:index, :show, :new] do
     member do
       get 'purchase'
     end
+    #子、孫カテゴリーのJSON用ルーティング設定
+    collection do
+      get 'get_category_children', defaults: { fomat: 'json'}
+      get 'get_category_grandchildren', defaults: { fomat: 'json'}
+    end
   end
+
+  root 'items#index'
+  #resources :items, only: [:show] do
+    #member do
+      #get 'purchase'
+    #end
+  #end
 
   resources :users, only: [:show, :edit, :update] do
     resources :credit_cards, only: [:new, :create], as: :cards

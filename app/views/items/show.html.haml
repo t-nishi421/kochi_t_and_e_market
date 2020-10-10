@@ -23,14 +23,11 @@
             %th
               カテゴリー
             %td
-              = link_to "#" do
-                >親カテゴリー
+              = link_to "#{@category_parent.name}", "#" 
               %br
-              = link_to "#" do
-                >子カテゴリー
+              = link_to "#{@category_child.name}", "#"
               %br
-              = link_to "#" do
-                >孫カテゴリー
+              = link_to "#{@category_grandchild.name}" "#"
           %tr
             %th
               ブランド
