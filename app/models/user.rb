@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :nick_name, presence: true, uniqueness: {case_sensitive: true}
+  validates :password, confirmation: true
 
   has_one :profile
   # has_one :comment

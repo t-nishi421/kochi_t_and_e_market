@@ -65,7 +65,9 @@
       .itemDetail{
         @include mainGrayBrock();
         &__category{
-          margin-bottom: 16px;
+          .categoryChoice{
+            margin-bottom: 16px;
+          }
         }
         .brandForm{
           margin-bottom: 16px;
@@ -220,9 +222,25 @@
     color: #222;
     padding: 0 16px;
     width: 100%;
-
   }
-
-
 }
+
+//カテゴリ
+.categoryChoice{
+  margin-bottom: 16px;
+  &__form{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #222;
+    height: 48px;
+    line-height: 1;
+    appearance: none;
+    width: 100%;
+    
+  }
+}
+
+
+
+
 
