@@ -1,6 +1,7 @@
+= render "users/notice"
 .myPage
   .myPage__sidebar
-    = render "sidebar"
+    = render "users/sidebar"
 
   .myPage__main
     .card
@@ -8,9 +9,21 @@
         クレジットカード
       .card__content
         .card__registration
-          = link_to "+ クレジットカードを追加", new_user_card_path(current_user)
+          = link_to "+ クレジットカードを追加", new_credit_card_path
         .card__list
-          %section
-            = link_to "登録されたカード", '#'
-          %section
-            = link_to "登録されたカード", '#'
+          - if @card_list
+            = form_with model: [@user, @card], id: "card__select__form" do |f|
+              - @card_list.each do |card|
+                %section
+                  .form__field
+                    = f.radio_button :card, card[:id], {checked: (card[:id] == current_user.credit_card.default)}
+                    = f.label :card, {value: card[:id], style: "display: none"}
+                  .card__info
+                    %p= "************" + card[:last4]
+                    %p= "有効期限 " + "#{card[:exp_month]}" + " / " + "#{card[:exp_year]}"
+                    %p= card[:brand]
+              = f.submit "選択したカードを使う", id: "card__change"
+            .card__delete
+              - @card_list.each do |card|
+                .delete__btn
+                  = button_to "削除する", user_credit_card_path(current_user, params[:user_id]), {method: :delete, params: {card: card[:id]}, date: {confirm: "本当に削除してよろしいですか？"}}
