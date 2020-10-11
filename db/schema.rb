@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2020_10_06_005528) do
   create_table "credit_cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.string "customer_token", null: false
+    t.string "default"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_credit_cards_on_user_id"
@@ -94,6 +95,7 @@ ActiveRecord::Schema.define(version: 2020_10_06_005528) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "credit_cards", "users"
   add_foreign_key "destinations", "users"
   add_foreign_key "items", "brands"
   add_foreign_key "items", "categories"
