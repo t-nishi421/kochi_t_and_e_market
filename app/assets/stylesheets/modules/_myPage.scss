@@ -100,33 +100,6 @@
   }
 }
 
-// マイページのクレジットカード追加ページ(users/card)
-.card {
-  @include myPageContents();
-
-  &__title {
-    @include myPageTitle();
-  }
-  
-  &__content {
-    padding: 0 50px;
-  }
-
-  &__registration {
-    padding: 10px 0;
-    border-bottom: 1px solid whitesmoke;
-  }
-
-  section {
-    padding: 10px 0;
-    border-bottom: 1px solid whitesmoke;
-  }
-  
-  a {
-    @include aTag();
-  }
-}
-
 // マイページのお届け先住所の登録・変更ページ(users/destination)
 .destination {
   @include myPageContents();
@@ -200,5 +173,19 @@
       text-decoration: none;
       display: block;
     }
+  }
+}
+
+// フラッシュメッセージ
+.notifications {
+  color: white;
+  text-align: center;  
+
+  .notice {
+    background-color: #3CCACE;
+  }
+
+  .alert {
+    background-color: orangered;
   }
 }
