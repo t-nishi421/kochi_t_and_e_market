@@ -10,6 +10,7 @@ class ItemsController < ApplicationController
   end
 
   def create
+    Brand.saveIfNotPresent(brand_name)
     @item = Item.new(item_params)
     binding.pry
     if @item.valid? && @item.save
@@ -41,10 +42,21 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    # 未実装 → :category_idを追加予定
-    # 未実装 → :brand_idを追加予定
+    if brand_name != nil
+      brand_id = Brand.find_by(name: brand_name).id
+    else
+      brand_id = nil
+    end
     params.require(:item).permit(:name, :price, :introduction, :condition_id,
                                  :shipping_cost_id, :preparation_day_id, :prefecture_id,
-                                 item_images_attributes: [:src, :_destroy, :id])
+                                 item_images_attributes: [:src, :_destroy, :id]).merge(category_id: category_params, brand_id: brand_id)
+  end
+
+  def brand_name
+    params[:item][:brand]
+  end
+
+  def category_params
+    params.require(:item).permit(:category_id)
   end
 end

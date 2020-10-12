@@ -3,8 +3,8 @@
   .body
     .main
       = form_with model: @item, class: 'sellItem', local: true do |f| #itemモデル追加
-        -# .ErrorMessages
-          = render 'error_messages', model: f.object
+        .ErrorMessages
+          = render './shared/error_messages', model: f.object
         .imageSend
           .itemDetailName
             %label.label 出品画像

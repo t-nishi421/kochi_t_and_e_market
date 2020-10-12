@@ -9,7 +9,7 @@
       会員情報入力
     = form_for @user, url: step1_signups_path, method: :post do |f|
       .ErrorMessages
-        = render 'error_messages', model: f.object
+        = render './shared/error_messages', model: f.object
       .FormField
         .FormField__label--normal
           = f.label :nick_name
