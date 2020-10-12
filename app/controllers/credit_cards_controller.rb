@@ -16,14 +16,14 @@ class CreditCardsController < ApplicationController
       customer = Payjp::Customer.create(card: params[:payjp_token]) #顧客作成
       card = current_user.build_credit_card(customer_token: customer.id, default: customer.default_card)
       if card.save
-        redirect_to user_credit_cards_path(current_user)
+        redirect_to user_credit_cards_path(current_user), notice: "カードを登録しました"
       else
         redirect_to new_credit_cards_path
       end
     else
       customer = Payjp::Customer.retrieve(current_user.credit_card.customer_token) #既存の顧客情報を呼出
       customer.cards.create(card: params[:payjp_token])
-      redirect_to user_credit_cards_path(current_user)
+      redirect_to user_credit_cards_path(current_user), notice: "カードを追加しました"
     end
   end
   
@@ -51,7 +51,12 @@ class CreditCardsController < ApplicationController
     card = customer.cards.retrieve(params[:card])
     if card.delete
       customer = Payjp::Customer.retrieve(current_user.credit_card.customer_token)
-      @card.update(default: customer.default_card)
+      if customer.default_card.nil?
+        customer.delete
+        @card.destroy
+      else
+        @card.update(default: customer.default_card)
+      end
       redirect_to user_credit_cards_path(current_user), notice: "カードを削除しました"
     else
       redirect_to user_credit_cards_path(current_user), alert: "カードを削除できませんでした"

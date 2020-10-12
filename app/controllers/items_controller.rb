@@ -45,6 +45,6 @@ class ItemsController < ApplicationController
   
   def purchase_completed # 購入完了画面
     @item = Item.find(params[:id])
-    @card = CreditCard.get_card(current_user.credit_card.customer_token) if current_user.credit_card
+    @card = CreditCard.get_card(current_user.credit_card.customer_token)
   end
 end
