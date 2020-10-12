@@ -12,37 +12,40 @@
           %figure
             = image_tag 'example/product.jpg', alt: '商品画像' , size: '120x120'
         .item__content--right
-          %p 商品の名前
+          %p= @item.name
           %br
           %br
-          %p 送料込み(税込) ¥ 100
+          %p= "送料込み(税込) " + "¥" + "#{@item.price}"
     %section
       .payment
         .payment__left
-          支払い金額
+          お支払い金額
         .payment__right
-          ¥ 100
+          = "¥" + "#{@item.price}"
     %section
       .purchase__method
-        .purchase__method--left
-          %h2 支払い方法
-          %br
-          %p クレジットカード
-          %p **** ***** **** 1234
-          %p 有効期限 22/10
-        .purchasse__method--right
-          = link_to "変更する >",  user_credit_cards_path(current_user)
+        - if @card
+          .purchase__method--left
+            %h2 お支払い方法
+            %br
+            %p= "*************" + @card[:last4]
+            %p= "有効期限 " + "#{@card[:exp_month]}" + " / " + "#{@card[:exp_year]}"
+            %p= @card[:brand]
+          .purchasse__method--right
+            = link_to "変更する >",  user_credit_cards_path(current_user)
+        - else
+          = link_to "カードを登録する >", new_credit_card_path
     %section
       .purchase__destination
         .purchase__destination--left
-          %h2 配送先
+          %h2 お届け先
           %br
-          %p 〒1234567
+          %p 〒123-4567
           %p 高知県高知市
           %p 名前
         .purchase__destination--right
           = link_to "変更する >", destination_user_path(current_user)
-      .actions
-    = button_tag  "購入する", class: "purchase__btn"
+    .purchase__btn
+      = link_to '購入する', purchase_item_path(@item), method: :post
   .purchase__footer
     = image_tag 'logo/logo-white.png', alt: 'furima'

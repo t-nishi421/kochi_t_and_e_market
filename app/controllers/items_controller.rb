@@ -26,7 +26,25 @@ class ItemsController < ApplicationController
     @category_grandchildren = Category.find("#{params[:child_id]}").children
   end
   
-  def purchase
+  def purchase_confirmation # 購入内容確認画面
+    @item = Item.find(params[:id])
+    @card = CreditCard.get_card(current_user.credit_card.customer_token) if current_user.credit_card
   end
-
+  
+  def purchase # 購入アクション
+    @item = Item.find(params[:id])
+    Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
+    customer_token = current_user.credit_card.customer_token
+    Payjp::Charge.create(
+      amount: @item.price, # 商品の値段
+      customer: customer_token, # 顧客のトークン
+      currency: 'jpy'  # 通貨の種類
+    )
+    redirect_to purchase_completed_item_path(@item), notice: "お買い上げありがとうございます！"
+  end
+  
+  def purchase_completed # 購入完了画面
+    @item = Item.find(params[:id])
+    @card = CreditCard.get_card(current_user.credit_card.customer_token) if current_user.credit_card
+  end
 end
