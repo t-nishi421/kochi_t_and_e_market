@@ -27,7 +27,7 @@ class CreditCardsController < ApplicationController
     end
   end
   
-  def update
+  def update # デフォルトカードの更新
     @card = CreditCard.find_by(params[:user_id])
     if params[:credit_card][:card] == current_user.credit_card.default
       redirect_to user_credit_cards_path(current_user), alert: "お支払い方法に変更ありません"
@@ -44,8 +44,7 @@ class CreditCardsController < ApplicationController
     end
   end
 
-  def destroy
-    # binding.pry
+  def destroy # カード情報の削除とデフォルトカードの更新
     @card = CreditCard.find_by(params[:user_id])
     Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
     customer = Payjp::Customer.retrieve(current_user.credit_card.customer_token)
