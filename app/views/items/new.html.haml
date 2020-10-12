@@ -10,13 +10,13 @@
             %label.label 出品画像
             %span.sideLabel 必須
           %p.imageSend__text 写真をアップロードできます
-          = f.fields_for :item_images do |i|
-            .imageSend__dropBox
+          .imageSend__dropBox
+            = f.fields_for :item_images do |i|
               .imageSend__dropBox__list
                 .js-file_group.input_1{"data-index" => 1}
                   = i.file_field :src, {id: 'image_1', class: 'js-file', name: "item[item_images_attributes][1][src]"}
-              %label{for: 'image_1', class: 'imageSend__dropBox__label'}
-                = image_tag('icon/icon_camera.png', class: 'icon')
+            %label{for: 'image_1', class: 'imageSend__dropBox__label'}
+              = image_tag('icon/icon_camera.png', class: 'icon')
 
         .itemMain
           .itemDetailName

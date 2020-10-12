@@ -10,12 +10,13 @@ class ItemsController < ApplicationController
   end
 
   def create
-    Brand.saveIfNotPresent(brand_name)
+    Brand.saveIfNotPresent(brand_params)
     @item = Item.new(item_params)
     binding.pry
     if @item.valid? && @item.save
       redirect_to root_path
     else
+      @category_parent_array = Category.where(ancestry: nil)
       render "new"
     end
   end
@@ -42,21 +43,21 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    if brand_name != nil
-      brand_id = Brand.find_by(name: brand_name).id
+    if brand_params != ""
+      brand_id = Brand.find_by(name: brand_params).id
     else
       brand_id = nil
     end
     params.require(:item).permit(:name, :price, :introduction, :condition_id,
                                  :shipping_cost_id, :preparation_day_id, :prefecture_id,
-                                 item_images_attributes: [:src, :_destroy, :id]).merge(category_id: category_params, brand_id: brand_id)
+                                 item_images_attributes: [:src, :_destroy, :id]).merge(trading_status: '販売中', category_id: category_params, brand_id: brand_id, user_id: current_user.id)
   end
 
-  def brand_name
+  def brand_params
     params[:item][:brand]
   end
 
   def category_params
-    params.require(:item).permit(:category_id)
+    params[:item][:category_id]
   end
 end
