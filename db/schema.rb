@@ -42,6 +42,14 @@ ActiveRecord::Schema.define(version: 2020_10_08_080810) do
     t.index ["user_id"], name: "index_destinations_on_user_id"
   end
 
+  create_table "item_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "src", null: false
+    t.bigint "item_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_item_images_on_item_id"
+  end
+
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.integer "price", null: false
@@ -49,10 +57,10 @@ ActiveRecord::Schema.define(version: 2020_10_08_080810) do
     t.string "trading_status", null: false
     t.bigint "category_id", null: false
     t.bigint "brand_id"
-    t.integer "condition", null: false
-    t.integer "shipping_cost", null: false
-    t.integer "preparation_day", null: false
-    t.integer "prefecture", null: false
+    t.integer "condition_id", null: false
+    t.integer "shipping_cost_id", null: false
+    t.integer "preparation_day_id", null: false
+    t.integer "prefecture_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -87,6 +95,7 @@ ActiveRecord::Schema.define(version: 2020_10_08_080810) do
   end
 
   add_foreign_key "destinations", "users"
+  add_foreign_key "item_images", "items"
   add_foreign_key "items", "brands"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "users"

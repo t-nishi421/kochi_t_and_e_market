@@ -5,6 +5,8 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new()
     @item.item_images.new
+    #データベースから、親カテゴリーのみ抽出し、配列化
+    @category_parent_array = Category.where(ancestry: nil)
   end
 
   def create
@@ -18,9 +20,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    #データベースから、親カテゴリーのみ抽出し、配列化
-    @category_parent_array = Category.where(ancestry: nil)
-    
     @item = Item.find(params[:id])
     @category_id = @item.category_id
     @category_parent = Category.find(@category_id).parent.parent

@@ -37,12 +37,12 @@
               %label.label カテゴリ
               %span.sideLabel 必須
             .categoryChoice
-              = f.collection_select :category_id, @category_parent_array, :id, :name, { prompt: '---' }, {class: 'categoryChoice__form', id: 'parent_category' }
+              = f.collection_select :category_id, @category_parent_array, :id, :name, { prompt: '選択してください' }, {class: 'selectBoxBtn__form', id: 'parent_category' }
           .itemDetailName
             %label.label ブランド
             %span.grayLabel 任意
           .brandForm
-            -# = f.text_field :brand,{class: 'brandForm__field', placeholder: '例）シャネル'}
+            = f.text_field :brand,{class: 'brandForm__field', placeholder: '例）シャネル'}
           .itemDetailName
             %label.label 商品の状態
             %span.sideLabel 必須
