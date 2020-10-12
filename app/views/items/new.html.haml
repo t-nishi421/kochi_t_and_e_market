@@ -2,7 +2,7 @@
   = render 'shared/head'
   .body
     .main
-      = form_with model: @item, class: 'sellItem' do |f| #itemモデル追加
+      = form_with model: @item, class: 'sellItem', local: true do |f| #itemモデル追加
         -# .ErrorMessages
           = render 'error_messages', model: f.object
         .imageSend
@@ -31,13 +31,13 @@
             = f.text_area :introduction, {class: 'itemExplan__input', placeholder: "商品の説明（必須1,000文字以内）\n(色、素材、重さ、定価、注意点など）\n\n例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", rows: '10', maxlength: '1000'}
         
         .itemDetail
-          %p.grayTextTitle 商品の説明
+          %p.grayTextTitle 商品詳細
           .itemDetail__category
             .itemDetailName
               %label.label カテゴリ
               %span.sideLabel 必須
             .categoryChoice
-              -# = f.select '#', [["1", "1"]], {}, class: 'selectBoxBtn__form'
+              = f.collection_select :category_id, @category_parent_array, :id, :name, { prompt: '---' }, {class: 'categoryChoice__form', id: 'parent_category' }
           .itemDetailName
             %label.label ブランド
             %span.grayLabel 任意

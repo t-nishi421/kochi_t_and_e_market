@@ -1,15 +1,18 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => { # deviseのルーティング
+  root 'items#index'
+
+  # deviseのルーティング
+  devise_for :users, :controllers => {
     :registrations => 'users/registrations',
     :sessions => 'users/sessions'  
   } 
-
   devise_scope :user do
     get "sign_in", :to => "users/sessions#new"
     get "sign_out", :to => "users/sessions#destroy" 
   end
 
-  resources :signups, only: [:index] do # 新規登録のルーティング
+  # 新規登録のルーティング
+  resources :signups, only: [:index] do
     collection do
       get 'step1'   # deviseの情報
       post 'step1', to: 'signups#step1_validates'  # step1のバリデーションチェック
@@ -20,15 +23,20 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :items, only: [:index, :show, :new, :create]
 
-  root 'items#index'
-  resources :items, only: [:show] do
+  # 商品関係のルーティング
+  resources :items, only: [:index, :show, :new, :create] do
     member do
       get 'purchase'
     end
+    #子、孫カテゴリーのJSON用ルーティング設定
+    collection do
+      get 'get_category_children', defaults: { fomat: 'json'}
+      get 'get_category_grandchildren', defaults: { fomat: 'json'}
+    end
   end
 
+  # マイページのルーティング
   resources :users, only: [:show, :edit, :update] do
     resources :credit_cards, only: [:new, :create], as: :cards
     resources :destinations, only: [:new, :create, :edit, :update]
