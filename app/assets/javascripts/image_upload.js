@@ -1,4 +1,4 @@
-$(function(){
+$(document).on('turbolinks:load', ()=> {
   // プレビューBOX
   const imageBox = (thisIndex, url)=> {
     const html = 
