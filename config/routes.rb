@@ -23,7 +23,9 @@ Rails.application.routes.draw do
   resources :items, only: [:index, :new]
   resources :items, only: [:show] do
     member do
-      get 'purchase'
+      get 'purchase_confirmation'
+      post 'purchase'
+      get 'purchase_completed'
     end
     #子、孫カテゴリーのJSON用ルーティング設定
     collection do
