@@ -48,7 +48,7 @@ ja:
         name: 商品名
         price: 価格
         introduction: 商品の説明
-        :category_id: カテゴリー
+        :category: カテゴリー
         brand: ブランド
         condition_id: 商品の状態
         shipping_cost_id: 配送料の負担
