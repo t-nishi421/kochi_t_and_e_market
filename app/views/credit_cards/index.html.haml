@@ -26,4 +26,4 @@
             .card__delete
               - @card_list.each do |card|
                 .delete__btn
-                  = button_to "削除する", user_credit_card_path(current_user, params[:user_id]), {method: :delete, params: {card: card[:id]}, date: {confirm: "本当に削除してよろしいですか？"}}
+                  = button_to "削除する", user_credit_card_path(current_user, params[:user_id]), {method: :delete, params: {card: card[:id]}, data: {confirm: "本当に削除してよろしいですか？"}}
