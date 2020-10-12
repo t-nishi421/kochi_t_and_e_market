@@ -1,3 +1,4 @@
+= render "users/notice"
 .purchase
   .purchase__header
     = link_to root_path do
@@ -40,9 +41,9 @@
         .purchase__destination--left
           %h2 お届け先
           %br
-          %p 〒123-4567
-          %p 高知県高知市
-          %p 名前
+          %p= "〒" + @destination.postal_code[0..2] + "-" + @destination.postal_code[3..6]
+          %p= @prefecture.name + @destination.city + @destination.house_number + @destination.building_name
+          %p= @destination.family_name +  @destination.first_name + " 様"
         .purchase__destination--right
           = link_to "変更する >", destination_user_path(current_user)
     .purchase__btn

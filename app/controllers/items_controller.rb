@@ -27,6 +27,8 @@ class ItemsController < ApplicationController
   end
   
   def purchase_confirmation # 購入内容確認画面
+    @destination = Destination.find_by(user_id: current_user)
+    @prefecture = Prefecture.find_by(id: @destination.prefecture_id)
     @item = Item.find(params[:id])
     @card = CreditCard.get_card(current_user.credit_card.customer_token) if current_user.credit_card
   end
@@ -34,16 +36,22 @@ class ItemsController < ApplicationController
   def purchase # 購入アクション
     @item = Item.find(params[:id])
     Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
-    customer_token = current_user.credit_card.customer_token
-    Payjp::Charge.create(
-      amount: @item.price, # 商品の値段
-      customer: customer_token, # 顧客のトークン
-      currency: 'jpy'  # 通貨の種類
-    )
-    redirect_to purchase_completed_item_path(@item), notice: "お買い上げありがとうございます！"
-  end
+      if @item.update!(trading_status:  "完売")
+        customer_token = current_user.credit_card.customer_token
+        Payjp::Charge.create(
+          amount: @item.price, # 商品の値段
+          customer: customer_token, # 顧客のトークン
+          currency: 'jpy'  # 通貨の種類
+        )
+        redirect_to purchase_completed_item_path(@item), notice: "お買い上げありがとうございます！"
+      else
+        redirect_to purchase_confirmation_item_path(@item), alert: "商品を購入できませんでした" 
+      end
+    end
   
   def purchase_completed # 購入完了画面
+    @destination = Destination.find_by(user_id: current_user)
+    @prefecture = Prefecture.find_by(id: @destination.prefecture_id)
     @item = Item.find(params[:id])
     @card = CreditCard.get_card(current_user.credit_card.customer_token)
   end

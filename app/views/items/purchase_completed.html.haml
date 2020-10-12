@@ -36,9 +36,9 @@
         .purchase__destination--left
           %h2 お届け先
           %br
-          %p 〒1234567
-          %p 高知県高知市
-          %p 名前
+          %p= "〒" + @destination.postal_code[0..2] + "-" + @destination.postal_code[3..6]
+          %p= @prefecture.name + @destination.city + @destination.house_number + @destination.building_name
+          %p= @destination.family_name +  @destination.first_name + " 様"
     .purchase__btn
       = link_to "お買い物を続ける", root_path
     .purchase__btn
