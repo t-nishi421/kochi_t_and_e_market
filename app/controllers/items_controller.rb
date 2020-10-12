@@ -12,7 +12,6 @@ class ItemsController < ApplicationController
   def create
     Brand.saveIfNotPresent(brand_params)
     @item = Item.new(item_params)
-    binding.pry
     if @item.valid? && @item.save
       redirect_to root_path
     else
@@ -50,7 +49,7 @@ class ItemsController < ApplicationController
     end
     params.require(:item).permit(:name, :price, :introduction, :condition_id,
                                  :shipping_cost_id, :preparation_day_id, :prefecture_id,
-                                 item_images_attributes: [:src, :_destroy, :id]).merge(trading_status: '販売中', category_id: category_params, brand_id: brand_id, user_id: current_user.id)
+                                 item_images_attributes: [:src, :_destroy, :id]).merge(trading_status: '出品中', category_id: category_params, brand_id: brand_id, user_id: current_user.id)
   end
 
   def brand_params

@@ -2,7 +2,7 @@
   = render 'shared/head'
   .body
     .main
-      = form_with model: @item, class: 'sellItem', local: true do |f| #itemモデル追加
+      = form_with model: @item, class: 'sellItem', local: true do |f|
         .ErrorMessages
           = render './shared/error_messages', model: f.object
         .imageSend
@@ -13,9 +13,9 @@
           .imageSend__dropBox
             = f.fields_for :item_images do |i|
               .imageSend__dropBox__list
-                .js-file_group.input_1{"data-index" => 1}
-                  = i.file_field :src, {id: 'image_1', class: 'js-file', name: "item[item_images_attributes][1][src]"}
-            %label{for: 'image_1', class: 'imageSend__dropBox__label'}
+                .js-file_group.input_0{"data-index" => 0}
+                  = i.file_field :src, {id: 'image_0', class: 'js-file', name: "item[item_images_attributes][0][src]"}
+            %label{for: 'image_0', class: 'imageSend__dropBox__label'}
               = image_tag('icon/icon_camera.png', class: 'icon')
 
         .itemMain
@@ -34,10 +34,10 @@
           %p.grayTextTitle 商品詳細
           .itemDetail__category
             .itemDetailName
-              %label.label カテゴリ
+              %label.label カテゴリー
               %span.sideLabel 必須
             .categoryChoice
-              = f.collection_select :category_id, @category_parent_array, :id, :name, { prompt: '選択してください' }, {class: 'selectBoxBtn__form', id: 'parent_category' }
+              = f.collection_select :category_id, @category_parent_array, :id, :name, { prompt: '選択してください' }, { class: 'selectBoxBtn__form', id: 'parent_category' }
           .itemDetailName
             %label.label ブランド
             %span.grayLabel 任意

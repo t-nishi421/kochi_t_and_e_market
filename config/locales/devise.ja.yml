@@ -44,6 +44,16 @@ ja:
         house_number: 番地
         building_name: マンション名など
         telephone: 電話番号
+      item:
+        name: 商品名
+        price: 価格
+        introduction: 商品の説明
+        :category_id: カテゴリー
+        brand: ブランド
+        condition_id: 商品の状態
+        shipping_cost_id: 配送料の負担
+        preparation_day_id: 配送までの日数
+        prefecture_id: 配送元の地域
     models:
       user: ユーザ
   devise:
