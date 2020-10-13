@@ -54,6 +54,7 @@ ja:
         shipping_cost_id: 配送料の負担
         preparation_day_id: 配送までの日数
         prefecture_id: 配送元の地域
+        item_images: 画像
     models:
       user: ユーザ
   devise:

@@ -15,5 +15,8 @@ class Item < ApplicationRecord
             :category, :condition_id, :shipping_cost_id,
             :preparation_day_id, :prefecture_id, presence: true
 
+  validates_associated :item_images
+  validates :item_images, presence: true
+
   validates :price, inclusion: { in: 300..9999999 , message: "は指定金額内で入力してください"}
 end
