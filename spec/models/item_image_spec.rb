@@ -7,12 +7,10 @@ describe ItemImage do
 
   describe '商品出品時の画像テスト' do
 
-    # 通ってないテスト
     it "正常な入力値だと有効" do
       expect(@item).to be_valid
     end
 
-    # 通ってないテスト
     it "画像のurlが未入力だとエラー" do
       @item.src = ""
       @item.valid?

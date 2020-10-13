@@ -7,7 +7,6 @@ FactoryBot.define do
     trading_status  {"出品中"}
     association :category, factory: :category
     association :brand, factory: :brand
-    # brand           {nil}
     condition       {Condition.find_by_id(1)}
     shipping_cost   {ShippingCost.find_by_id(1)}
     preparation_day {PreparationDay.find_by_id(1)}
