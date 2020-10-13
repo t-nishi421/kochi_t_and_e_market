@@ -1,9 +1,8 @@
 class CreditCardsController < ApplicationController
 
   def index
-    @card_list = CreditCard.get_list(current_user.credit_card.customer_token) if current_user.credit_card
-    @user = current_user
-    @card = CreditCard.find_by(params[:user_id])
+    @card = CreditCard.find_by(user_id: params[:user_id])
+    @card_list = CreditCard.get_list(@card.customer_token) if @card
   end
   
   def new
@@ -28,7 +27,7 @@ class CreditCardsController < ApplicationController
   end
   
   def update # デフォルトカードの更新
-    @card = CreditCard.find_by(params[:user_id])
+    @card = CreditCard.find_by(user_id: params[:user_id])
     if params[:credit_card][:card] == current_user.credit_card.default
       redirect_to user_credit_cards_path(current_user), alert: "お支払い方法に変更ありません"
     else
@@ -45,7 +44,7 @@ class CreditCardsController < ApplicationController
   end
 
   def destroy # カード情報の削除とデフォルトカードの更新
-    @card = CreditCard.find_by(params[:user_id])
+    @card = CreditCard.find_by(user_id: params[:user_id])
     Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
     customer = Payjp::Customer.retrieve(current_user.credit_card.customer_token)
     card = customer.cards.retrieve(params[:card])

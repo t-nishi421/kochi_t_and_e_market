@@ -1,3 +1,4 @@
+= render "items/header"
 .myPage
   .myPage__sidebar
     = render "sidebar"
@@ -32,3 +33,5 @@
             = f.password_field :password_confirmation, autocomplete: "off"
 
         = f.submit "変更する", class: "formField__btn"
+
+= render "items/footer"

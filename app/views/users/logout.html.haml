@@ -1,3 +1,4 @@
+= render "items/header"
 .myPage
   .myPage__sidebar
     = render "users/sidebar"
@@ -7,3 +8,5 @@
       .logout__content
         .logout__btn
           = link_to "ログアウト", destroy_user_session_path, method: :delete
+
+= render "items/footer"
