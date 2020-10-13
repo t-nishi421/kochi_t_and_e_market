@@ -10,6 +10,11 @@ describe Item do
       expect(@item).to be_valid
     end
 
+    it "ブランドが未入力でも有効" do
+      @item.brand = nil
+      expect(@item).to be_valid
+    end
+
     it "商品名が未入力だとエラー" do
       @item.name = ""
       @item.valid?
@@ -37,25 +42,25 @@ describe Item do
     it "商品の状態が未入力だとエラー" do
       @item.condition = nil
       @item.valid?
-      expect(@item.errors[:condition]).to include("を入力してください")
+      expect(@item.errors[:condition_id]).to include("を入力してください")
     end
 
     it "配送料の負担が未入力だとエラー" do
       @item.shipping_cost = nil
       @item.valid?
-      expect(@item.errors[:shipping_cost]).to include("を入力してください")
+      expect(@item.errors[:shipping_cost_id]).to include("を入力してください")
     end
 
     it "発送までの日数が未入力だとエラー" do
       @item.preparation_day = nil
       @item.valid?
-      expect(@item.errors[:preparation_day]).to include("を入力してください")
+      expect(@item.errors[:preparation_day_id]).to include("を入力してください")
     end
 
     it "配送元の地域が未入力だとエラー" do
       @item.prefecture = nil
       @item.valid?
-      expect(@item.errors[:prefecture]).to include("を入力してください")
+      expect(@item.errors[:prefecture_id]).to include("を入力してください")
     end
   end
 end

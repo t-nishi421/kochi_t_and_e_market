@@ -7,7 +7,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :condition
   belongs_to_active_hash :shipping_cost
   belongs_to :category
-  belongs_to :brand
+  belongs_to :brand, optional: true
   belongs_to_active_hash :preparation_day
   belongs_to_active_hash :prefecture
 

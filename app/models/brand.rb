@@ -5,7 +5,7 @@ class Brand < ApplicationRecord
 
   # 未登録のブランドを登録する
   def self.saveIfNotPresent(brand)
-    unless Brand.exists?(name: brand.to_s)
+    unless Brand.exists?(name: brand)
       Brand.create(name: brand)
     end
   end
