@@ -1,4 +1,5 @@
 class CreditCardsController < ApplicationController
+  before_action :signed_in
 
   def index
     @card = CreditCard.find_by(user_id: params[:user_id])
@@ -59,6 +60,14 @@ class CreditCardsController < ApplicationController
       redirect_to user_credit_cards_path(current_user), notice: "カードを削除しました"
     else
       redirect_to user_credit_cards_path(current_user), alert: "カードを削除できませんでした"
+    end
+  end
+
+  private
+
+  def signed_in
+    unless user_signed_in?
+      redirect_to root_path, alert: "会員登録またはログインしてください"
     end
   end
 
