@@ -36,7 +36,7 @@ class ItemsController < ApplicationController
   def purchase # 購入アクション
     @item = Item.find(params[:id])
     Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
-      if @item.update!(trading_status:  "完売")
+      if @item.update(trading_status:  "完売")
         customer_token = current_user.credit_card.customer_token
         Payjp::Charge.create(
           amount: @item.price, # 商品の値段
