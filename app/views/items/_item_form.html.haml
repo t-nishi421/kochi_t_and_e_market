@@ -37,18 +37,18 @@
               %label.label カテゴリー
               %span.sideLabel 必須
             .categoryChoice
-            - if item.category == nil
-              = f.collection_select :category_id, @category_parent_array, :id, :name, { include_blank: '選択してください' }, { class: 'selectBoxBtn__form', id: 'parent_category' }
-            - else
-              = f.collection_select :category_id, @category_parent_array, :id, :name, { include_blank: '選択してください', selected: @category_parent.id }, { class: 'selectBoxBtn__form', id: 'parent_category' }
-            - if item.category != nil
-              #children_wrapper.categoryChoice__added
-                .categoryChoice__form
-                  = f.collection_select :category_id, @category_child_array, :id, :name, { include_blank: '選択してください', selected: @category_child.id }, { class: 'selectBoxBtn__form', id: 'child_category' }
-            - if item.category != nil
-              #grandchildren_wrapper.categoryChoice__added
-                .categoryChoice__form
-                  = f.collection_select :category_id, @category_grandchildren_array, :id, :name, { include_blank: '選択してください', selected: @category_grandchild.id }, { class: 'selectBoxBtn__form', id: 'grandchild_category' }
+              - if item.category == nil
+                = f.collection_select :category_id, @category_parent_array, :id, :name, { include_blank: '選択してください' }, { class: 'selectBoxBtn__form', id: 'parent_category' }
+              - else
+                = f.collection_select :category_id, @category_parent_array, :id, :name, { include_blank: '選択してください', selected: @category_parent.id }, { class: 'selectBoxBtn__form', id: 'parent_category' }
+              - if item.category != nil
+                #children_wrapper.categoryChoice__added
+                  .categoryChoice__form
+                    = f.collection_select :category_id, @category_child_array, :id, :name, { include_blank: '選択してください', selected: @category_child.id }, { class: 'selectBoxBtn__form', id: 'child_category' }
+              - if item.category != nil
+                #grandchildren_wrapper.categoryChoice__added
+                  .categoryChoice__form
+                    = f.collection_select :category_id, @category_grandchildren_array, :id, :name, { include_blank: '選択してください', selected: @category_grandchild.id }, { class: 'selectBoxBtn__form', id: 'grandchild_category' }
           .itemDetailName
             %label.label ブランド
             %span.grayLabel 任意

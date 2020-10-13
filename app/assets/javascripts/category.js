@@ -42,7 +42,7 @@ $(document).on('turbolinks:load', ()=> {
     var parentText = $('#parent_category option:selected').text();
     if (parentText != defaultText){//親カテゴリーが初期値でないことを確認
       $.ajax({
-        url: 'get_category_children',
+        url: '/items/get_category_children',
         type: 'GET',
         data: { parent_id: parentCategoryId },
         dataType: 'json'
@@ -67,11 +67,13 @@ $(document).on('turbolinks:load', ()=> {
 
   // 子カテゴリー選択後のイベント
   $('.itemDetail__category').on('change', '#child_category', function(){
-    var childCategoryId = $('#child_category option:selected').data('category'); //選択された子カテゴリーのidを取得
+    var childCategoryId = document.getElementById ('child_category').value; //選択された子カテゴリーのidを取得
     var childText = $('#child_category option:selected').text();
+    console.log(childCategoryId);
+    console.log(childText);
     if (childText != defaultText){ //子カテゴリーが初期値でないことを確認
       $.ajax({
-        url: 'get_category_grandchildren',
+        url: '/items/get_category_grandchildren',
         type: 'GET',
         data: { child_id: childCategoryId },
         dataType: 'json'
