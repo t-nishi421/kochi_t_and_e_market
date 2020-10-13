@@ -9,7 +9,7 @@
       本人確認情報入力
     = form_for @profile, url: step2_signups_path, method: :post do |f|
       .ErrorMessages
-        = render 'error_messages', model: f.object
+        = render './shared/error_messages', model: f.object
       .FormField
         .FormField__label--normal
           お名前
