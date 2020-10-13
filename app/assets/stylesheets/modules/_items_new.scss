@@ -82,11 +82,6 @@
 
       .itemDetail{
         @include mainGrayBrock();
-        &__category{
-          .categoryChoice{
-            margin-bottom: 16px;
-          }
-        }
         .brandForm{
           margin-bottom: 16px;
           &__field{

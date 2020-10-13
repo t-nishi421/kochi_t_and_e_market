@@ -25,11 +25,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
-    @category_id = @item.category_id
-    @category_parent = Category.find(@category_id).parent.parent
-    @category_child = Category.find(@category_id).parent
-    @category_grandchild = Category.find(@category_id)
+    get_item_and_category
   end
 
   
@@ -44,12 +40,10 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @item = Item.find(params[:id])
+    get_item_and_category
     @category_parent_array = Category.where(ancestry: nil)
-    @category_id = @item.category_id
-    @category_parent = Category.find(@category_id).parent.parent
-    @category_child = Category.find(@category_id).parent
-    @category_grandchild = Category.find(@category_id)
+    @category_child_array = Category.find(@category_parent.id).children
+    @category_grandchildren_array = Category.find(@category_child.id).children
   end
 
   def update
@@ -74,5 +68,13 @@ class ItemsController < ApplicationController
 
   def category_params
     params[:item][:category_id]
+  end
+
+  def get_item_and_category
+    @item = Item.find(params[:id])
+    @category_id = @item.category_id
+    @category_parent = Category.find(@category_id).parent.parent
+    @category_child = Category.find(@category_id).parent
+    @category_grandchild = Category.find(@category_id)
   end
 end
