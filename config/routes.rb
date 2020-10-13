@@ -25,7 +25,8 @@ Rails.application.routes.draw do
 
 
   # 商品関係のルーティング
-  resources :items, only: [:index, :show, :new, :create] do
+  resources :items, only: [:index, :new, :create, :edit, :update]
+  resources :items, only: [:show] do
     member do
       get 'purchase'
     end

@@ -280,3 +280,8 @@
 #grandchild_category {
   @include categoryMargin();
 }
+
+
+#UnderImage {
+  filter: invert(0.55);
+}

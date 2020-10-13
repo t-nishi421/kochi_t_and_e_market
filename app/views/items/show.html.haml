@@ -1,4 +1,4 @@
-.ItemShowPage
+.ItemPage
   = render 'header'
   .ItemProfile
     .ItemProfile__name
@@ -66,9 +66,14 @@
         （税込）
       .ItemProfile__priceBox__shipping
         送料込み
-    = link_to purchase_item_path do
-      .ItemProfile__buyButton
-        購入画面に進む
+    - if @item.user_id == current_user.id
+      = link_to edit_item_path(@item.id) do
+        .ItemProfile__buyButton
+          商品の編集
+    - else
+      = link_to purchase_item_path do
+        .ItemProfile__buyButton
+          購入画面に進む
     .ItemProfile__text
       こちら、商品説明欄です
   = form_with url: '#' do |f|
