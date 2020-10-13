@@ -12,6 +12,6 @@ class User < ApplicationRecord
   has_one :credit_card, dependent: :destroy
   has_many :destinations
   # has_many :purchase_histories
-  # has_many :items
+  has_many :items
 
 end

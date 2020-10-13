@@ -3,8 +3,25 @@ class ItemsController < ApplicationController
   end
   
   def new
-    #データベースから、親カテゴリーのみ抽出し、配列化
-    @category_parent_array = Category.where(ancestry: nil)
+    if user_signed_in?
+      @item = Item.new()
+      @item.item_images.new
+      #データベースから、親カテゴリーのみ抽出し、配列化
+      @category_parent_array = Category.where(ancestry: nil)
+    else
+      redirect_to root_path
+    end
+  end
+
+  def create
+    Brand.saveIfNotPresent(brand_params)
+    @item = Item.new(item_params)
+    if @item.valid? && @item.save
+      redirect_to root_path
+    else
+      @category_parent_array = Category.where(ancestry: nil)
+      render "new"
+    end
   end
 
   def show
@@ -54,5 +71,27 @@ class ItemsController < ApplicationController
     @prefecture = Prefecture.find_by(id: @destination.prefecture_id)
     @item = Item.find(params[:id])
     @card = CreditCard.get_card(current_user.credit_card.customer_token)
+  end
+end
+
+  private
+
+  def item_params
+    if brand_params != ""
+      brand_id = Brand.find_by(name: brand_params).id
+    else
+      brand_id = nil
+    end
+    params.require(:item).permit(:name, :price, :introduction, :condition_id,
+                                 :shipping_cost_id, :preparation_day_id, :prefecture_id,
+                                 item_images_attributes: [:src, :_destroy, :id]).merge(trading_status: '出品中', category_id: category_params, brand_id: brand_id, user_id: current_user.id)
+  end
+
+  def brand_params
+    params[:item][:brand]
+  end
+
+  def category_params
+    params[:item][:category_id]
   end
 end

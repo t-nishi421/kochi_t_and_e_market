@@ -87,3 +87,7 @@ gem 'ancestry'
 
 # active_hashのインストール
 gem 'active_hash'
+
+# 画像投稿機能のインストール
+gem 'carrierwave'
+gem 'mini_magick'

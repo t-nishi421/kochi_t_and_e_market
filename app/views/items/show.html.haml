@@ -23,11 +23,11 @@
             %th
               カテゴリー
             %td
-              = link_to "#{@category_parent.name}", "#" 
+              = link_to ">#{@category_parent.name}", "#" 
               %br
-              = link_to "#{@category_child.name}", "#"
+              = link_to ">#{@category_child.name}", "#"
               %br
-              = link_to "#{@category_grandchild.name}", "#"
+              = link_to ">#{@category_grandchild.name}", "#"
           %tr
             %th
               ブランド
@@ -76,9 +76,7 @@
       .ItemProfile__soldOutButton
         売り切れ
     .ItemProfile__text
-      おはようございます
-      こんにちはでございます
-      ________________________________________________________________________________________________________________________________________________________________________
+      こちら、商品説明欄です
   = form_with url: '#' do |f|
     .CommentForm
       = f.text_area :text, class: 'CommentForm__textArea'

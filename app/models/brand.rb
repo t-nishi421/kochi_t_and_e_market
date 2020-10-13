@@ -1,5 +1,12 @@
 class Brand < ApplicationRecord
   has_many :items
 
-  # validates :name, presence: true
+  validates :name, presence: true
+
+  # 未登録のブランドを登録する
+  def self.saveIfNotPresent(brand)
+    unless Brand.exists?(name: brand)
+      Brand.create(name: brand)
+    end
+  end
 end
