@@ -11,18 +11,18 @@
       .item__content
         .item__content--left
           %figure
-            = image_tag 'example/product.jpg', alt: '商品画像' , size: '120x120'
+            = image_tag "#{@image.src}", alt: '商品画像' , size: '120x120'
         .item__content--right
           %p= @item.name
           %br
           %br
-          %p= "送料込み(税込) " + "¥" + "#{@item.price}"
+          %p= "送料込み(税込) " + "¥" + "#{@item.price.to_s(:delimited)}"
     %section
       .payment
         .payment__left
           お買い上げ金額
         .payment__right
-          = "¥" + "#{@item.price}"
+          = "¥" + "#{@item.price.to_s(:delimited)}"
     %section
       .purchase__method
         .purchase__method--left
