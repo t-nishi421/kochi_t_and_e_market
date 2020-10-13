@@ -1,6 +1,9 @@
 class CreditCard < ApplicationRecord
 
   belongs_to :user
+
+  validates :customer_token, presence: true
+  validates :default, presence: true
   
   def self.get_card(customer_token)
     Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
