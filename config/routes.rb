@@ -25,7 +25,8 @@ Rails.application.routes.draw do
 
 
   # 商品関係のルーティング
-  resources :items, only: [:index, :show, :new, :create] do
+  resources :items, only: [:index, :new, :create]
+  resources :items, only: [:show] do
     member do
       get 'purchase_confirmation'
       post 'purchase'
@@ -39,7 +40,6 @@ Rails.application.routes.draw do
   end
 
   resources :credit_cards, only: [:new, :create] #  クレジットカード
-  root 'items#index'
 
   # マイページのルーティング
   resources :users, only: [:show, :edit, :update] do

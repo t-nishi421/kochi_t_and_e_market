@@ -72,7 +72,6 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @card = CreditCard.get_card(current_user.credit_card.customer_token)
   end
-end
 
   private
 
