@@ -18,7 +18,7 @@
               出品者
             %td
               = link_to "#" do
-                たなかななか
+                = @item.name
           %tr
             %th
               カテゴリー
@@ -35,35 +35,35 @@
               ブランド
             %td
               = link_to "#" do
-                内緒
-          %tr
-            %th
-              商品のサイズ
-            %td
-              でかい
+                = @item.brand.name
+          -# %tr
+          -#   %th
+          -#     商品のサイズ
+          -#   %td
+          -#     でかい
           %tr
             %th
               商品の状態
             %td
-              すごい
+              = @item.condition.name
           %tr
             %th
               配送料の負担
             %td
-              私
+              = @item.shipping_cost.content
           %tr
             %th
               配送元の地域
             %td
-              ヌー大陸
+              = @item.prefecture.name
           %tr
             %th
               配送日の目安
             %td
-              すぐ届く
+              = @item.preparation_day.period
     .ItemProfile__priceBox
       .ItemProfile__priceBox__price
-        100円
+        = @item.price
       .ItemProfile__priceBox__tax
         （税込）
       .ItemProfile__priceBox__shipping
@@ -80,7 +80,7 @@
       .ItemProfile__soldOutButton
         売り切れ
     .ItemProfile__text
-      こちら、商品説明欄です
+      = @item.introduction
   = form_with url: '#' do |f|
     .CommentForm
       = f.text_area :text, class: 'CommentForm__textArea'
