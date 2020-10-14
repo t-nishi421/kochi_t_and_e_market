@@ -4,11 +4,17 @@
     = render "sidebar"
 
   .myPage__main
-    .item__onSale
-      .item__onSale__title
+    .onSale
+      .onSale__title
         出品中の商品
-      .item__onSale__content
-        .item__onSale__list
-          -# - @card_list.each do |card|
-            %section
+      .onSale__content
+        - @items.each do |item|
+          %section
+            .item__image
+              %figure
+                = image_tag "#{item.item_images.first.src}", alt: '商品画像' , size: '100x100'
+            .item__info
+              %p= "商品名:" + "#{item.name}"
+              %p= "¥ " + "#{item.price.to_s(:delimited)}"
+              = link_to "商品ページへ", item_path(item.id)
 = render "items/footer"
