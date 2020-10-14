@@ -32,7 +32,7 @@ Rails.application.routes.draw do
     end
   end
 
-  root 'items#index'
+  root 'items#search'
   #resources :items, only: [:show] do
     #member do
       #get 'purchase'

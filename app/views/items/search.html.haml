@@ -1,0 +1,19 @@
+= render 'header'
+.itemSearchContents
+  = render "items/item_search"
+  .itemSearchContents__body
+    .itemSearchContents__body__title キーワードの検索結果一覧
+    .itemSearchContents__body__itemBox
+      //- @search_items.each do |item|
+      .itemSearchContents__body__itemBox__content
+        = link_to '#' do
+          %figure.content__img
+            = image_tag('example/product.jpg')
+          .content__body
+            %h1.itemName メガネ
+            .content__price
+              1000 円
+            %p (税込)
+= render 'banner'
+= render 'footer'
+= render 'btn'
