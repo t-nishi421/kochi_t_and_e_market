@@ -3,8 +3,10 @@ class CreditCardsController < ApplicationController
 
   def index
     @card = CreditCard.find_by(user_id: params[:user_id])
-    @card_list = CreditCard.get_list(@card.customer_token) if @card
-    @default = CreditCard.get_card(@card.customer_token) if @card
+    if @card
+      @card_list = CreditCard.get_list(@card.customer_token)
+      @default = CreditCard.get_card(@card.customer_token)
+    end
   end
   
   def new
@@ -43,7 +45,7 @@ class CreditCardsController < ApplicationController
   def destroy # カード情報の削除とデフォルトカードの更新
     @card = CreditCard.find_by(user_id: params[:user_id])
     Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
-    customer = Payjp::Customer.retrieve(@card.customer_token) if @card
+    customer = Payjp::Customer.retrieve(@card.customer_token)
     card = customer.cards.retrieve(params[:card])
     if card.delete
       customer = Payjp::Customer.retrieve(@card.customer_token)
