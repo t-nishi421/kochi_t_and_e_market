@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
 
   # 商品関係のルーティング
-  resources :items, only: [:index, :new, :create]
+  resources :items, only: [:index, :new, :create, :destroy]
   resources :items, only: [:show] do
     member do
       get 'purchase_confirmation'
@@ -47,7 +47,7 @@ Rails.application.routes.draw do
       resources :destinations, only: [:new, :create, :edit, :update] # お届け先住所
       resources :profiles, only: [:edit, :update] # 本人情報
       member do
-      get 'on_sale'
+      get 'on_sale' # 出品中の商品リスト
       get 'destination' # マイページのお届け先住所遷移画面
       get 'logout' # マイページのログアウト画面
     end
