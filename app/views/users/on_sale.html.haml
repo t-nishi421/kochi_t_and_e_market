@@ -1,0 +1,14 @@
+= render "items/header"
+.myPage
+  .myPage__sidebar
+    = render "sidebar"
+
+  .myPage__main
+    .item__onSale
+      .item__onSale__title
+        出品中の商品
+      .item__onSale__content
+        .item__onSale__list
+          -# - @card_list.each do |card|
+            %section
+= render "items/footer"

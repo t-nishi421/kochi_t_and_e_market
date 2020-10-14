@@ -122,6 +122,18 @@
     }
   }
 
+  &__deleteButton {
+    padding: 10px 0;
+    margin: 15px auto 0 auto;
+    @include flex-bundle(center, center);
+    border-radius: 50px;
+    background-color: red;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    @include opacity();
+  }
+
   &__buyButton {
     padding: 10px 0;
     margin: 15px auto 0 auto;

@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
 
   # 商品関係のルーティング
-  resources :items, only: [:index, :show, :new, :create] do
+  resources :items, only: [:index, :show, :new, :create, :destroy] do
     member do
       get 'purchase'
     end
@@ -41,7 +41,8 @@ Rails.application.routes.draw do
     resources :credit_cards, only: [:new, :create], as: :cards
     resources :destinations, only: [:new, :create, :edit, :update]
     resources :profiles, only: [:edit, :update]
-    collection do
+    member do
+      get 'on_sale'
       get 'destination'
       get 'card'
       get 'logout'
