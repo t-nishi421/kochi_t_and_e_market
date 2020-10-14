@@ -1,0 +1,43 @@
+= render "layouts/notice"
+.purchase
+  .purchase__header
+    = link_to root_path do
+      = image_tag 'logo/logo.png', alt: 'furima'
+  .purchase__contents
+    %section
+      .purchase__title
+        購入完了
+    %section
+      .item__content
+        .item__content--left
+          %figure
+            = image_tag "#{@image.src}", alt: '商品画像' , size: '120x120'
+        .item__content--right
+          %h2= @item.name
+          %p= "送料込み(税込) " + "¥" + "#{@item.price.to_s(:delimited)}"
+    %section
+      .payment
+        .payment__left
+          お買い上げ金額
+        .payment__right
+          = "¥" + "#{@item.price.to_s(:delimited)}"
+    %section
+      .purchase__method
+        .purchase__method--left
+          %h2 お支払い方法
+          %p= "*************" + @card[:last4]
+          %p= "有効期限 " + "#{@card[:exp_month]}" + " / " + "#{@card[:exp_year]}"
+          %p= @card[:brand]
+    %section
+      .purchase__destination
+        .purchase__destination--left
+          %h2 お届け先
+          %p= "〒" + @destination.postal_code[0..2] + "-" + @destination.postal_code[3..6]
+          %p= @prefecture.name + @destination.city + @destination.house_number + @destination.building_name
+          %p= @destination.family_name +  @destination.first_name + " 様"
+    .purchase__btn
+      = link_to "お買い物を続ける", root_path
+    .purchase__btn
+      = link_to "マイページへ", user_path(current_user)
+  .purchase__footer
+    = image_tag 'logo/logo-white.png', alt: 'furima'
