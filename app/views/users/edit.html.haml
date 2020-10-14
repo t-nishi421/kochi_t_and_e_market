@@ -1,3 +1,4 @@
+= render "items/header"
 .myPage
   .myPage__sidebar
     = render "sidebar"
@@ -17,7 +18,7 @@
             = f.label :email, "メールアドレス"
             %span.mandatory 必須
           .formField__input
-            = f.email_field :email
+            = f.email_field :email, plaseholder: :email
         .formField
           .formField__label
             = f.label :password, "パスワード(英数字7文字以上)"
@@ -32,3 +33,5 @@
             = f.password_field :password_confirmation, autocomplete: "off"
 
         = f.submit "変更する", class: "formField__btn"
+
+= render "items/footer"

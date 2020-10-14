@@ -25,9 +25,12 @@ Rails.application.routes.draw do
 
 
   # 商品関係のルーティング
-  resources :items, only: [:index, :show, :new, :create] do
+  resources :items, only: [:index, :new, :create]
+  resources :items, only: [:show] do
     member do
-      get 'purchase'
+      get 'purchase_confirmation'
+      post 'purchase'
+      get 'purchase_completed'
     end
     #子、孫カテゴリーのJSON用ルーティング設定
     collection do
@@ -36,15 +39,16 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :credit_cards, only: [:new, :create] #  クレジットカード
+
   # マイページのルーティング
   resources :users, only: [:show, :edit, :update] do
-    resources :credit_cards, only: [:new, :create], as: :cards
-    resources :destinations, only: [:new, :create, :edit, :update]
-    resources :profiles, only: [:edit, :update]
-    collection do
-      get 'destination'
-      get 'card'
-      get 'logout'
+    resources :credit_cards, only: [:index, :update, :destroy] #  クレジットカード
+    resources :destinations, only: [:new, :create, :edit, :update] # お届け先住所
+    resources :profiles, only: [:edit, :update] # 本人情報
+    member do
+      get 'destination' # マイページのお届け先住所遷移画面
+      get 'logout' # マイページのログアウト画面
     end
   end
 
