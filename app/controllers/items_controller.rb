@@ -17,7 +17,7 @@ class ItemsController < ApplicationController
     save_unregistered_brands()
     @item = Item.new(item_params)
     if @item.valid? && @item.save
-      redirect_to root_path
+      redirect_to item_path(@item.id)
     else
       get_categories_to_item
       @category_parent_array = Category.where(ancestry: nil)
@@ -83,7 +83,7 @@ class ItemsController < ApplicationController
     save_unregistered_brands()
     @item = Item.find(params[:id])
     if @item.valid? && @item.update(item_params)
-      redirect_to root_path
+      redirect_to item_path(params[:id])
     else
       get_categories_to_item
       get_categories_array
