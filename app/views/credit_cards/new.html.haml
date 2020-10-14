@@ -1,3 +1,4 @@
+= render "items/header"
 .myPage
   .myPage__sidebar
     = render "users/sidebar"
@@ -5,31 +6,34 @@
     .creditCard
       .creditCard__title
         クレジットカード情報入力
-      = form_with class: "creditCard__form" do |f|
+      = form_with model: @card, id: "card__form" do |f|
         .formField
           .formField__label
-            = f.label "カード番号"
+            = f.label :num, "カード番号"
             %span.mandatory 必須
           .formField__input
-            = f.text_field "#", {placeholder: "半角数字のみ", autocomplete: "off",maxlength: 19}
+            = f.text_field :num, id: "card__num", placeholder: "半角数字のみ", required: true, maxlength: 16
         .formField
           .formField__label
-            = f.label "有効期限"
+            = f.label :exp, "有効期限"
             %span.mandatory 必須
           .formField__input
             .formField__input--left
-              = f.date_select "#", {discard_year: true, discard_day: true, use_month_numbers: true, use_two_digit_numbers: true}
+              = f.select :exp_month, 1..12, {include_blank: "---"}, id: "exp__month"
               %span 月
             .formField__input--right
-              = f.date_select "#", {discard_month: true, discard_day: true, use_month_numbers: true, start_year: (Time.now.year), end_year: (Time.now.year + 10)}
+              = f.select :exp_year, [[20, 2020], [21, 2021], [22, 2022], [23, 2023], [24, 2024], [25, 2025],[26, 2026], [27, 2027]], {include_blank: "---"}, id: "exp__year"
               %span 年
         .formField
           .formField__label
-            = f.label "セキュリティコード"
+            = f.label :cvc, "セキュリティコード"
             %span.mandatory 必須
           .formField__input
-            = f.text_field "#", {placeholder: "カード裏面の３桁か４桁のコード", maxlength: 4}
-        = f.submit "登録", class: "formField__btn"
+            = f.text_field :cvc, id: "card__cvc", placeholder: "カード裏面の３桁か４桁のコード", maxlength: 4, required: true
+        #card__token
+        = f.submit "登録", id: "card__regist"
 
       .back
         =link_to '前の画面へ', :back
+        
+= render "items/footer"

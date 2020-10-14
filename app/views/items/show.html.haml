@@ -71,17 +71,16 @@
     - if @item.user_id == current_user.id # 出品者本人なら編集と削除できる
       = link_to item_path, method: :delete, data: { confirm: "本当に削除してもよろしいですか？" } do
         .ItemProfile__deleteButton
-          商品を削除する
-  -# - elsif @item.trading_status == "出品中" #  出品中なら購入できる
-    -#   = link_to purchase_confirmation_item_path do
-    -#     .ItemProfile__buyButton
-    -#       購入画面に進む
-    -# - else # 出品中ではないので購入できない
-    -#   .ItemProfile__soldOutButton
-    -#     売り切れ
-
-    -# -# .ItemProfile__text
-    -#   こちら、商品説明欄です
+          商品を削除する      
+    - elsif @item.trading_status == "出品中" #  出品中なら購入できる
+      = link_to purchase_confirmation_item_path do
+        .ItemProfile__buyButton
+          購入画面に進む
+    - else # 出品中ではないので購入できない
+      .ItemProfile__soldOutButton
+        売り切れ
+    .ItemProfile__text
+      こちら、商品説明欄です
   = form_with url: '#' do |f|
     .CommentForm
       = f.text_area :text, class: 'CommentForm__textArea'
