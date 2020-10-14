@@ -40,6 +40,11 @@
     a {
       @include aTag();
     }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
     
     .item__content {
       display: flex;
