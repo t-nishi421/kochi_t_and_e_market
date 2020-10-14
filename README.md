@@ -36,7 +36,7 @@ Things you may want to cover:
 ### Association
 - has_one :profile
 - has_one :comment
-- has_one :credit_cards
+- has_one :credit_card
 - has_many :destinations
 - has_many :purchase_histories
 - has_many :items
@@ -64,7 +64,6 @@ Things you may want to cover:
 |------|----|-------|
 |user_id|reference|null: false, foreign_key: true|
 |customer_token|string|null: false|
-|default|string|
 
 ### Association
 - belongs_to :user
