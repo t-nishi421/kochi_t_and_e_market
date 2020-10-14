@@ -14,7 +14,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    Brand.saveIfNotPresent(brand_params)
+    save_unregistered_brands()
     @item = Item.new(item_params)
     if @item.valid? && @item.save
       redirect_to root_path
@@ -47,6 +47,19 @@ class ItemsController < ApplicationController
   end
 
   def update
+    save_unregistered_brands()
+    @item = Item.find(params[:id])
+    binding.pry
+    if @item.valid? && @item.update(item_params)
+      redirect_to root_path
+    else
+      get_item_and_category
+      @category_parent_array = Category.where(ancestry: nil)
+      @category_child_array = Category.find(@category_parent.id).children
+      @category_grandchildren_array = Category.find(@category_child.id).children
+      render "edit"
+    end
+    
   end
 
   private
@@ -76,5 +89,9 @@ class ItemsController < ApplicationController
     @category_parent = Category.find(@category_id).parent.parent
     @category_child = Category.find(@category_id).parent
     @category_grandchild = Category.find(@category_id)
+  end
+
+  def save_unregistered_brands
+    Brand.saveIfNotPresent(brand_params)
   end
 end

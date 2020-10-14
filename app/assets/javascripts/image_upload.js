@@ -25,7 +25,7 @@ $(document).on('turbolinks:load', ()=> {
   }
 
   // file_fieldのnameに動的なindexをつける為の配列
-  let fileIndex = [1,2,3,4,5,6,7,8,9,10];
+  let fileIndex = [];
 
   const image_box = '.imageSend__dropBox__list';
 
@@ -47,14 +47,22 @@ $(document).on('turbolinks:load', ()=> {
         $('.imageSend__dropBox__label').hide();
       }
 
-      // // プレビュー BOXとinputの追加
+      // fileIndexに初期値を追加
+      if (fileIndex.length == 0) {
+        fileIndex.push(targetIndex);
+      }
+
+      // // プレビューBOXを追加
       $(image_box).append(imageBox(targetIndex, blobUrl));
+
+      // fileIndexをシフト
+      fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
+      fileIndex.shift();
+
+      // 次のinputを追加
       $(image_box).append(newInputFile(fileIndex[0]));
       // labelのforを変更
       $('.imageSend__dropBox__label').attr('for', `image_${fileIndex[0]}`);
-      // fileIndexの編集
-      fileIndex.shift();
-      fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
     }
   });
 
