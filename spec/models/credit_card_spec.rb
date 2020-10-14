@@ -12,6 +12,17 @@ describe CreditCard do
       expect(card.errors[:customer_token]).to include("を入力してください")
     end
 
+
+  end
+  
+  it "get_listメソッドが使用できるか" do
+    allow(CreditCard).to receive(:get_list).and_return("dummy")
+    expect(CreditCard.get_list("dummy")).to eq("dummy")
+  end
+  
+  it "get_cardメソッドが使用できるか" do
+    allow(CreditCard).to receive(:get_card).and_return("dummy")
+    expect(CreditCard.get_card("dummy")).to eq("dummy")
   end
 
 end
