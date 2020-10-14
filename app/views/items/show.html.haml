@@ -2,7 +2,7 @@
   = render 'header'
   .ItemProfile
     .ItemProfile__name
-      商品名
+      = @item.name
     .ItemProfile__status
       .ItemProfile__status__images
         .ItemProfile__status__images__selected
@@ -18,7 +18,7 @@
               出品者
             %td
               = link_to "#" do
-                = @item.name
+                = @item.user.nick_name
           %tr
             %th
               カテゴリー
