@@ -76,6 +76,12 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    @item = Item.find(params[:id])
+    if @item.destroy
+      redirect_to user_path(current_user), notice: "商品を削除しました"
+    else
+      render "show"
+    end
   end
 
   private
