@@ -71,9 +71,10 @@ $(document).on('turbolinks:load', ()=> {
       $('.imageSend__dropBox__label').show();
     }
     const targetIndex = $(this).data('index');
-    // プレビュー BOXとinputを削除
-    $(this).parent().parent().remove();
-    $('.js-file_group' + `.input_${targetIndex}`).remove(); // ここだけ
+    // プレビューBOXとinputを削除
+    $(this).parent().parent().remove(); // プレビューBOX
+    $('.js-file_group' + `.input_${targetIndex}`).remove(); // input
+    $(`#item_item_images_attributes_${targetIndex}_id`).remove(); // editで出現するinput要素
 
     // 画像入力欄が0個にならないようにしておく
     if ($('.js-file').length == 0) $(image_box).append(newInputFile(fileIndex[0]));
