@@ -19,13 +19,15 @@ class ItemsController < ApplicationController
     if @item.valid? && @item.save
       redirect_to root_path
     else
+      get_categories_to_item
       @category_parent_array = Category.where(ancestry: nil)
       render "new"
     end
   end
 
   def show
-    get_item_and_category
+    @item = Item.find(params[:id])
+    get_categories_to_item
   end
 
   
@@ -40,10 +42,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    get_item_and_category
-    @category_parent_array = Category.where(ancestry: nil)
-    @category_child_array = Category.find(@category_parent.id).children
-    @category_grandchildren_array = Category.find(@category_child.id).children
+    @item = Item.find(params[:id])
+    get_categories_to_item
+    get_categories_array
   end
 
   def update
@@ -53,10 +54,8 @@ class ItemsController < ApplicationController
     if @item.valid? && @item.update(item_params)
       redirect_to root_path
     else
-      get_item_and_category
-      @category_parent_array = Category.where(ancestry: nil)
-      @category_child_array = Category.find(@category_parent.id).children
-      @category_grandchildren_array = Category.find(@category_child.id).children
+      get_categories_to_item
+      get_categories_array
       render "edit"
     end
     
@@ -83,12 +82,21 @@ class ItemsController < ApplicationController
     params[:item][:category_id]
   end
 
-  def get_item_and_category
-    @item = Item.find(params[:id])
+  def get_categories_to_item
     @category_id = @item.category_id
-    @category_parent = Category.find(@category_id).parent.parent
-    @category_child = Category.find(@category_id).parent
-    @category_grandchild = Category.find(@category_id)
+    unless @category_id == 0 || @category_id == nil
+      @category_parent = Category.find(@category_id).parent.parent
+      @category_child = Category.find(@category_id).parent
+      @category_grandchild = Category.find(@category_id)
+    end
+  end
+
+  def get_categories_array
+    @category_parent_array = Category.where(ancestry: nil)
+    unless @category_parent == nil
+      @category_child_array = Category.find(@category_parent.id).children
+      @category_grandchildren_array = Category.find(@category_child.id).children
+    end
   end
 
   def save_unregistered_brands
