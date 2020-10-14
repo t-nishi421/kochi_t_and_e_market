@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   has_many :item_images, dependent: :destroy
-  accepts_nested_attributes_for :item_images, allow_destroy: true
+  accepts_nested_attributes_for :item_images, reject_if: :reject_item_image_blank, allow_destroy: true
   # has_many :purchase_histories
   belongs_to :user
   belongs_to_active_hash :condition
@@ -19,4 +19,13 @@ class Item < ApplicationRecord
   validates :item_images, presence: {message: "を１枚以上投稿してください"}
 
   validates :price, inclusion: { in: 300..9999999 , message: "は指定金額内で入力してください"}
+
+  private
+  def reject_item_image_blank(attributes)
+    if attributes[:_destroy]
+      true
+    else
+      false
+    end
+  end
 end

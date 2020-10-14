@@ -50,7 +50,6 @@ class ItemsController < ApplicationController
   def update
     save_unregistered_brands()
     @item = Item.find(params[:id])
-    # binding.pry
     if @item.valid? && @item.update(item_params)
       redirect_to root_path
     else

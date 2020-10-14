@@ -34,7 +34,6 @@
                   // roop-end
                 .js-file_group{:class => "input_#{item.item_images.length}", "data-index" => item.item_images.length}
                   %input.js-file{:id => "image_#{item.item_images.length}", :name => "item[item_images_attributes][#{item.item_images.length}][src]", :type => "file"}
-                  %br
               %label{for: "image_#{item.item_images.length}", class: 'imageSend__dropBox__label'}
                 = image_tag('icon/icon_camera.png', class: 'icon')
 
@@ -57,7 +56,7 @@
               %label.label カテゴリー
               %span.sideLabel 必須
             .categoryChoice
-              - if item.category_id == nil || item.category_id == 0
+              - if item.id == nil || item.category_id == 0
                 = f.collection_select :category_id, @category_parent_array, :id, :name, { include_blank: '選択してください' }, { class: 'selectBoxBtn__form', id: 'parent_category' }
               - else
                 = f.collection_select :category_id, @category_parent_array, :id, :name, { prompt: '選択してください', selected: @category_parent.id }, { class: 'selectBoxBtn__form', id: 'parent_category' }
