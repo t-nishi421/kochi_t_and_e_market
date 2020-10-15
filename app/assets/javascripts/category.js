@@ -1,4 +1,4 @@
-$(function(){
+$(document).on('turbolinks:load', ()=> {
   // カテゴリーセレクトボックスのオプションを作成
   function appendOption(category){
     var html = `<option value="${category.id}" data-category="${category.id}">${category.name}</option>`;
@@ -9,10 +9,10 @@ $(function(){
     var childSelectHtml = '';
     childSelectHtml = `<div class='categoryChoice__added' id= 'children_wrapper'>
                         <div class='categoryChoice__form'>
-                          <select class='categoryChoice__form' id='child_category' name='item[category_id]'>
-                            <option value='---' data-category='---'>---</option>
+                          <select class='selectBoxBtn__form' id='child_category' name='item[category_id]'>
+                            <option value='---' data-category='---'>選択してください</option>
                             ${insertHTML}
-                          <select>          
+                          <select>
                         </div>
                       </div>`;
     $('.categoryChoice').append(childSelectHtml);
@@ -23,24 +23,26 @@ $(function(){
     var grandchildSelectHtml = '';
     grandchildSelectHtml = `<div class='categoryChoice__added' id= 'grandchildren_wrapper'>
                              <div class='categoryChoice__form'>
-                               <select class='categoryChoice__form' id='grandchild_category' item[category_id]>
-                                 <option value='---' data-category='---'>---</option>
+                               <select class='selectBoxBtn__form' id='grandchild_category' name='item[category_id]'>
+                                 <option value='---' data-category='---'>選択してください</option>
                                  ${insertHTML}
-                               <select>          
+                               <select>
                              </div>
                            </div>`;
     $('.categoryChoice').append(grandchildSelectHtml);
   }
 
-
+  // デフォルトメッセージ
+    defaultText = '選択してください'
 
   // 親カテゴリー選択後のイベント
   $('#parent_category').on('change', function(){
     //選択された親カテゴリーの名前を取得
     var parentCategoryId = document.getElementById ('parent_category').value;
-    if (parentCategoryId != "---"){//親カテゴリーが初期値でないことを確認
+    var parentText = $('#parent_category option:selected').text();
+    if (parentText != defaultText){//親カテゴリーが初期値でないことを確認
       $.ajax({
-        url: 'get_category_children',
+        url: '/items/get_category_children',
         type: 'GET',
         data: { parent_id: parentCategoryId },
         dataType: 'json'
@@ -65,10 +67,13 @@ $(function(){
 
   // 子カテゴリー選択後のイベント
   $('.itemDetail__category').on('change', '#child_category', function(){
-    var childCategoryId = $('#child_category option:selected').data('category'); //選択された子カテゴリーのidを取得
-    if (childCategoryId != "---"){ //子カテゴリーが初期値でないことを確認
+    var childCategoryId = document.getElementById ('child_category').value; //選択された子カテゴリーのidを取得
+    var childText = $('#child_category option:selected').text();
+    console.log(childCategoryId);
+    console.log(childText);
+    if (childText != defaultText){ //子カテゴリーが初期値でないことを確認
       $.ajax({
-        url: 'get_category_grandchildren',
+        url: '/items/get_category_grandchildren',
         type: 'GET',
         data: { child_id: childCategoryId },
         dataType: 'json'

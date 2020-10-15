@@ -1,3 +1,5 @@
+= render "items/header"
+= render "layouts/notice"
 .myPage
   .myPage__sidebar
     = render "sidebar"
@@ -9,9 +11,11 @@
           .formField__icon
             = image_tag 'icon/member_photo_noimage_thumb.png', width: '50', height: '50'
           .formField__name
-            = f.text_field :nick_name, placeholder: "ニックネーム"
+            = f.text_field :nick_name, placeholder: current_user.nick_name
         .myPage__comment
           = f.fields_for :comment do |f|  #子モデルのcommentモデルを追加（@niwatori.build_hiyoko）
             = f.text_area :content, {placeholder: "例）ご覧いただきありがとうございます！〇〇商品を中心に取り扱っております☆お気軽にご質問どうぞ♪"}
 
         = f.submit '変更する', class: "myPage__btn"
+
+= render "items/footer"

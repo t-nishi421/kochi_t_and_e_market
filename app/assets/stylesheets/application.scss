@@ -3,8 +3,10 @@
 @import 'mixin/opacity';
 @import 'mixin/underline';
 @import 'mixin/flex-bundle';
-@import "modules/head";
+@import 'mixin/item_show';
 @import 'mixin/myPage';
+@import "modules/head";
+@import "modules/notice";
 @import "modules/item";
 @import "modules/purchase";
 @import "modules/header";
@@ -12,7 +14,6 @@
 @import "modules/banner";
 @import "modules/footer";
 @import "modules/btn";
-@import "modules/item";
 @import "modules/items_new";
 @import "modules/item_search";
 @import "modules/user";

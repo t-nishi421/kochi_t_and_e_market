@@ -36,7 +36,7 @@ Things you may want to cover:
 ### Association
 - has_one :profile
 - has_one :comment
-- has_many :credit_cards
+- has_one :credit_card
 - has_many :destinations
 - has_many :purchase_histories
 - has_many :items
@@ -142,7 +142,7 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
-|image|string|
+|src|string|null: false|
 |item_id|reference|null: false, foreign_key: true|
 
 ### Association

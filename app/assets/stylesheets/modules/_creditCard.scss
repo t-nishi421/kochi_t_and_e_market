@@ -1,3 +1,71 @@
+// マイページのクレジットカード追加ページ(creditCard/indexファイル)
+.card {
+  @include myPageContents();
+
+  &__title {
+    @include myPageTitle();
+  }
+  
+  &__content {
+    padding: 0 50px;
+  }
+
+  &__registration {
+    padding: 20px 0;
+    border-bottom: 1px solid whitesmoke;
+
+    a {
+      @include aTag();
+    }
+  }
+
+  &__list {
+    display: flex;
+  }
+
+  section {
+    width: 70%;
+    padding: 10px 0;
+    border-bottom: 1px solid whitesmoke;
+    display: flex;
+    justify-content: space-between;
+
+    .card__info {
+      font-size: small;
+    }
+
+  }
+  .card__delete {
+    padding-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    .delete__btn {
+      input {
+        height: 25px;
+        padding: 3px;
+        border: 1px solid red;
+        border-radius: 3px;
+        font-size: small;
+        background-color: transparent; //初期化
+        cursor: pointer;
+        color: red;
+        
+        &:hover {
+          background-color: red;
+          color: white;
+        }
+      }
+    }
+  }
+
+  #card__change {
+    @include myPageBtn();
+  }
+  
+}
+
 //クレジットカード情報入力画面(creditCard/newファイル)
 .creditCard {
   @include myPageContents();
@@ -6,7 +74,7 @@
     @include myPageTitle();
   }
   
-  &__form {
+  #card__form {
     @include myPageForm();
     
     .formField {
@@ -37,10 +105,10 @@
         }
       }
       
-      &__btn {
+    }
+      #card__regist {
         @include myPageBtn();
       }
-    }
   }
     
     a {

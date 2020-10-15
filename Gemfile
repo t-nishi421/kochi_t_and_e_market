@@ -80,8 +80,17 @@ gem 'pry-rails'
 # jQueryのインストール
 gem 'jquery-rails'
 
+# pay.jpのgem
+gem 'payjp'
 # ancestryのインストール
 gem 'ancestry'
 
 # active_hashのインストール
 gem 'active_hash'
+
+# 画像投稿機能のインストール
+gem 'carrierwave'
+gem 'mini_magick'
+
+# 画像アップロードの補助
+gem 'fog-aws'

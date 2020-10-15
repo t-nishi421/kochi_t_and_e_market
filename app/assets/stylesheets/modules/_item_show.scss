@@ -11,7 +11,7 @@
   background-color: #f5f5f5;
 }
 
-.ItemShowPage {
+.ItemPage {
   height: 100vh;
   width: 100vw;
   @include background-color-gray();
@@ -121,17 +121,22 @@
       padding-bottom: 7px;
     }
   }
-
+  
   &__buyButton {
-    padding: 10px 0;
-    margin: 15px auto 0 auto;
+    @include item-btn(#3CCACE);
     @include flex-bundle(center, center);
-    border-radius: 50px;
-    background-color: #3CCACE;
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
     @include opacity();
+  }
+  
+  &__deleteButton {
+    @include item-btn(red);
+    @include flex-bundle(center, center);
+    @include opacity();
+  }
+
+  &__soldOutButton {
+    @include item-btn(red);
+    @include flex-bundle(center, center);
   }
 
   &__text {

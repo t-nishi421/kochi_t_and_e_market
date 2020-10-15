@@ -1,15 +1,18 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => { # deviseのルーティング
+  root 'items#index'
+
+  # deviseのルーティング
+  devise_for :users, :controllers => {
     :registrations => 'users/registrations',
     :sessions => 'users/sessions'  
   } 
-
   devise_scope :user do
     get "sign_in", :to => "users/sessions#new"
     get "sign_out", :to => "users/sessions#destroy" 
   end
 
-  resources :signups, only: [:index] do # 新規登録のルーティング
+  # 新規登録のルーティング
+  resources :signups, only: [:index] do
     collection do
       get 'step1'   # deviseの情報
       post 'step1', to: 'signups#step1_validates'  # step1のバリデーションチェック
@@ -20,9 +23,14 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :items, only: [:index, :show, :new] do
+
+  # 商品関係のルーティング
+  resources :items, only: [:index, :new, :create, :edit, :update, :destroy]
+  resources :items, only: [:show] do
     member do
-      get 'purchase'
+      get 'purchase_confirmation'
+      post 'purchase'
+      get 'purchase_completed'
     end
     #子、孫カテゴリーのJSON用ルーティング設定
     collection do
@@ -32,21 +40,17 @@ Rails.application.routes.draw do
     end
   end
 
-  root 'items#search'
-  #resources :items, only: [:show] do
-    #member do
-      #get 'purchase'
-    #end
-  #end
+  resources :credit_cards, only: [:new, :create] #  クレジットカード
 
+  # マイページのルーティング
   resources :users, only: [:show, :edit, :update] do
-    resources :credit_cards, only: [:new, :create], as: :cards
-    resources :destinations, only: [:new, :create, :edit, :update]
-    resources :profiles, only: [:edit, :update]
-    collection do
-      get 'destination'
-      get 'card'
-      get 'logout'
+      resources :credit_cards, only: [:index, :update, :destroy] #  クレジットカード
+      resources :destinations, only: [:new, :create, :edit, :update] # お届け先住所
+      resources :profiles, only: [:edit, :update] # 本人情報
+      member do
+      get 'on_sale' # 出品中の商品リスト
+      get 'destination' # マイページのお届け先住所遷移画面
+      get 'logout' # マイページのログアウト画面
     end
   end
 

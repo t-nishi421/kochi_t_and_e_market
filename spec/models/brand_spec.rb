@@ -1,5 +1,13 @@
 require 'rails_helper'
+describe Brand do
+  before do
+    @brand = FactoryBot.build(:brand)
+  end
 
-RSpec.describe Brand, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '商品出品時のブランド登録テスト' do
+
+    it "登録されていないブランド名だと新規に登録される" do
+      expect(Brand.saveIfNotPresent(@brand)).to be_truthy
+    end
+  end
 end
