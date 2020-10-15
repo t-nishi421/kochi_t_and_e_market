@@ -8,6 +8,7 @@
       .onSale__title
         出品中の商品
       .onSale__content
+      - if @items.present?
         - @items.each do |item|
           %section
             .item__image
@@ -17,4 +18,7 @@
               %p= "商品名:" + "#{item.name}"
               %p= "¥ " + "#{item.price.to_s(:delimited)}"
               = link_to "商品ページへ", item_path(item.id)
+      - else
+        .no__onSale
+          出品中の商品はありません
 = render "items/footer"
