@@ -6,11 +6,10 @@
     .ItemProfile__status
       .ItemProfile__status__images
         .ItemProfile__status__images__selected
-          = image_tag 'example/product.jpg', alt: '商品画像', class: 'SelectedImage'
+          = image_tag("#{@item.item_images[0].src}", alt: '商品画像', class: 'SelectedImage')
         .ItemProfile__status__images__list
-          - 5.times do
-            = image_tag 'example/product.jpg', alt: '商品画像', class: "ListImage"
-          = image_tag 'pict/pict-reason-01.jpg', alt: '商品画像', class: "ListImage"
+          - @item.item_images.length.times do |i|
+            = image_tag("#{@item.item_images[i].src}", alt: '商品画像', class: "ListImage")
       .ItemProfile__status__table
         %table
           %tr
@@ -35,7 +34,8 @@
               ブランド
             %td
               = link_to "#" do
-                = @item.brand.name
+                - if @item.brand
+                  = @item.brand.name
           %tr
             %th
               商品の状態
@@ -63,15 +63,26 @@
         （税込）
       .ItemProfile__priceBox__shipping
         送料込み
-    - if @item.user_id == current_user.id # 出品者本人なら表示しない
-      = link_to edit_item_path(@item.id) do
+    - if user_signed_in?
+      - if @item.user_id == current_user.id # 出品者本人
+        = link_to edit_item_path(@item.id) do
+          .ItemProfile__buyButton
+            商品の編集
+        = link_to '#' do
+          .ItemProfile__buyButton
+            商品の削除
+      - elsif @item.trading_status == "出品中" #  出品中なら購入できる
+        = link_to purchase_confirmation_item_path do
+          .ItemProfile__buyButton
+            購入画面に進む
+      - else # 出品中ではないので購入できない
+        .ItemProfile__soldOutButton
+          売り切れ
+    - elsif @item.trading_status == "出品中"
+      = link_to new_user_session_path do
         .ItemProfile__buyButton
-          商品の編集
-    - elsif @item.trading_status == "出品中" #  出品中なら購入できる
-      = link_to purchase_confirmation_item_path do
-        .ItemProfile__buyButton
-          購入画面に進む
-    - else # 出品中ではないので購入できない
+          ログインして商品を購入する
+    - else
       .ItemProfile__soldOutButton
         売り切れ
     .ItemProfile__text
@@ -82,7 +93,11 @@
       .CommentForm__info
         %div 相手のことを考え丁寧なコメントを心がけましょう。
         %div 不快な言葉遣いなどは利用制限や退会処分となることがあります。
-      = f.submit 'コメントする', class: 'CommentForm__button'
+      - if user_signed_in?
+        = f.submit 'コメントする', class: 'CommentForm__button'
+      - else
+        = link_to new_user_session_path, class: 'CommentForm__button' do
+          ログインしてコメントする
   = render 'banner'
   = render 'footer'
   .ViewImageArea
