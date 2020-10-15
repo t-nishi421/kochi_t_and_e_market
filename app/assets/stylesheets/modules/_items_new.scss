@@ -82,11 +82,6 @@
 
       .itemDetail{
         @include mainGrayBrock();
-        &__category{
-          .categoryChoice{
-            margin-bottom: 16px;
-          }
-        }
         .brandForm{
           margin-bottom: 16px;
           &__field{
@@ -279,4 +274,9 @@
 
 #grandchild_category {
   @include categoryMargin();
+}
+
+
+#UnderImage {
+  filter: invert(0.55);
 }
