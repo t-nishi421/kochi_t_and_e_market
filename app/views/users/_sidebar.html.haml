@@ -5,9 +5,9 @@
     %li
       = link_to "トップページへ", root_path
     %li
-      = link_to "出品", '#'
+      = link_to "出品", new_item_path
     %li
-      = link_to "出品中の商品", '#'
+      = link_to "出品中の商品", on_sale_user_path(current_user)
     %li
       = link_to "購入した商品", '#'
 

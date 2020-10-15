@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :purchase_confirmation, :purchase, :purchase_completed, :edit, :update]
+  before_action :set_item, only: [:show, :purchase_confirmation, :purchase, :purchase_completed, :edit, :update, :destroy]
   
   def index
   end
@@ -70,11 +70,12 @@ class ItemsController < ApplicationController
     @card = CreditCard.get_card(current_user.credit_card.customer_token)
   end
 
+  
   def edit
     get_categories_to_item
     get_categories_array
   end
-
+  
   def update
     save_unregistered_brands()
     if @item.valid? && @item.update(item_params)
@@ -84,9 +85,15 @@ class ItemsController < ApplicationController
       get_categories_array
       render "edit"
     end
-    
   end
-
+  
+  def destroy
+    if @item.destroy
+      redirect_to user_path(current_user), notice: "商品を削除しました"
+    else
+      render "show"
+    end
+  end
   private
 
   def item_params
