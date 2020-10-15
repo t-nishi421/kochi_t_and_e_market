@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :purchase_confirmation, :purchase, :purchase_completed, :edit, :update]
+  before_action :set_item, only: [:show, :purchase_confirmation, :purchase, :purchase_completed, :edit, :update, :destroy]
   
   def index
      @items = Item.includes(:item_images).order('created_at DESC').limit(5)
@@ -52,14 +52,13 @@ class ItemsController < ApplicationController
   
   def purchase # 購入アクション
     Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
-    if @item.update(trading_status:  "完売")
-      customer_token = current_user.credit_card.customer_token
-      Payjp::Charge.create(
-        amount: @item.price, # 商品の値段
-        customer: customer_token, # 顧客のトークン
-        currency: 'jpy'  # 通貨の種類
-      )
-      redirect_to purchase_completed_item_path(@item), notice: "お買い上げありがとうございます！"
+    if Payjp::Charge.create(
+       amount: @item.price, # 商品の値段
+       customer: current_user.credit_card.customer_token, # 顧客のトークン
+       currency: 'jpy'  # 通貨の種類
+     )
+       @item.update(trading_status:  "完売")
+       redirect_to purchase_completed_item_path(@item), notice: "お買い上げありがとうございます！"
     else
       redirect_to purchase_confirmation_item_path(@item), alert: "商品を購入できませんでした" 
     end
@@ -72,11 +71,12 @@ class ItemsController < ApplicationController
     @card = CreditCard.get_card(current_user.credit_card.customer_token)
   end
 
+  
   def edit
     get_categories_to_item
     get_categories_array
   end
-
+  
   def update
     save_unregistered_brands()
     if @item.valid? && @item.update(item_params)
@@ -86,9 +86,15 @@ class ItemsController < ApplicationController
       get_categories_array
       render "edit"
     end
-    
   end
-
+  
+  def destroy
+    if @item.destroy
+      redirect_to user_path(current_user), notice: "商品を削除しました"
+    else
+      render "show"
+    end
+  end
   private
 
   def item_params

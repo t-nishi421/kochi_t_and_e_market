@@ -3,10 +3,11 @@ class UsersController < ApplicationController
   def show
   end
 
-  def destination
+  def on_sale
+    @items = current_user.items.includes(:user).references(:user).where(trading_status: "出品中")
   end
 
-  def card
+  def destination
   end
 
   def logout

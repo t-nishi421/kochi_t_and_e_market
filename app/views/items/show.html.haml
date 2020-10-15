@@ -58,7 +58,7 @@
               = @item.preparation_day.period
     .ItemProfile__priceBox
       .ItemProfile__priceBox__price
-        = @item.price
+        = @item.price.to_s(:delimited)
       .ItemProfile__priceBox__tax
         （税込）
       .ItemProfile__priceBox__shipping
@@ -68,9 +68,9 @@
         = link_to edit_item_path(@item.id) do
           .ItemProfile__buyButton
             商品の編集
-        = link_to '#' do
-          .ItemProfile__buyButton
-            商品の削除
+        = link_to item_path, method: :delete, data: { confirm: "本当に削除してもよろしいですか？" } do
+          .ItemProfile__deleteButton
+            商品を削除する
       - elsif @item.trading_status == "出品中" #  出品中なら購入できる
         = link_to purchase_confirmation_item_path do
           .ItemProfile__buyButton

@@ -61,7 +61,7 @@
   &__contents {
     @include myPageContents();
   }
-  
+
   &__form {
     @include myPageForm();
 
@@ -97,6 +97,65 @@
 
   &__btn {
     @include myPageBtn();
+  }
+}
+// マイページの出品中の商品のページ(users/on_sale)
+.onSale {
+  @include myPageContents();
+
+  &__title {
+    @include myPageTitle();
+  }
+  
+  &__content {
+    width: 80%;
+    padding: 0 50px;
+  }
+    
+    section {
+      padding: 10px 0;
+      border-bottom: 1px solid whitesmoke;
+      display: flex;
+      justify-content: center;
+
+        img {
+          object-fit: cover;
+        }
+  
+      .item__info {
+        padding: 16px;
+
+      }
+
+      a {
+        @include aTag();
+        display: inline-block;
+        margin-top: 30px;
+      }
+    }
+
+    .no__onSale {
+      font-size: larger;
+      margin-top: 20px;
+      opacity: 0.5;
+    }
+
+}
+
+// マイページのお届け先住所の登録・変更ページ(users/destination)
+.destination {
+  @include myPageContents();
+
+  &__title {
+    @include myPageTitle();
+  }
+
+  &__registration {
+    padding: 20px 50px;
+  }
+
+  a {
+    @include aTag();
   }
 }
 
@@ -173,19 +232,5 @@
       text-decoration: none;
       display: block;
     }
-  }
-}
-
-// フラッシュメッセージ
-.notifications {
-  color: white;
-  text-align: center;  
-
-  .notice {
-    background-color: #3CCACE;
-  }
-
-  .alert {
-    background-color: orangered;
   }
 }
