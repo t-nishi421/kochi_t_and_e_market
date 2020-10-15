@@ -123,38 +123,23 @@
   }
 
   &__deleteButton {
-    padding: 10px 0;
-    margin: 15px auto 0 auto;
+    @include item-btn();
     @include flex-bundle(center, center);
-    border-radius: 50px;
-    background-color: red;
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
     @include opacity();
+    background-color: red;
   }
 
   &__buyButton {
-    padding: 10px 0;
-    margin: 15px auto 0 auto;
+    @include item-btn();
     @include flex-bundle(center, center);
-    border-radius: 50px;
-    background-color: #3CCACE;
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
     @include opacity();
+    background-color: #3CCACE;
   }
 
   &__soldOutButton {
-    padding: 10px 0;
-    margin: 15px auto 0 auto;
+    @include item-btn();
     @include flex-bundle(center, center);
-    border-radius: 50px;
     background-color: red;
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
   }
 
   &__text {
