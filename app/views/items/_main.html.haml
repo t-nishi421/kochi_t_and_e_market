@@ -80,122 +80,78 @@
       .mainCategory__head__btn
         = link_to('新規投稿商品', '#', class: 'title')
     .mainCategory__productLists
-      .mainCategory__productLists__list
-        = link_to item_path(1), class: 'product' do
-          %figure.productPict
-            = image_tag('example/product.jpg')
-          .body
-            %h3.name テスト
-            .price
-              %ul
-                %li 10000円
-                %li ★ 1
-              %p (税込)
-      .mainCategory__productLists__list
-        = link_to item_path(2), class: 'product' do
-          %figure.productPict
-            = image_tag('example/product.jpg')
-          .body
-            %h3.name テスト
-            .price
-              %ul
-                %li 10000円
-                %li ★ 1
-              %p (税込)
-      .mainCategory__productLists__list
-        = link_to '#', class: 'product' do
-          %figure.productPict
-            = image_tag('example/product.jpg')
-          .body
-            %h3.name テスト
-            .price
-              %ul
-                %li 10000円
-                %li ★ 1
-              %p (税込)
-      .mainCategory__productLists__list
-        = link_to '#', class: 'product' do
-          %figure.productPict
-            = image_tag('example/product.jpg')
-          .body
-            %h3.name テスト
-            .price
-              %ul
-                %li 10000円
-                %li ★ 1
-              %p (税込)
-      .mainCategory__productLists__list
-        = link_to '#', class: 'product' do
-          %figure.productPict
-            = image_tag('example/product.jpg')
-          .body
-            %h3.name テスト
-            .price
-              %ul
-                %li 10000円
-                %li ★ 1
-              %p (税込)
+      - @items.each do |item|
+        -if item.trading_status == '完売'
+          .mainCategory__productLists__list
+            = link_to item_path(item.id), class: 'product' do
+              %figure.productPict
+                = image_tag item.item_images.first.src.url
+              .body
+                %h3.name
+                  = item.name
+                .price
+                  %ul
+                    %li
+                      = item.price.to_s.reverse.gsub( /(\d{3})(?=\d)/, '\1,').reverse
+                      = "円"
+                  %p (税込)
+              .soldList
+                .soldList__text
+                  SOLD
+              
+        - else
+          .mainCategory__productLists__list
+            = link_to item_path(item.id), class: 'product' do
+              %figure.productPict
+                = image_tag item.item_images.first.src.url
+              .body
+                %h3.name
+                  = item.name
+                .price
+                  %ul
+                    %li
+                      = item.price.to_s.reverse.gsub( /(\d{3})(?=\d)/, '\1,').reverse
+                      = "円"
+                  %p (税込)         
+      
+      
   .mainCategory
     %h2.h ピックアップブランド
     .mainCategory__head
       .mainCategory__head__btn
         = link_to('アーカイバ', '#', class: 'title')
     .mainCategory__productLists
-      .mainCategory__productLists__list
-        = link_to '#', class: 'product' do
-          %figure.productPict
-            = image_tag('example/product.jpg')
-          .body
-            %h3.name テスト
-            .price
-              %ul
-                %li 10000円
-                %li ★ 1
-              %p (税込)
-      .mainCategory__productLists__list
-        = link_to '#', class: 'product' do
-          %figure.productPict
-            = image_tag('example/product.jpg')
-          .body
-            %h3.name テスト
-            .price
-              %ul
-                %li 10000円
-                %li ★ 1
-              %p (税込)
-      .mainCategory__productLists__list
-        = link_to '#', class: 'product' do
-          %figure.productPict
-            = image_tag('example/product.jpg')
-          .body
-            %h3.name テスト
-            .price
-              %ul
-                %li 10000円
-                %li ★ 1
-              %p (税込)
-      .mainCategory__productLists__list
-        = link_to '#', class: 'product' do
-          %figure.productPict
-            = image_tag('example/product.jpg')
-          .body
-            %h3.name テスト
-            .price
-              %ul
-                %li 10000円
-                %li ★ 1
-              %p (税込)
-      .mainCategory__productLists__list
-        = link_to '#', class: 'product' do
-          %figure.productPict
-            = image_tag('example/product.jpg')
-          .body
-            %h3.name テスト
-            .price
-              %ul
-                %li 10000円
-                %li ★ 1
-              %p (税込)             
-
-
-
+      - @items.each do |item|
+        -if item.trading_status == '完売'
+          .mainCategory__productLists__list
+            = link_to item_path(item.id), class: 'product' do
+              %figure.productPict
+                = image_tag item.item_images.first.src.url
+              .body
+                %h3.name
+                  = item.name
+                .price
+                  %ul
+                    %li
+                      = item.price.to_s.reverse.gsub( /(\d{3})(?=\d)/, '\1,').reverse
+                      = "円"
+                  %p (税込)
+              .soldList
+                .soldList__text
+                  SOLD
+              
+        - else
+          .mainCategory__productLists__list
+            = link_to item_path(item.id), class: 'product' do
+              %figure.productPict
+                = image_tag item.item_images.first.src.url
+              .body
+                %h3.name
+                  = item.name
+                .price
+                  %ul
+                    %li
+                      = item.price.to_s.reverse.gsub( /(\d{3})(?=\d)/, '\1,').reverse
+                      = "円"
+                  %p (税込)
+       

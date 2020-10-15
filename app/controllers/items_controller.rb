@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :purchase_confirmation, :purchase, :purchase_completed, :edit, :update, :destroy]
   
   def index
+     @items = Item.includes(:item_images).order('created_at DESC').limit(5)
   end
   
   def new
