@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  before_action :set_item, only: [:show, :purchase_confirmation, :purchase, :purchase_completed, :edit, :update]
+  
   def index
   end
   
@@ -26,7 +28,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
     get_categories_to_item
   end
 
@@ -44,13 +45,11 @@ class ItemsController < ApplicationController
   def purchase_confirmation # 購入内容確認画面
     @destination = Destination.find_by(user_id: current_user)
     @prefecture = Prefecture.find_by(id: @destination.prefecture_id)
-    @item = Item.find(params[:id])
     @image = @item.item_images.first
     @card = CreditCard.get_card(current_user.credit_card.customer_token) if current_user.credit_card
   end
   
   def purchase # 購入アクション
-    @item = Item.find(params[:id])
     Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
     if @item.update(trading_status:  "完売")
       customer_token = current_user.credit_card.customer_token
@@ -68,20 +67,17 @@ class ItemsController < ApplicationController
   def purchase_completed # 購入完了画面
     @destination = Destination.find_by(user_id: current_user)
     @prefecture = Prefecture.find_by(id: @destination.prefecture_id)
-    @item = Item.find(params[:id])
     @image = @item.item_images.first
     @card = CreditCard.get_card(current_user.credit_card.customer_token)
   end
 
   def edit
-    @item = Item.find(params[:id])
     get_categories_to_item
     get_categories_array
   end
 
   def update
     save_unregistered_brands()
-    @item = Item.find(params[:id])
     if @item.valid? && @item.update(item_params)
       redirect_to item_path(params[:id])
     else
@@ -132,5 +128,9 @@ class ItemsController < ApplicationController
 
   def save_unregistered_brands
     Brand.saveIfNotPresent(brand_params)
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 end
