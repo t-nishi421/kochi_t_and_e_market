@@ -121,25 +121,22 @@
       padding-bottom: 7px;
     }
   }
-
-  &__deleteButton {
-    @include item-btn();
-    @include flex-bundle(center, center);
-    @include opacity();
-    background-color: red;
-  }
-
+  
   &__buyButton {
-    @include item-btn();
+    @include item-btn(#3CCACE);
     @include flex-bundle(center, center);
     @include opacity();
-    background-color: #3CCACE;
+  }
+  
+  &__deleteButton {
+    @include item-btn(red);
+    @include flex-bundle(center, center);
+    @include opacity();
   }
 
   &__soldOutButton {
-    @include item-btn();
+    @include item-btn(red);
     @include flex-bundle(center, center);
-    background-color: red;
   }
 
   &__text {

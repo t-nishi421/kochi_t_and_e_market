@@ -58,7 +58,7 @@
               = @item.preparation_day.period
     .ItemProfile__priceBox
       .ItemProfile__priceBox__price
-        = @item.price
+        = @item.price.to_s(:delimited)
       .ItemProfile__priceBox__tax
         （税込）
       .ItemProfile__priceBox__shipping
