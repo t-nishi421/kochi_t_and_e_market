@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  before_action :set_item, only: [:show, :purchase_confirmation, :purchase, :purchase_completed, :edit, :update]
+  
   def index
      @items = Item.includes(:item_images).order('created_at DESC').limit(5)
   end
@@ -15,22 +17,19 @@ class ItemsController < ApplicationController
   end
 
   def create
-    Brand.saveIfNotPresent(brand_params)
+    save_unregistered_brands()
     @item = Item.new(item_params)
     if @item.valid? && @item.save
-      redirect_to root_path
+      redirect_to item_path(@item.id)
     else
+      get_categories_to_item
       @category_parent_array = Category.where(ancestry: nil)
       render "new"
     end
   end
 
   def show
-    @item = Item.find(params[:id])
-    @category_id = @item.category_id
-    @category_parent = Category.find(@category_id).parent.parent
-    @category_child = Category.find(@category_id).parent
-    @category_grandchild = Category.find(@category_id)
+    get_categories_to_item
   end
 
   
@@ -47,13 +46,11 @@ class ItemsController < ApplicationController
   def purchase_confirmation # 購入内容確認画面
     @destination = Destination.find_by(user_id: current_user)
     @prefecture = Prefecture.find_by(id: @destination.prefecture_id)
-    @item = Item.find(params[:id])
     @image = @item.item_images.first
     @card = CreditCard.get_card(current_user.credit_card.customer_token) if current_user.credit_card
   end
   
   def purchase # 購入アクション
-    @item = Item.find(params[:id])
     Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
     if @item.update(trading_status:  "完売")
       customer_token = current_user.credit_card.customer_token
@@ -71,9 +68,25 @@ class ItemsController < ApplicationController
   def purchase_completed # 購入完了画面
     @destination = Destination.find_by(user_id: current_user)
     @prefecture = Prefecture.find_by(id: @destination.prefecture_id)
-    @item = Item.find(params[:id])
     @image = @item.item_images.first
     @card = CreditCard.get_card(current_user.credit_card.customer_token)
+  end
+
+  def edit
+    get_categories_to_item
+    get_categories_array
+  end
+
+  def update
+    save_unregistered_brands()
+    if @item.valid? && @item.update(item_params)
+      redirect_to item_path(params[:id])
+    else
+      get_categories_to_item
+      get_categories_array
+      render "edit"
+    end
+    
   end
 
   private
@@ -95,5 +108,30 @@ class ItemsController < ApplicationController
 
   def category_params
     params[:item][:category_id]
+  end
+
+  def get_categories_to_item
+    @category_id = @item.category_id
+    unless @category_id == 0 || @category_id == nil
+      @category_parent = Category.find(@category_id).parent.parent
+      @category_child = Category.find(@category_id).parent
+      @category_grandchild = Category.find(@category_id)
+    end
+  end
+
+  def get_categories_array
+    @category_parent_array = Category.where(ancestry: nil)
+    unless @category_parent == nil
+      @category_child_array = Category.find(@category_parent.id).children
+      @category_grandchildren_array = Category.find(@category_child.id).children
+    end
+  end
+
+  def save_unregistered_brands
+    Brand.saveIfNotPresent(brand_params)
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 end
