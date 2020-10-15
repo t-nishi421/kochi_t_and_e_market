@@ -24,8 +24,14 @@ $(document).on('turbolinks:load', ()=> {
     return html;
   }
 
+  // 画像削除のinputを生成する関数
+  const destroyInput = (thisIndex, targetValue) => {
+    const html = `<input type="hidden" value="${targetValue}" name="item[item_images_attributes][${thisIndex}][_destroy]">`;
+    return html;
+  }
+
   // file_fieldのnameに動的なindexをつける為の配列
-  let fileIndex = [1,2,3,4,5,6,7,8,9,10];
+  let fileIndex = [];
 
   const image_box = '.imageSend__dropBox__list';
 
@@ -47,14 +53,22 @@ $(document).on('turbolinks:load', ()=> {
         $('.imageSend__dropBox__label').hide();
       }
 
-      // // プレビュー BOXとinputの追加
+      // fileIndexに初期値を追加
+      if (fileIndex.length == 0) {
+        fileIndex.push(targetIndex);
+      }
+
+      // // プレビューBOXを追加
       $(image_box).append(imageBox(targetIndex, blobUrl));
+
+      // fileIndexをシフト
+      fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
+      fileIndex.shift();
+
+      // 次のinputを追加
       $(image_box).append(newInputFile(fileIndex[0]));
       // labelのforを変更
       $('.imageSend__dropBox__label').attr('for', `image_${fileIndex[0]}`);
-      // fileIndexの編集
-      fileIndex.shift();
-      fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
     }
   });
 
@@ -62,11 +76,17 @@ $(document).on('turbolinks:load', ()=> {
     if ($('.imageSend__dropBox__label').css('display') == 'none') {
       $('.imageSend__dropBox__label').show();
     }
-    const targetIndex = $(this).data('index');
-    // プレビュー BOXとinputを削除
-    $(this).parent().parent().remove();
-    $('.js-file_group' + `.input_${targetIndex}`).remove(); // ここだけ
 
+    const targetIndex = $(this).data('index');
+    const targetValue = $(`#item_item_images_attributes_${targetIndex}_id`).val();
+    
+    // プレビューBOXとinputを削除し、投稿済みの画像であれば_destroy inputを生成する
+    $(this).parent().parent().remove(); // プレビューBOX
+    $('.js-file_group' + `.input_${targetIndex}`).remove(); // input
+    if (targetValue != null) {
+      $(image_box).append(destroyInput(targetIndex, targetValue)); // _destroy input
+    }
+    
     // 画像入力欄が0個にならないようにしておく
     if ($('.js-file').length == 0) $(image_box).append(newInputFile(fileIndex[0]));
   });

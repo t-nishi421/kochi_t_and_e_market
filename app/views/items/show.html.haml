@@ -1,8 +1,8 @@
-.ItemShowPage
+.ItemPage
   = render 'header'
   .ItemProfile
     .ItemProfile__name
-      商品名
+      = @item.name
     .ItemProfile__status
       .ItemProfile__status__images
         .ItemProfile__status__images__selected
@@ -18,7 +18,7 @@
               出品者
             %td
               = link_to "#" do
-                たなかななか
+                = @item.user.nick_name
           %tr
             %th
               カテゴリー
@@ -35,41 +35,38 @@
               ブランド
             %td
               = link_to "#" do
-                内緒
-          %tr
-            %th
-              商品のサイズ
-            %td
-              でかい
+                = @item.brand.name
           %tr
             %th
               商品の状態
             %td
-              すごい
+              = @item.condition.name
           %tr
             %th
               配送料の負担
             %td
-              私
+              = @item.shipping_cost.content
           %tr
             %th
               配送元の地域
             %td
-              ヌー大陸
+              = @item.prefecture.name
           %tr
             %th
               配送日の目安
             %td
-              すぐ届く
+              = @item.preparation_day.period
     .ItemProfile__priceBox
       .ItemProfile__priceBox__price
-        100円
+        = @item.price
       .ItemProfile__priceBox__tax
         （税込）
       .ItemProfile__priceBox__shipping
         送料込み
     - if @item.user_id == current_user.id # 出品者本人なら表示しない
-      
+      = link_to edit_item_path(@item.id) do
+        .ItemProfile__buyButton
+          商品の編集
     - elsif @item.trading_status == "出品中" #  出品中なら購入できる
       = link_to purchase_confirmation_item_path do
         .ItemProfile__buyButton
@@ -78,7 +75,7 @@
       .ItemProfile__soldOutButton
         売り切れ
     .ItemProfile__text
-      こちら、商品説明欄です
+      = @item.introduction
   = form_with url: '#' do |f|
     .CommentForm
       = f.text_area :text, class: 'CommentForm__textArea'

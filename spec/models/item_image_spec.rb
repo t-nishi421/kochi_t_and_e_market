@@ -2,7 +2,6 @@ require 'rails_helper'
 describe ItemImage do
   before do
     @item = FactoryBot.build(:item_image)
-    # @item.item_images.new(FactoryBot.build(:item_image))
   end
 
   describe '商品出品時の画像テスト' do
