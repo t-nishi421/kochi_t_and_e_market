@@ -42,7 +42,8 @@
           %p= @destination.family_name +  @destination.first_name + " 様"
         .purchase__destination--right
           = link_to "変更する >", destination_user_path(current_user)
-    .purchase__btn
-      = link_to '購入する', purchase_item_path(@item), method: :post
+    - if @card && @destination
+      .purchase__btn
+        = link_to '購入する', purchase_item_path(@item), method: :post
   .purchase__footer
     = image_tag 'logo/logo-white.png', alt: 'furima'
