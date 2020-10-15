@@ -12,5 +12,9 @@ FactoryBot.define do
     preparation_day {PreparationDay.find_by_id(1)}
     prefecture      {Prefecture.find_by_id(1)}
     association :user, factory: :user
+
+    after(:build) do |item|
+      item.item_images << FactoryBot.build(:item_image)
+    end
   end
 end
