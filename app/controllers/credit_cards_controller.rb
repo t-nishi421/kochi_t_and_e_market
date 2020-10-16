@@ -3,6 +3,7 @@ class CreditCardsController < ApplicationController
   before_action :set_card, only: [:index, :update, :destroy]
 
   def index
+    session["return_path"] = params[:item_id] if params[:item_id]
     if @card
       @card_list = CreditCard.get_list(@card.customer_token)
       @default = CreditCard.get_card(@card.customer_token)
@@ -11,15 +12,22 @@ class CreditCardsController < ApplicationController
   
   def new
     @card = CreditCard.new
+    session["return_path"] = params[:item_id] if params[:item_id]
   end
   
   def create
+    # binding.pry
     Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
     if current_user.credit_card.nil?
       customer = Payjp::Customer.create(card: params[:payjp_token]) #顧客作成
       card = current_user.build_credit_card(customer_token: customer.id)
       if card.save
-        redirect_to user_credit_cards_path(current_user), notice: "カードを登録しました"
+        if session["return_path"]
+          redirect_to purchase_confirmation_item_path(session["return_path"]), notice: "カードを登録しました"
+          session["return_path"].clear
+        else
+          redirect_to user_credit_cards_path(current_user), notice: "カードを登録しました"
+        end
       else
         redirect_to new_credit_cards_path
       end
@@ -35,7 +43,12 @@ class CreditCardsController < ApplicationController
     customer = Payjp::Customer.retrieve(current_user.credit_card.customer_token)
     customer.default_card = params[:credit_card][:card]
     if customer.save
+      if session["return_path"]
+        redirect_to purchase_confirmation_item_path(session["return_path"]), notice: "お支払い方法を変更しました"
+        session["return_path"].clear
+      else
       redirect_to user_credit_cards_path(current_user), notice: "お支払い方法を変更しました"
+      end
     else
       render user_credit_cards_path(current_user), alert: "お支払い方法が変更できませんでした"
     end

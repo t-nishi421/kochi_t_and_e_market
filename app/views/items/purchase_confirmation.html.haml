@@ -30,9 +30,9 @@
             %p= "有効期限 " + "#{@card[:exp_month]}" + " / " + "#{@card[:exp_year]}"
             %p= @card[:brand]
           .purchasse__method--right
-            = link_to "変更する >",  user_credit_cards_path(current_user)
+            = link_to "変更する >",  user_credit_cards_path(current_user, item_id: @item)
         - else
-          = link_to "カードを登録する >", new_credit_card_path
+          = link_to "カードを登録する >", new_credit_card_path(item_id: @item)
     %section
       .purchase__destination
         .purchase__destination--left
