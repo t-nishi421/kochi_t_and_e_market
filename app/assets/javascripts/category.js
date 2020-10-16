@@ -9,7 +9,7 @@ $(document).on('turbolinks:load', ()=> {
     var childSelectHtml = '';
     childSelectHtml = `<div class='categoryChoice__added' id= 'children_wrapper'>
                         <div class='categoryChoice__form'>
-                          <select class='selectBoxBtn__form' id='child_category' name='item[category_id]'>
+                          <select class='selectBoxBtn__form' id='child_category' name='item[category_child]'>
                             <option value='---' data-category='---'>選択してください</option>
                             ${insertHTML}
                           <select>

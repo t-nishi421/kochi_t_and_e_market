@@ -46,15 +46,16 @@
               %label.label カテゴリー
               %span.sideLabel 必須
             .categoryChoice
-              = f.collection_select :category_id, @category_parent_array, :id, :name, { prompt: '選択してください', selected: @category_parent.id }, { class: 'selectBoxBtn__form', id: 'parent_category' }
-              - if @item.category != nil
+              - if @item.category == nil
+                = f.collection_select :category_parent, @category_parent_array, :id, :name, { include_blank: '選択してください' }, { class: 'selectBoxBtn__form', id: 'parent_category' }
+              - else
+                = f.collection_select :category_parent, @category_parent_array, :id, :name, { include_blank: '選択してください', selected: @category_parent.id }, { class: 'selectBoxBtn__form', id: 'parent_category' }
                 #children_wrapper.categoryChoice__added
                   .categoryChoice__form
-                    = f.collection_select :category_id, @category_child_array, :id, :name, { prompt: '選択してください', selected: @category_child.id }, { class: 'selectBoxBtn__form', id: 'child_category' }
-              - if @item.category != nil
+                    = f.collection_select :category_child, @category_child_array, :id, :name, { include_blank: '選択してください', selected: @category_child.id }, { class: 'selectBoxBtn__form', id: 'child_category' }
                 #grandchildren_wrapper.categoryChoice__added
                   .categoryChoice__form
-                    = f.collection_select :category_id, @category_grandchildren_array, :id, :name, { prompt: '選択してください', selected: @category_grandchild.id }, { class: 'selectBoxBtn__form', id: 'grandchild_category' }
+                    = f.collection_select :category_id, @category_grandchildren_array, :id, :name, { include_blank: '選択してください', selected: @category_grandchild.id }, { class: 'selectBoxBtn__form', id: 'grandchild_category' }
 
           .itemDetailName
             %label.label ブランド
@@ -62,6 +63,8 @@
           .brandForm
             - if @item.brand
               = f.text_field :brand,{class: 'brandForm__field', placeholder: '例）シャネル', value: @item.brand.name}
+            - else
+              = f.text_field :brand,{class: 'brandForm__field', placeholder: '例）シャネル'}
 
           .itemDetailName
             %label.label 商品の状態
@@ -104,7 +107,7 @@
           .sendBtn
             = f.submit '編集を完了する', {class: 'sendBtn__submit'}
           .backBtn
-            = link_to root_path, class: 'backBtn__submit' do
+            = link_to item_path(@item.id), class: 'backBtn__submit' do
               もどる
         
         .note
