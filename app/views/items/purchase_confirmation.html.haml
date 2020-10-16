@@ -30,9 +30,9 @@
             %p= "有効期限 " + "#{@card[:exp_month]}" + " / " + "#{@card[:exp_year]}"
             %p= @card[:brand]
           .purchasse__method--right
-            = link_to "変更する >",  user_credit_cards_path(current_user)
+            = link_to "変更する >",  user_credit_cards_path(current_user, item_id: @item)
         - else
-          = link_to "カードを登録する >", new_credit_card_path
+          = link_to "カードを登録する >", new_credit_card_path(item_id: @item)
     %section
       .purchase__destination
         .purchase__destination--left
@@ -42,8 +42,7 @@
           %p= @destination.family_name +  @destination.first_name + " 様"
         .purchase__destination--right
           = link_to "変更する >", destination_user_path(current_user)
-    - if @card && @destination
-      .purchase__btn
-        = link_to '購入する', purchase_item_path(@item), method: :post
+    .purchase__btn{ class: "#{"disabled" unless @card && @destination}"}
+      = link_to '購入する', purchase_item_path(@item), method: :post
   .purchase__footer
     = image_tag 'logo/logo-white.png', alt: 'furima'
