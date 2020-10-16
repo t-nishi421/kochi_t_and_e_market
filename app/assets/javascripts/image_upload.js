@@ -1,4 +1,13 @@
 $(document).on('turbolinks:load', ()=> {
+  // *** 手動設定変数 ***
+  
+  // 追加加増投稿ラベル
+  const inputLabel = '.imageSend__dropBox__label';
+  // 画像一覧表示エリア
+  const image_box = '.imageSend__dropBox__list';
+
+  // *** 自動設定変数 ***
+
   // プレビューBOX
   const imageBox = (thisIndex, url)=> {
     const html = 
@@ -33,9 +42,17 @@ $(document).on('turbolinks:load', ()=> {
   // file_fieldのnameに動的なindexをつける為の配列
   let fileIndex = [];
 
-  const image_box = '.imageSend__dropBox__list';
+  // *** 自動発火メソッド ***
+  const hideInputLabel = () => {
+    // 写真が5つ投稿されたら追加投稿フォームを非表示
+    if($(inputLabel).width() < 124) {
+      console.log('a');
+      $(inputLabel).hide();
+    }
+  }
+  hideInputLabel();
 
-  // *** メソッド ***
+  // *** イベントメソッド ***
 
   $(image_box).on('change', '.js-file', function(e) {
     const targetIndex = $(this).parent().data('index');
@@ -48,10 +65,7 @@ $(document).on('turbolinks:load', ()=> {
       img.setAttribute('src', blobUrl);
 
     } else {
-      // 写真が5つ投稿されたら追加投稿フォームを非表示
-      if($('.imageSend__dropBox__label').width() < 124) {
-        $('.imageSend__dropBox__label').hide();
-      }
+      hideInputLabel();
 
       // fileIndexに初期値を追加
       if (fileIndex.length == 0) {
@@ -68,13 +82,13 @@ $(document).on('turbolinks:load', ()=> {
       // 次のinputを追加
       $(image_box).append(newInputFile(fileIndex[0]));
       // labelのforを変更
-      $('.imageSend__dropBox__label').attr('for', `image_${fileIndex[0]}`);
+      $(inputLabel).attr('for', `image_${fileIndex[0]}`);
     }
   });
 
   $(image_box).on('click', '.js-remove', function() {
-    if ($('.imageSend__dropBox__label').css('display') == 'none') {
-      $('.imageSend__dropBox__label').show();
+    if ($(inputLabel).css('display') == 'none') {
+      $(inputLabel).show();
     }
 
     const targetIndex = $(this).data('index');

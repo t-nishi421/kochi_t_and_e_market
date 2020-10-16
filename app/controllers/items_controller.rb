@@ -98,10 +98,10 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    if brand_params != ""
-      brand_id = Brand.find_by(name: brand_params).id
-    else
+    if brand_params == nil || ""
       brand_id = nil
+    else
+      brand_id = Brand.find_by(name: brand_params).id
     end
     params.require(:item).permit(:name, :price, :introduction, :condition_id,
                                  :shipping_cost_id, :preparation_day_id, :prefecture_id,
