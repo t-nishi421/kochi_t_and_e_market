@@ -46,7 +46,6 @@ $(document).on('turbolinks:load', ()=> {
   const hideInputLabel = () => {
     // 写真が5つ投稿されたら追加投稿フォームを非表示
     if($(inputLabel).width() < 124) {
-      console.log('a');
       $(inputLabel).hide();
     }
   }
@@ -58,31 +57,33 @@ $(document).on('turbolinks:load', ()=> {
     const targetIndex = $(this).parent().data('index');
     // ファイルのブラウザ上でのURLを取得する
     const file = e.target.files[0];
-    const blobUrl = window.URL.createObjectURL(file);
-
-    // 該当indexを持つimgがあれば取得して変数imgに入れる(画像変更の処理)
-    if (img = $(`img[data-index="${targetIndex}"]`)[0]) {
-      img.setAttribute('src', blobUrl);
-
-    } else {
-      hideInputLabel();
-
-      // fileIndexに初期値を追加
-      if (fileIndex.length == 0) {
-        fileIndex.push(targetIndex);
-      }
-
-      // // プレビューBOXを追加
-      $(image_box).append(imageBox(targetIndex, blobUrl));
-
-      // fileIndexをシフト
-      fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
-      fileIndex.shift();
-
-      // 次のinputを追加
-      $(image_box).append(newInputFile(fileIndex[0]));
-      // labelのforを変更
-      $(inputLabel).attr('for', `image_${fileIndex[0]}`);
+    if (file != undefined) {
+      const blobUrl = window.URL.createObjectURL(file);
+  
+      // 該当indexを持つimgがあれば取得して変数imgに入れる(画像変更の処理)
+      if (img = $(`img[data-index="${targetIndex}"]`)[0]) {
+          img.setAttribute('src', blobUrl);
+  
+      } else {
+        hideInputLabel();
+  
+        // fileIndexに初期値を追加
+        if (fileIndex.length == 0) {
+          fileIndex.push(targetIndex);
+        }
+  
+        // // プレビューBOXを追加
+        $(image_box).append(imageBox(targetIndex, blobUrl));
+  
+        // fileIndexをシフト
+        fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
+        fileIndex.shift();
+  
+        // 次のinputを追加
+        $(image_box).append(newInputFile(fileIndex[0]));
+        // labelのforを変更
+        $(inputLabel).attr('for', `image_${fileIndex[0]}`);
+      } 
     }
   });
 
