@@ -2,18 +2,42 @@
 .itemSearchContents
   = render "items/item_search"
   .itemSearchContents__body
-    .itemSearchContents__body__title キーワードの検索結果一覧
+    .itemSearchContents__body__title 
+      #{@keyword}の検索結果一覧
     .itemSearchContents__body__itemBox
-      //- @search_items.each do |item|
-      .itemSearchContents__body__itemBox__content
-        = link_to '#' do
-          %figure.content__img
-            = image_tag('example/product.jpg')
-          .content__body
-            %h1.itemName メガネ
-            .content__price
-              1000 円
-            %p (税込)
+      - @search_items.each do |item|
+        - if item.trading_status == '完売'
+          .itemSearchContents__body__itemBox__content
+            = link_to item_path(item.id), class: 'product' do
+              %figure.content__img
+                = image_tag item.item_images.first.src.url
+              .contentBody
+                %h3.itemName
+                  = item.name
+                .contentPrice
+                  %ul
+                    %li
+                      = item.price.to_s.reverse.gsub( /(\d{3})(?=\d)/, '\1,').reverse
+                      = "円"
+                  %p (税込)
+              .soldList
+                .soldList__text
+                  SOLD
+        - else
+          .itemSearchContents__body__itemBox__content
+            = link_to item_path(item.id), class: 'product' do
+              %figure.content__img
+                = image_tag item.item_images.first.src.url
+              .contentBody
+                %h3.itemName
+                  = item.name
+                .contentPrice
+                  %ul
+                    %li
+                      = item.price.to_s.reverse.gsub( /(\d{3})(?=\d)/, '\1,').reverse
+                      = "円"
+                  %p (税込)
+      
 = render 'banner'
 = render 'footer'
 = render 'btn'

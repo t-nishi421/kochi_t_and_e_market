@@ -4,7 +4,7 @@
   margin: 40px auto 0;
   width: 1020px;
   &__body{
-    width: 700px;
+    width: 800px;
     &__title{
       font-size: 24px;
       font-weight: bold;
@@ -12,20 +12,92 @@
       padding-bottom: 10px;
     }
     &__itemBox{
+      width: 780px;
+      margin: 26px auto;
       display: flex;
+      justify-content: space-around;
       &__content{
-        width: 200px;
-        height: 200px;
+        width: 220px;
+        display: inline-block;
+        float: left;
+        @include opacity();
         a {
-
+          background-color: #fff;
+          display: inline-block;
+          text-decoration: none;
+          position: relative;
           figure{
-            width: 200px;
+            width: 220px;
             height: 150px;
+            position: relative;
+            overflow: hidden;
+            margin: 0;
+            z-index: auto;
             img {
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
               width: 100%;
-              height: 100%;
+              z-index: auto;
+              height: 150px;
+              object-fit: cover;
             }
           }
+          .contentBody{
+            width: 220px;
+            background-color: white;
+            color: #333;
+            padding: 16px;
+            .itemName{
+              overflow: hidden;
+              line-height: 1.5;
+              font-size: 16px;
+              text-align: left;
+            }
+            .contentPrice{
+              font-size: 16px;
+              color: #333333;
+              ul{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                list-style: none;
+                li {
+                  color: #333333;
+                }
+              }
+              p {
+                font-size: 10px;
+                text-align: left;
+                color: #333333;
+                font-weight: normal;  
+              }
+            }
+          }
+          .soldList{
+            width: 0;
+            height: 0;
+            border-top: 60px solid #3ccace;
+            border-right: 60px solid transparent;
+            border-bottom: 60px solid transparent;
+            border-left: 60px solid #3ccace;
+            z-index:100;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            &__text {
+              color: #fff;
+              transform: rotate(-45deg);
+              font-size: 20px;
+              margin:-35px 0px 0px -55px;
+              font-weight: bold;
+              letter-spacing: 2px;
+            }
+          }
+
+
 
 
         }
