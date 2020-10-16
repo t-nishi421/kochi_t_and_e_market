@@ -9,6 +9,7 @@
     img {
       height: 60px;
       margin: 35px auto;
+      user-select: none;
     }
   }
 
@@ -95,18 +96,25 @@
     @include myPageBtn();
     width: 50%;
     margin-bottom: 10px;
-
+    
+    &.disabled {
+      cursor: none;
+      pointer-events: none;
+      background-color: gray;
+    }
     a {
       display: block;
       line-height: 50px;
       text-decoration: none;
       color:white;
+
     }
   }
   
 
   &__footer { // フッター
     img {
+      user-select: none;
       margin: 40px auto;
       height: 60px;
       filter: invert(0.55);
