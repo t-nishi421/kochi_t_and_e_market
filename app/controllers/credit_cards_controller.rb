@@ -1,8 +1,8 @@
 class CreditCardsController < ApplicationController
-  before_action :signed_in
+  before_action :authenticate_user!
+  before_action :set_card, only: [:index, :update, :destroy]
 
   def index
-    @card = CreditCard.find_by(user_id: params[:user_id])
     if @card
       @card_list = CreditCard.get_list(@card.customer_token)
       @default = CreditCard.get_card(@card.customer_token)
@@ -31,7 +31,6 @@ class CreditCardsController < ApplicationController
   end
   
   def update # デフォルトカードの更新
-    @card = CreditCard.find_by(user_id: params[:user_id])
     Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
     customer = Payjp::Customer.retrieve(current_user.credit_card.customer_token)
     customer.default_card = params[:credit_card][:card]
@@ -43,7 +42,6 @@ class CreditCardsController < ApplicationController
   end
 
   def destroy # カード情報の削除とデフォルトカードの更新
-    @card = CreditCard.find_by(user_id: params[:user_id])
     Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
     customer = Payjp::Customer.retrieve(@card.customer_token)
     card = customer.cards.retrieve(params[:card])
@@ -63,10 +61,8 @@ class CreditCardsController < ApplicationController
 
   private
 
-  def signed_in
-    unless user_signed_in?
-      redirect_to root_path, alert: "会員登録またはログインしてください"
-    end
+  def set_card
+    @card = CreditCard.find_by(user_id: params[:user_id])
   end
 
 end

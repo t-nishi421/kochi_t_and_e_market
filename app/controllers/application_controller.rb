@@ -1,8 +1,5 @@
 class ApplicationController < ActionController::Base
   before_action :basic_auth, if: :production?
-
-  # ログイン時のみアクセス許可 , 必要になり次第コメントアウトを戻す
-  # before_action :authenticate_user!
   
   before_action :configure_permitted_parameters, if: :devise_controller?
 
