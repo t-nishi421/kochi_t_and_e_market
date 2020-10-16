@@ -20,7 +20,7 @@ class ItemsController < ApplicationController
     save_unregistered_brands()
     @item = Item.new(item_params)
     if @item.valid? && @item.save
-      redirect_to item_path(@item.id)
+      redirect_to item_path(@item.id), notice: "商品を出品しました"
     else
       if @item.item_images.blank?
         @item.item_images.new
