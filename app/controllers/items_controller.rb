@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, only: [:show, :purchase_confirmation, :purchase, :purchase_completed, :edit, :update, :destroy]
+  before_action :owner, only: [:purchase_confirmation, :purchase, :purchase_completed]
   
   def index
      @items = Item.includes(:item_images).order('created_at DESC').limit(5)
@@ -140,5 +141,11 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def owner # 出品者本人か判定
+    if @item.user_id == current_user.id
+      redirect_to item_path(@item), alert: "ご自身の商品は購入できません"
+    end
   end
 end
