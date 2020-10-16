@@ -25,9 +25,12 @@ Rails.application.routes.draw do
 
 
   # 商品関係のルーティング
-  resources :items, only: [:index, :new, :edit, :update, :destroy] do
+  resources :items, only: [:index, :new, :edit, :destroy] do
     collection do
       post 'new', to: 'items#create'
+    end
+    member do
+      patch 'edit', to: 'items#update'
     end
   end
   resources :items, only: [:show] do
