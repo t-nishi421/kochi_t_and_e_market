@@ -2,7 +2,9 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, only: [:show, :purchase_confirmation, :purchase, :purchase_completed, :edit, :update, :destroy]
   before_action :owner, only: [:purchase_confirmation, :purchase, :purchase_completed]
-  
+  before_action :other_owner, only: [:update, :destroy]
+  before_action :on_sale_only, only: [:purchase_confirmation, :purchase, :purchase_completed]
+
   def index
      @items = Item.includes(:item_images).order('created_at DESC').limit(5)
   end
@@ -143,9 +145,23 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def owner # 出品者本人か判定
+  def owner # 出品者本人なら商品購入できない
     if @item.user_id == current_user.id
       redirect_to item_path(@item), alert: "ご自身の商品は購入できません"
     end
   end
+
+  def other_owner # 出品者本人でないなら更新・削除できない
+    unless @item.user_id == current_user.id
+      redirect_to item_path(@item), alert: "権限がありません"
+    end
+  end
+
+  def on_sale_only # 出品中でないなら購入できない
+    unless @item.trading_status == "出品中"
+      redirect_to item_path(@item), alert: "この商品は購入できません"
+    end
+  end
+
+
 end
