@@ -14,7 +14,7 @@
             .imageSend__dropBox__list
               = f.fields_for :item_images do |i|
                 .js-file_group{:class => "input_0", "data-index" => 0}
-                  = i.file_field :src, {id: "image_0", class: 'js-file', name: "item[item_images_attributes][0][src]"}
+                  = i.file_field :src, {id: "image_0", class: 'js-file', name: "item[item_images_attributes][0][src]", accept: "image/*"}
             %label{for: 'image_0', class: 'imageSend__dropBox__label'}
               = image_tag('icon/icon_camera.png', class: 'icon')
 

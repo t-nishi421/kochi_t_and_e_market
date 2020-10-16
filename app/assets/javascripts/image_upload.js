@@ -28,7 +28,8 @@ $(document).on('turbolinks:load', ()=> {
     const html = `<div data-index="${nextIndex}" class="js-file_group input_${nextIndex}">
                     <input class="js-file" type="file"
                     name="item[item_images_attributes][${nextIndex}][src]"
-                    id="image_${nextIndex}"><br>
+                    id="image_${nextIndex}"
+                    accept="image/*"><br>
                   </div>`;
     return html;
   }
