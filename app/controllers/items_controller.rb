@@ -22,6 +22,9 @@ class ItemsController < ApplicationController
     if @item.valid? && @item.save
       redirect_to item_path(@item.id)
     else
+      if @item.item_images.blank?
+        @item.item_images.new
+      end
       get_categories_to_item
       @category_parent_array = Category.where(ancestry: nil)
       render "new"

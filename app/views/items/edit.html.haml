@@ -23,7 +23,7 @@
                     .js-remove{"data-index" => i.index} 削除
               .js-file_group{:class => "input_#{@item.item_images.length}", "data-index" => @item.item_images.length}
                 %input.js-file{:id => "image_#{@item.item_images.length}", :name => "item[item_images_attributes][#{@item.item_images.length}][src]", :type => "file"}
-            %label{for: "image_#{@item.item_images.length}", class: 'imageSend__dropBox__label'}
+            %label{for: 'image_0', class: 'imageSend__dropBox__label'}
               = image_tag('icon/icon_camera.png', class: 'icon')
 
         .itemMain
