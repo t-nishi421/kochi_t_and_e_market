@@ -10,14 +10,10 @@ class ItemsController < ApplicationController
   end
   
   def new
-    if user_signed_in?
       @item = Item.new()
       @item.item_images.new
       #データベースから、親カテゴリーのみ抽出し、配列化
       @category_parent_array = Category.where(ancestry: nil)
-    else
-      redirect_to root_path
-    end
   end
 
   def create
