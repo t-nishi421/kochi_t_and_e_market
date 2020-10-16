@@ -20,8 +20,11 @@ class ItemsController < ApplicationController
     save_unregistered_brands()
     @item = Item.new(item_params)
     if @item.valid? && @item.save
-      redirect_to item_path(@item.id)
+      redirect_to item_path(@item.id), notice: "商品を出品しました"
     else
+      if @item.item_images.blank?
+        @item.item_images.new
+      end
       get_categories_to_item
       @category_parent_array = Category.where(ancestry: nil)
       render "new"
@@ -98,10 +101,10 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    if brand_params != ""
-      brand_id = Brand.find_by(name: brand_params).id
-    else
+    if brand_params == nil || ""
       brand_id = nil
+    else
+      brand_id = Brand.find_by(name: brand_params).id
     end
     params.require(:item).permit(:name, :price, :introduction, :condition_id,
                                  :shipping_cost_id, :preparation_day_id, :prefecture_id,

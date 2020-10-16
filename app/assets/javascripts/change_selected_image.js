@@ -1,4 +1,4 @@
-$(function(){
+$(document).on('turbolinks:load', ()=> {
   $('.ListImage').on('click', function(){
     // 選択した画像を取得
     var image = $(this).attr('src');

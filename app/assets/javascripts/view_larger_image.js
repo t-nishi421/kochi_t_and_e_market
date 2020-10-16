@@ -1,4 +1,4 @@
-$(function(){
+$(document).on('turbolinks:load', ()=> {
   // *** 変数 ***
   let Area = $('.ViewImageArea'); // 背景
   let Image = $('.ViewImage'); // 画像

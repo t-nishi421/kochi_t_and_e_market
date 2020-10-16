@@ -102,4 +102,4 @@
   = render 'banner'
   = render 'footer'
   .ViewImageArea
-    = image_tag 'example/product.jpg', alt: '商品画像', class: 'ViewImage'
+    = image_tag("#{@item.item_images[0].src}", alt: '商品画像', class: 'ViewImage')

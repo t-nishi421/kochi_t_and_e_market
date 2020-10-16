@@ -9,7 +9,7 @@ $(document).on('turbolinks:load', ()=> {
     var childSelectHtml = '';
     childSelectHtml = `<div class='categoryChoice__added' id= 'children_wrapper'>
                         <div class='categoryChoice__form'>
-                          <select class='selectBoxBtn__form' id='child_category' name='item[category_id]'>
+                          <select class='selectBoxBtn__form' id='child_category' name='item[category_child]'>
                             <option value='---' data-category='---'>選択してください</option>
                             ${insertHTML}
                           <select>
@@ -69,8 +69,6 @@ $(document).on('turbolinks:load', ()=> {
   $('.itemDetail__category').on('change', '#child_category', function(){
     var childCategoryId = document.getElementById ('child_category').value; //選択された子カテゴリーのidを取得
     var childText = $('#child_category option:selected').text();
-    console.log(childCategoryId);
-    console.log(childText);
     if (childText != defaultText){ //子カテゴリーが初期値でないことを確認
       $.ajax({
         url: '/items/get_category_grandchildren',
