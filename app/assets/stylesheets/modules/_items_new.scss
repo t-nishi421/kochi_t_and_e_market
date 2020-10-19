@@ -107,10 +107,10 @@
           height: 46px;
           @include flex-bundle(space-between, center);
           .priceInput{
-            display: flex;
+            @include flex-bundle("", flex-end);
             .yen{
-              line-height: 46px;
-              margin-right: 10px;
+              align-items: flex-end;
+              margin: 0 10px 15px 0;
             }
             &__form{
               text-align: right;
@@ -186,7 +186,14 @@
   }
 }
 
-
+.sellItem {
+  .ErrorMessage {
+    color: red;
+    text-align: left;
+    font-size: 14px;
+    margin-bottom: 7px;
+  }
+}
 
 
 //商品画像 必須、商品名 必須 等の行のCSS
@@ -265,6 +272,12 @@
     background-color: #f5f5f5;
     color: #0095ee;
     @include flex-bundle(space-between, center);
+    label {
+      cursor : pointer;
+    }
+    .js-remove {
+      cursor : pointer;
+    }
   }
 }
 

@@ -94,3 +94,6 @@ gem 'mini_magick'
 
 # 画像アップロードの補助
 gem 'fog-aws'
+
+# パンくずリスト作成
+gem 'gretel'
