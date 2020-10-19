@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :purchase_confirmation, :purchase, :purchase_completed, :edit, :update, :destroy]
   before_action :owner, only: [:purchase_confirmation, :purchase, :purchase_completed]
   before_action :other_owner, only: [:update, :destroy]
-  before_action :on_sale_only, only: [:purchase_confirmation, :purchase, :purchase_completed]
+  before_action :on_sale_only, only: [:purchase_confirmation, :purchase]
 
   def index
      @items = Item.includes(:item_images).order('created_at DESC').limit(5)
