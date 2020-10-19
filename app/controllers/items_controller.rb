@@ -32,7 +32,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @comments = Comment.includes(:user).find_by(item_id: @item.id)
+    @comments = Comment.includes(:user).where(item_id: @item.id)
     @comment = Comment.new
     get_categories_to_item
   end

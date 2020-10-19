@@ -89,19 +89,18 @@
     .ItemProfile__text
       = @item.introduction
   .CommentForm
-    // *** 投稿コメントエリア ***
-    .CommentBox
-      .CommentBox__leftItems
-        = image_tag 'example/product.jpg', class: 'CommentBox__leftItems__userImage'
-        - if current_user.id == @item.user_id # テストコード current_user.idを@comments.user_idに変更予定
-          .CommentBox__leftItems__isTheUserASeller
-            出品者
-      .CommentBox__rightItems
-        .CommentBox__rightItems__userName
-          hoge
-        .CommentBox__rightItems__message
-          hoge
-    // *** 投稿コメントエリア ***
+    - @comments.each do |comment|
+      .CommentBox
+        .CommentBox__leftItems
+          = image_tag 'example/product.jpg', class: 'CommentBox__leftItems__userImage' # プロフィール画像投稿機能は未実装のためサンプル画像を使用
+          - if comment.user_id == @item.user_id
+            .CommentBox__leftItems__isTheUserASeller
+              出品者
+        .CommentBox__rightItems
+          .CommentBox__rightItems__userName
+            = comment.user.nick_name
+          .CommentBox__rightItems__message
+            = simple_format(comment.comment)
     = form_with model: @comment, url: comment_item_path(@item.id) do |f|
       .FormField__errorMessage
         = @comment.errors.full_messages_for(:comment).first
