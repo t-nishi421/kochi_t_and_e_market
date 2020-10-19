@@ -53,6 +53,7 @@ Rails.application.routes.draw do
       resources :credit_cards, only: [:index, :update, :destroy] #  クレジットカード
       resources :destinations, only: [:new, :create, :edit, :update] # お届け先住所
       resources :profiles, only: [:edit, :update] # 本人情報
+      resources :purchase_histries, only: [:index] # 購入履歴
       member do
       get 'on_sale' # 出品中の商品リスト
       get 'destination' # マイページのお届け先住所遷移画面
