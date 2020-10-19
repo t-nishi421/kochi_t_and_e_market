@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     end
     member do
       patch 'edit', to: 'items#update'
+      post 'comment', to:'item#comment'
     end
   end
   resources :items, only: [:show] do

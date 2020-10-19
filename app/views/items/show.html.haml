@@ -88,8 +88,21 @@
         売り切れ
     .ItemProfile__text
       = @item.introduction
-  = form_with url: '#' do |f|
+  = form_with model: @comment, url: comment_item_path(@item.id) do |f|
     .CommentForm
+      // *** 投稿コメントエリア ***
+      .CommentBox
+        .CommentBox__leftItems
+          = image_tag 'example/product.jpg', class: 'CommentBox__leftItems__userImage'
+          - if current_user.id == @item.user_id # テストコード current_user.idを@comments.user_idに変更予定
+            .CommentBox__leftItems__isTheUserASeller
+              出品者
+        .CommentBox__rightItems
+          .CommentBox__rightItems__userName
+            hoge
+          .CommentBox__rightItems__message
+            hoge
+      // *** 投稿コメントエリア ***
       = f.text_area :text, class: 'CommentForm__textArea'
       .CommentForm__info
         %div 相手のことを考え丁寧なコメントを心がけましょう。

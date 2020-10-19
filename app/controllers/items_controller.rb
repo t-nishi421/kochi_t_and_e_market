@@ -32,9 +32,15 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @comments = Comment.includes(:user).find_by(item_id: @item.id)
+    @comment = Comment.new
     get_categories_to_item
   end
 
+  def comment
+    binding.pry
+    @comment = Comment.new()
+  end
   
   # 親カテゴリーが選択された後に動くアクション
   def get_category_children
@@ -98,6 +104,7 @@ class ItemsController < ApplicationController
       render "show"
     end
   end
+
   private
 
   def item_params
