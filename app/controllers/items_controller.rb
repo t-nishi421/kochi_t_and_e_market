@@ -32,9 +32,19 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @comments = Comment.includes(:user).where(item_id: @item.id)
+    @comment = Comment.new
     get_categories_to_item
   end
 
+  def comment
+    @comment = Comment.new(comment_params)
+    if @comment.valid? && @comment.save
+      redirect_to item_path(params[:id]), notice: "コメントを投稿しました"
+    else
+      redirect_to item_path(params[:id]), alert: "コメントの投稿に失敗しました"
+    end
+  end
   
   # 親カテゴリーが選択された後に動くアクション
   def get_category_children
@@ -98,6 +108,7 @@ class ItemsController < ApplicationController
       render "show"
     end
   end
+
   private
 
   def item_params
@@ -117,6 +128,10 @@ class ItemsController < ApplicationController
 
   def category_params
     params[:item][:category_id]
+  end
+
+  def comment_params
+    params.require(:comment).permit(:comment).merge(item_id: params[:id], user_id: current_user.id)
   end
 
   def get_categories_to_item
