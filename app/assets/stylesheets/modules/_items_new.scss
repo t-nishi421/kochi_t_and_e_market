@@ -272,6 +272,12 @@
     background-color: #f5f5f5;
     color: #0095ee;
     @include flex-bundle(space-between, center);
+    label {
+      cursor : pointer;
+    }
+    .js-remove {
+      cursor : pointer;
+    }
   }
 }
 
