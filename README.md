@@ -40,6 +40,7 @@ Things you may want to cover:
 - has_many :destinations
 - has_many :purchase_histories
 - has_many :items
+- has_many :comments
 
 
 ## profilesテーブル
@@ -129,6 +130,7 @@ Things you may want to cover:
 ### Association
 - has_many :item_images
 - has_many :purchase_histories
+- has_many :comments
 - belongs_to :user
 - belongs_to :condition
 - belongs_to :shipping_cost
@@ -207,3 +209,15 @@ Things you may want to cover:
 
 ### Association
 - has_many :items
+
+## commentsテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|comment|text|null: false|
+|user_id|reference|null: false, foreign_key: true|
+|item_id|reference|null: false, foreign_key: true|
+
+### Association
+- belongs_to :user
+- belongs_to :item

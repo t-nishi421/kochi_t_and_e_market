@@ -44,6 +44,8 @@ ja:
         house_number: 番地
         building_name: マンション名など
         telephone: 電話番号
+      comment:
+        comment: コメント
       item:
         name: 商品名
         price: 価格
