@@ -8,12 +8,14 @@
     .AccountPage__form__title
       発送先及び送付先情報入力
     = form_for @destination, url: step3_signups_path, method: :post do |f|
-      .ErrorMessages
-        = render './shared/error_messages', model: f.object
       .FormField
         .FormField__label--normal
           お名前
           %span.mandatory 必須
+        .FormField__errorMessage
+          = @destination.errors.full_messages_for(:family_name).first
+        .FormField__errorMessage
+          = @destination.errors.full_messages_for(:first_name).first
         .FormField__input--small
           = f.text_field :family_name, autofocus: true, placeholder: '姓'
           = f.text_field :first_name, autofocus: true, placeholder: '名'
@@ -21,6 +23,10 @@
         .FormField__label--normal
           お名前（カナ）
           %span.mandatory 必須
+        .FormField__errorMessage
+          = @destination.errors.full_messages_for(:family_name_kana).first
+        .FormField__errorMessage
+          = @destination.errors.full_messages_for(:first_name_kana).first
         .FormField__input--small
           = f.text_field :family_name_kana, autofocus: true, placeholder: 'セイ'
           = f.text_field :first_name_kana, autofocus: true, placeholder: 'メイ'
@@ -28,36 +34,48 @@
         .FormField__label--normal
           = f.label :postal_code, "郵便番号（ハイフンなし）"
           %span.mandatory 必須
+        .FormField__errorMessage
+          = @destination.errors.full_messages_for(:postal_code).first
         .FormField__input--normal
           = f.text_field :postal_code, autofocus: true, placeholder: '0001111'
       .FormField
         .FormField__label--normal
           = f.label :prefecture_id
           %span.mandatory 必須
+        .FormField__errorMessage
+          = @destination.errors.full_messages_for(:prefecture_id).first
         .FormField__input--normal
           = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択してください"}, class: 'Prefecture'
       .FormField
         .FormField__label--normal
           = f.label :city
           %span.mandatory 必須
+        .FormField__errorMessage
+          = @destination.errors.full_messages_for(:city).first
         .FormField__input--normal
           = f.text_field :city, autofocus: true, placeholder: '○○市○○町'
       .FormField
         .FormField__label--normal
           = f.label :house_number
           %span.mandatory 必須
+        .FormField__errorMessage
+          = @destination.errors.full_messages_for(:house_number).first
         .FormField__input--normal
           = f.text_field :house_number, autofocus: true, placeholder: '○丁目○-○○'
       .FormField
         .FormField__label--normal
           = f.label :building_name
           %span.optional 任意
+        .FormField__errorMessage
+          = @destination.errors.full_messages_for(:building_name).first
         .FormField__input--normal
           = f.text_field :building_name, autofocus: true, placeholder: 'コーポフリマ201号'
       .FormField
         .FormField__label--normal
           = f.label :telephone, "電話番号（ハイフンなし）"
           %span.optional 任意
+        .FormField__errorMessage
+          = @destination.errors.full_messages_for(:telephone).first
         .FormField__input--normal
           = f.text_field :telephone, autofocus: true, placeholder: '00011112222'
       .actions

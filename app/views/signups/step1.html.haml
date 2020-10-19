@@ -8,18 +8,20 @@
     .AccountPage__form__title
       会員情報入力
     = form_for @user, url: step1_signups_path, method: :post do |f|
-      .ErrorMessages
-        = render './shared/error_messages', model: f.object
       .FormField
         .FormField__label--normal
           = f.label :nick_name
           %span.mandatory 必須
+        .FormField__errorMessage
+          = @user.errors.full_messages_for(:nick_name).first
         .FormField__input--normal
           = f.text_field :nick_name, autofocus: true, placeholder: 'フリマくん'
       .FormField
         .FormField__label--normal
           = f.label :email
           %span.mandatory 必須
+        .FormField__errorMessage
+          = @user.errors.full_messages_for(:email).first
         .FormField__input--normal
           = f.email_field :email, placeholder: 'sample@sample.com'
       .FormField
@@ -27,12 +29,16 @@
           = f.label :password
           (英数字7文字以上)
           %span.mandatory 必須
+        .FormField__errorMessage
+          = @user.errors.full_messages_for(:password).first
         .FormField__input--normal
           = f.password_field :password, autocomplete: "off"
       .FormField
         .FormField__label--normal
           = f.label :password_confirmation
           %span.mandatory 必須
+        .FormField__errorMessage
+          = @user.errors.full_messages_for(:password_confirmation).first
         .FormField__input--normal
           = f.password_field :password_confirmation, autocomplete: "off"
       .actions

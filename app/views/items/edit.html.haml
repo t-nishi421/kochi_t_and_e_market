@@ -3,13 +3,13 @@
   .body
     .main
       = form_with model: @item, url: "/items/#{@item.id}/edit", class: 'sellItem', local: true do |f|
-        .ErrorMessages
-          = render './shared/error_messages', model: f.object
         .imageSend
           .itemDetailName
             %label.label 出品画像
             %span.sideLabel 必須
           %p.imageSend__text 写真をアップロードできます
+          .ErrorMessage
+            = @item.errors.full_messages_for(:item_images).first
           .imageSend__dropBox
             .imageSend__dropBox__list
               = f.fields_for :item_images do |i|
@@ -30,12 +30,16 @@
           .itemDetailName
             %label.label 商品名
             %span.sideLabel 必須
+          .ErrorMessage
+            = @item.errors.full_messages_for(:name).first
           .itemName
             = f.text_field :name, {class: 'itemName__input', placeholder: '40文字以内', maxlength: '40'}
 
           .itemDetailName
             %label.label 商品の説明
             %span.sideLabel 必須
+          .ErrorMessage
+            = @item.errors.full_messages_for(:introduction).first
           .itemExplan
             = f.text_area :introduction, {class: 'itemExplan__input', placeholder: "商品の説明（必須1,000文字以内）\n(色、素材、重さ、定価、注意点など）\n\n例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", rows: '10', maxlength: '1000'}
         
@@ -45,6 +49,8 @@
             .itemDetailName
               %label.label カテゴリー
               %span.sideLabel 必須
+            .ErrorMessage
+              = @item.errors.full_messages_for(:category).first
             .categoryChoice
               - if @item.category == nil
                 = f.collection_select :category_parent, @category_parent_array, :id, :name, { include_blank: '選択してください' }, { class: 'selectBoxBtn__form', id: 'parent_category' }
@@ -60,6 +66,8 @@
           .itemDetailName
             %label.label ブランド
             %span.grayLabel 任意
+          .ErrorMessage
+            = @item.errors.full_messages_for(:brand).first
           .brandForm
             - if @item.brand
               = f.text_field :brand,{class: 'brandForm__field', placeholder: '例）シャネル', value: @item.brand.name}
@@ -69,6 +77,8 @@
           .itemDetailName
             %label.label 商品の状態
             %span.sideLabel 必須
+          .ErrorMessage
+            = @item.errors.full_messages_for(:condition_id).first
           .selectBoxBtn
             = f.collection_select :condition_id, Condition.all, :id, :name, {prompt: "選択してください"}, class: 'selectBoxBtn__form'
 
@@ -77,18 +87,24 @@
           .itemDetailName
             %label.label 配送料の負担
             %span.sideLabel 必須
+          .ErrorMessage
+            = @item.errors.full_messages_for(:shipping_cost_id).first
           .selectBoxBtn
             = f.collection_select :shipping_cost_id, ShippingCost.all, :id, :content, {prompt: "選択してください"}, class: 'selectBoxBtn__form'
 
           .itemDetailName
             %label.label 配送元の地域
             %span.sideLabel 必須
+          .ErrorMessage
+            = @item.errors.full_messages_for(:prefecture_id).first
           .selectBoxBtn
             = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択してください"}, class: 'selectBoxBtn__form'
 
           .itemDetailName
             %label.label 配送までの日数
             %span.sideLabel 必須
+          .ErrorMessage
+            = @item.errors.full_messages_for(:preparation_day_id).first
           .selectBoxBtn
             = f.collection_select :preparation_day_id, PreparationDay.all, :id, :period, {prompt: "選択してください"}, class: 'selectBoxBtn__form'
         
@@ -101,6 +117,8 @@
             .priceInput
               %p.yen ¥
               .priceInput__form
+                .ErrorMessage
+                  = @item.errors.full_messages_for(:price).first
                 = f.number_field :price, {class: 'priceInput__form__box', placeholder: '0'}
         
         .submitBtn
