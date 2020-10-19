@@ -2,7 +2,7 @@ class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   has_many :item_images, dependent: :destroy
   accepts_nested_attributes_for :item_images, reject_if: :reject_item_image_blank, allow_destroy: true
-  # has_many :purchase_histories
+  has_many :purchase_histories
   belongs_to :user
   belongs_to_active_hash :condition
   belongs_to_active_hash :shipping_cost
