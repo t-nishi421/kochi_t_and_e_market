@@ -35,7 +35,10 @@ class ItemsController < ApplicationController
     @comments = Comment.includes(:user).where(item_id: @item.id)
     @comment = Comment.new
     get_categories_to_item
-    @whetherBookmarked = FavoriteItem.whetherBookmarked(current_user.id, @item.id)
+    if user_signed_in?
+      @whetherBookmarked = FavoriteItem.whetherBookmarked(current_user.id, @item.id)
+    else
+    end
   end
 
   def comment
