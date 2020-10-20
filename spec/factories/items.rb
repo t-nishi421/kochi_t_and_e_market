@@ -4,7 +4,7 @@ FactoryBot.define do
     name            {"商品名"}
     price           {"5000"}
     introduction    {"商品説明"}
-    trading_status  {"出品中"}
+    trading_status  {TradingStatus.find_by_id(1)}
     association :category, factory: :category
     association :brand, factory: :brand
     condition       {Condition.find_by_id(1)}

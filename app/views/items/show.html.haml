@@ -74,14 +74,14 @@
         = link_to item_path, method: :delete, data: { confirm: "本当に削除してもよろしいですか？" } do
           .ItemProfile__deleteButton
             商品を削除する
-      - elsif @item.trading_status == "出品中" #  出品中なら購入できる
+      - elsif @item.trading_status_id == 2 #  出品中なら購入できる
         = link_to purchase_confirmation_item_path do
           .ItemProfile__buyButton
             購入画面に進む
       - else # 出品中ではないので購入できない
         .ItemProfile__soldOutButton
           売り切れ
-    - elsif @item.trading_status == "出品中"
+    - elsif @item.trading_status_id == 2
       = link_to new_user_session_path do
         .ItemProfile__buyButton
           ログインして商品を購入する
@@ -90,9 +90,23 @@
         売り切れ
     .ItemProfile__text
       = @item.introduction
-  = form_with url: '#' do |f|
-    .CommentForm
-      = f.text_area :text, class: 'CommentForm__textArea'
+  .CommentForm
+    - @comments.each do |comment|
+      .CommentBox
+        .CommentBox__leftItems
+          = image_tag 'example/product.jpg', class: 'CommentBox__leftItems__userImage' # プロフィール画像投稿機能は未実装のためサンプル画像を使用
+          - if comment.user_id == @item.user_id
+            .CommentBox__leftItems__isTheUserASeller
+              出品者
+        .CommentBox__rightItems
+          .CommentBox__rightItems__userName
+            = comment.user.nick_name
+          .CommentBox__rightItems__message
+            = simple_format(comment.comment)
+    = form_with model: @comment, url: comment_item_path(@item.id) do |f|
+      .FormField__errorMessage
+        = @comment.errors.full_messages_for(:comment).first
+      = f.text_area :comment, class: 'CommentForm__textArea'
       .CommentForm__info
         %div 相手のことを考え丁寧なコメントを心がけましょう。
         %div 不快な言葉遣いなどは利用制限や退会処分となることがあります。

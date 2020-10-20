@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   end
 
   def on_sale
-    @items = current_user.items.includes(:user).references(:user).where(trading_status: "出品中")
+    @items = current_user.items.includes(:user).references(:user).where(trading_status_id: 2)
   end
 
   def logout

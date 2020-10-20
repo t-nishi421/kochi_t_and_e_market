@@ -32,9 +32,19 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @comments = Comment.includes(:user).where(item_id: @item.id)
+    @comment = Comment.new
     get_categories_to_item
   end
 
+  def comment
+    @comment = Comment.new(comment_params)
+    if @comment.valid? && @comment.save
+      redirect_to item_path(params[:id]), notice: "コメントを投稿しました"
+    else
+      redirect_to item_path(params[:id]), alert: "コメントの投稿に失敗しました"
+    end
+  end
   
   # 親カテゴリーが選択された後に動くアクション
   def get_category_children
@@ -56,13 +66,12 @@ class ItemsController < ApplicationController
   def purchase # 購入アクション
     Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
     if Payjp::Charge.create(
-      amount: @item.price, # 商品の値段
-      customer: current_user.credit_card.customer_token, # 顧客のトークン
-      currency: 'jpy'  # 通貨の種類
-    ) &&  @history = PurchaseHistory.create(history_params)
-
-      @item.update(trading_status:  "完売")
-      redirect_to purchase_completed_item_path(@item), notice: "お買い上げありがとうございます！"
+       amount: @item.price, # 商品の値段
+       customer: current_user.credit_card.customer_token, # 顧客のトークン
+       currency: 'jpy'  # 通貨の種類
+     )
+       @item.update(trading_status_id: 4)
+       redirect_to purchase_completed_item_path(@item), notice: "お買い上げありがとうございます！"
     else
       redirect_to purchase_confirmation_item_path(@item), alert: "商品を購入できませんでした" 
     end
@@ -99,6 +108,7 @@ class ItemsController < ApplicationController
       render "show"
     end
   end
+
   private
 
   def item_params
@@ -109,7 +119,7 @@ class ItemsController < ApplicationController
     end
     params.require(:item).permit(:name, :price, :introduction, :condition_id,
                                  :shipping_cost_id, :preparation_day_id, :prefecture_id,
-                                 item_images_attributes: [:src, :_destroy, :id]).merge(trading_status: '出品中', category_id: category_params, brand_id: brand_id, user_id: current_user.id)
+                                 item_images_attributes: [:src, :_destroy, :id]).merge(trading_status_id: 2, category_id: category_params, brand_id: brand_id, user_id: current_user.id)
   end
 
   def brand_params
@@ -118,6 +128,10 @@ class ItemsController < ApplicationController
 
   def category_params
     params[:item][:category_id]
+  end
+
+  def comment_params
+    params.require(:comment).permit(:comment).merge(item_id: params[:id], user_id: current_user.id)
   end
 
   def get_categories_to_item
@@ -162,7 +176,7 @@ class ItemsController < ApplicationController
   end
 
   def on_sale_only # 出品中でないなら購入できない
-    unless @item.trading_status == "出品中"
+    unless @item.trading_status_id == 2
       redirect_to item_path(@item), alert: "この商品は購入できません"
     end
   end

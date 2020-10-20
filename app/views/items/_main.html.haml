@@ -81,7 +81,7 @@
         = link_to('新規投稿商品', '#', class: 'title')
     .mainCategory__productLists
       - @items.each do |item|
-        -if item.trading_status == '完売'
+        -if item.trading_status_id == 4
           .mainCategory__productLists__list
             = link_to item_path(item.id), class: 'product' do
               %figure.productPict
@@ -122,7 +122,7 @@
         = link_to('アーカイバ', '#', class: 'title')
     .mainCategory__productLists
       - @items.each do |item|
-        -if item.trading_status == '完売'
+        -if item.trading_status_id == 4
           .mainCategory__productLists__list
             = link_to item_path(item.id), class: 'product' do
               %figure.productPict
