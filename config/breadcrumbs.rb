@@ -18,7 +18,7 @@ crumb :purchase_history do
 end
 
 crumb :profile do
-  link "本人情報の変更",  edit_user_profile_path(current_user, current_user.profile)
+  link "本人情報の変更",  edit_profile_path(current_user)
   parent :mypage
 end
 
