@@ -12,6 +12,11 @@ crumb :on_sale do
   parent :mypage
 end
 
+crumb :purchase_history do
+  link "購入した商品", user_purchase_histories_path(current_user)
+  parent :mypage
+end
+
 crumb :profile do
   link "本人情報の変更",  edit_user_profile_path(current_user, current_user.profile)
   parent :mypage
@@ -51,4 +56,9 @@ end
 crumb :logout do
   link "ログアウト", logout_user_path(current_user)
   parent :mypage
+end
+
+crumb :item do |item|
+  link item.name, item_path(item.id)
+  parent :root
 end

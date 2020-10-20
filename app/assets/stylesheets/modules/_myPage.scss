@@ -112,33 +112,39 @@
     padding: 0 50px;
   }
     
-    section {
-      padding: 10px 0;
-      border-bottom: 1px solid whitesmoke;
-      display: flex;
-      justify-content: center;
+  section {
+    padding: 10px 0;
+    border-bottom: 1px solid whitesmoke;
+    display: flex;
+    justify-content: center;
 
-        img {
-          object-fit: cover;
-        }
-  
-      .item__info {
-        padding: 16px;
-
+      img {
+        object-fit: cover;
       }
 
-      a {
-        @include aTag();
-        display: inline-block;
-        margin-top: 30px;
-      }
+    .item__info {
+      padding: 16px;
+
     }
 
-    .no__onSale {
-      font-size: larger;
-      margin-top: 20px;
-      opacity: 0.5;
+    a {
+      text-decoration: none;
+      color: #333;
+      cursor: pointer;
+      user-select: none;
+      
+      &:hover {
+        text-decoration: underline;
+        opacity: 0.3;
+      }
     }
+  }
+
+  .no__onSale {
+    font-size: larger;
+    margin-top: 20px;
+    opacity: 0.5;
+  }
 
 }
 

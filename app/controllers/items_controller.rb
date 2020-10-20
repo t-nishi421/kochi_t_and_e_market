@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :purchase_confirmation, :purchase, :purchase_completed, :edit, :update, :destroy]
   before_action :owner, only: [:purchase_confirmation, :purchase, :purchase_completed]
   before_action :other_owner, only: [:update, :destroy]
-  before_action :on_sale_only, only: [:purchase_confirmation, :purchase, :purchase_completed]
+  before_action :on_sale_only, only: [:purchase_confirmation, :purchase]
 
   def index
      @items = Item.includes(:item_images).order('created_at DESC').limit(5)
@@ -56,12 +56,13 @@ class ItemsController < ApplicationController
   def purchase # 購入アクション
     Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
     if Payjp::Charge.create(
-       amount: @item.price, # 商品の値段
-       customer: current_user.credit_card.customer_token, # 顧客のトークン
-       currency: 'jpy'  # 通貨の種類
-     )
-       @item.update(trading_status:  "完売")
-       redirect_to purchase_completed_item_path(@item), notice: "お買い上げありがとうございます！"
+      amount: @item.price, # 商品の値段
+      customer: current_user.credit_card.customer_token, # 顧客のトークン
+      currency: 'jpy'  # 通貨の種類
+    ) &&  @history = PurchaseHistory.create(history_params)
+
+      @item.update(trading_status:  "完売")
+      redirect_to purchase_completed_item_path(@item), notice: "お買い上げありがとうございます！"
     else
       redirect_to purchase_confirmation_item_path(@item), alert: "商品を購入できませんでした" 
     end
@@ -138,6 +139,10 @@ class ItemsController < ApplicationController
 
   def save_unregistered_brands
     Brand.saveIfNotPresent(brand_params)
+  end
+
+  def history_params
+    params.permit(:user_id, :item_id).merge(user_id: current_user.id, item_id: params[:id])
   end
 
   def set_item

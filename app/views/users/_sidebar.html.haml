@@ -9,7 +9,7 @@
     %li
       = link_to "出品中の商品", on_sale_user_path(current_user)
     %li
-      = link_to "購入した商品", '#'
+      = link_to "購入した商品", user_purchase_histories_path(current_user)
 
   %h3 設定
   %ul.config__list
