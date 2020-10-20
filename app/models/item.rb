@@ -5,6 +5,7 @@ class Item < ApplicationRecord
 
   has_many :purchase_histories
   has_many :comments
+  has_many :favorite_items
   belongs_to :user
   belongs_to_active_hash :condition
   belongs_to_active_hash :shipping_cost

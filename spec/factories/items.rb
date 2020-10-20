@@ -1,6 +1,7 @@
 FactoryBot.define do
 
   factory :item do
+    id              {1}
     name            {"商品名"}
     price           {"5000"}
     introduction    {"商品説明"}

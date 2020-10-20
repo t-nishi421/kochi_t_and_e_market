@@ -62,3 +62,8 @@ crumb :item do |item|
   link item.name, item_path(item.id)
   parent :root
 end
+
+crumb :bookmark do
+  link "お気に入り一覧", bookmark_user_path(current_user)
+  parent :mypage
+end

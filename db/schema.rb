@@ -61,6 +61,15 @@ ActiveRecord::Schema.define(version: 2020_10_20_083247) do
     t.index ["user_id"], name: "index_destinations_on_user_id"
   end
 
+  create_table "favorite_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "item_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_favorite_items_on_item_id"
+    t.index ["user_id"], name: "index_favorite_items_on_user_id"
+  end
+
   create_table "item_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "src", null: false
     t.bigint "item_id", null: false
@@ -126,6 +135,8 @@ ActiveRecord::Schema.define(version: 2020_10_20_083247) do
   add_foreign_key "comments", "users"
   add_foreign_key "credit_cards", "users"
   add_foreign_key "destinations", "users"
+  add_foreign_key "favorite_items", "items"
+  add_foreign_key "favorite_items", "users"
   add_foreign_key "item_images", "items"
   add_foreign_key "items", "brands"
   add_foreign_key "items", "categories"
