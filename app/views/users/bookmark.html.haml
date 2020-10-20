@@ -16,6 +16,10 @@
             .item__image
               %figure
                 = image_tag "#{item.item.item_images.first.src}", alt: '商品画像' , size: '100x100'
+                - if item.item.trading_status_id == 4
+                  .soldList
+                    .soldList__text
+                      SOLD
             .item__info
               %p= "商品名:" + "#{item.item.name}"
               %p= "¥ " + "#{item.item.price.to_s(:delimited)}"

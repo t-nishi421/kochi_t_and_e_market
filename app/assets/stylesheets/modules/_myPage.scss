@@ -121,9 +121,33 @@
       display: flex;
       justify-content: center;
 
-        img {
-          object-fit: cover;
+      figure {
+        position: relative;
+        .soldList{
+          width: 0;
+          height: 0;
+          border-top: 40px solid #3ccace;
+          border-right: 40px solid transparent;
+          border-bottom: 40px solid transparent;
+          border-left: 40px solid #3ccace;
+          z-index:100;
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          &__text {
+            color: #fff;
+            transform: rotate(-45deg);
+            font-size: 16px;
+            margin:-19px 0px 0px -37px;
+            font-weight: bold;
+            letter-spacing: 2px;
+          }
         }
+      }
+
+      img {
+        object-fit: cover;
+      }
   
       .item__info {
         padding: 16px;

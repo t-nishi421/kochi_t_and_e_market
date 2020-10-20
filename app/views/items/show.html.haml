@@ -8,6 +8,10 @@
       .ItemProfile__status__images
         .ItemProfile__status__images__selected
           = image_tag("#{@item.item_images[0].src}", alt: '商品画像', class: 'SelectedImage')
+          - if @item.trading_status_id == 4
+            .soldList
+              .soldList__text
+                SOLD
         .ItemProfile__status__images__list
           - @item.item_images.length.times do |i|
             = image_tag("#{@item.item_images[i].src}", alt: '商品画像', class: "ListImage")
