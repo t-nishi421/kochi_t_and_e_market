@@ -48,7 +48,7 @@ class ItemsController < ApplicationController
   end
   
   def bookmark
-    if FavoriteItem.where(user_id: current_user.id, item_id: params[:item_id].to_i) == []
+    unless FavoriteItem.whetherBookmarked(current_user.id, params[:item_id].to_i)
       FavoriteItem.create(user_id: current_user.id, item_id: params[:item_id].to_i)
     end
   end
