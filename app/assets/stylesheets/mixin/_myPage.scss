@@ -61,11 +61,9 @@
 
 // フォーム
 @mixin myPageForm {
-  width: 70%;
-  padding: 30px 30px;
-  flex-direction: column;
+  padding: 30px;
   display: flex;
-  justify-content: start;
+  flex-direction: column;
 }
 
 // inputタグ

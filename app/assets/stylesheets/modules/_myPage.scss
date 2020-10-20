@@ -67,6 +67,7 @@
 
   &__form {
     @include myPageForm();
+    width: 70%;
 
     .formField {
       height: 50px;
