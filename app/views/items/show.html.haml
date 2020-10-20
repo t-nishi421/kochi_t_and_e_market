@@ -88,11 +88,10 @@
         売り切れ
     .ItemProfile__text
       = @item.introduction
-    - if @whetherBookmarked
-      .ItemProfile__favorite
+    .ItemProfile__favorite
+      - if @whetherBookmarked
         .FavoriteButton.DeleteFavoriteButton{"data-index" => @item.id} ★登録済み
-    - else
-      .ItemProfile__favorite
+      - else
         .FavoriteButton.BookmarkFavoriteButton{"data-index" => @item.id} ☆お気に入り
         
   .CommentForm
