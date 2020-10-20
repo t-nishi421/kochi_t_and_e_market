@@ -91,9 +91,9 @@
     - if user_signed_in?
       .ItemProfile__favorite
         - if @whetherBookmarked
-          .FavoriteButton.DeleteFavoriteButton{"data-index" => @item.id} ★登録済み
-        - else
           .FavoriteButton.BookmarkFavoriteButton{"data-index" => @item.id} ☆お気に入り
+        - else
+          .FavoriteButton.DeleteFavoriteButton{"data-index" => @item.id} ★登録済み
         
   .CommentForm
     - @comments.each do |comment|
