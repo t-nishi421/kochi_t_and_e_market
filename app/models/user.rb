@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :comments
   has_one :credit_card, dependent: :destroy
   has_many :destinations
+  has_many :favorite_items
   # has_many :purchase_histories
   has_many :items
 
