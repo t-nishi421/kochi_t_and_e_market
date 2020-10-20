@@ -10,4 +10,8 @@ class UsersController < ApplicationController
 
   def logout
   end
+
+  def bookmark
+    @items = FavoriteItem.includes(:item).where(user_id: current_user.id)
+  end
 end

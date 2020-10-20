@@ -16,7 +16,6 @@ class CreditCardsController < ApplicationController
   end
   
   def create
-    # binding.pry
     Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
     if current_user.credit_card.nil?
       customer = Payjp::Customer.create(card: params[:payjp_token]) #顧客作成

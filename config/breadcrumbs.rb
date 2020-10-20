@@ -52,3 +52,8 @@ crumb :logout do
   link "ログアウト", logout_user_path(current_user)
   parent :mypage
 end
+
+crumb :bookmark do
+  link "お気に入り一覧", bookmark_user_path(current_user)
+  parent :mypage
+end

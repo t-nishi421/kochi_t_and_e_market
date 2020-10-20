@@ -5,6 +5,8 @@
     %li
       = link_to "トップページへ", root_path
     %li
+      = link_to "お気に入り一覧", bookmark_user_path(current_user)
+    %li
       = link_to "出品", new_item_path
     %li
       = link_to "出品中の商品", on_sale_user_path(current_user)

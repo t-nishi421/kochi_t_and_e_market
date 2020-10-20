@@ -28,6 +28,8 @@ Rails.application.routes.draw do
   resources :items, only: [:index, :new, :edit, :destroy] do
     collection do
       post 'new', to: 'items#create'
+      get 'bookmark', defaults: { fomat: 'json'}
+      get 'delete_bookmark', defaults: { fomat: 'json'}
     end
     member do
       patch 'edit', to: 'items#update'
@@ -57,6 +59,7 @@ Rails.application.routes.draw do
       member do
       get 'on_sale' # 出品中の商品リスト
       get 'logout' # マイページのログアウト画面
+      get 'bookmark' # お気に入り登録リスト
     end
   end
 
