@@ -37,7 +37,6 @@ class ItemsController < ApplicationController
     get_categories_to_item
     if user_signed_in?
       @whetherBookmarked = FavoriteItem.whetherBookmarked(current_user.id, @item.id)
-    else
     end
   end
 
