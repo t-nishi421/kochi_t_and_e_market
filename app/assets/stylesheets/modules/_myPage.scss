@@ -152,40 +152,6 @@
 
 }
 
-// マイページのお届け先住所の登録・変更ページ(users/destination)
-.destination {
-  @include myPageContents();
-
-  &__title {
-    @include myPageTitle();
-  }
-
-  &__registration {
-    padding: 20px 50px;
-  }
-
-  a {
-    @include aTag();
-  }
-}
-
-// マイページのお届け先住所の登録・変更ページ(users/destination)
-.destination {
-  @include myPageContents();
-
-  &__title {
-    @include myPageTitle();
-  }
-
-  &__registration {
-    padding: 20px 50px;
-  }
-
-  a {
-    @include aTag();
-  }
-}
-
 // メール/パスワードの変更(users/edit)
 .mailPass {
   @include myPageContents();

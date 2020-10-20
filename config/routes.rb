@@ -49,10 +49,11 @@ Rails.application.routes.draw do
 
   resources :credit_cards, only: [:new, :create] #  クレジットカード
   resources :profiles, only: [:edit, :update] # 本人情報
+  resources :destinations, only: [:index, :new, :create, :show, :update, :destroy] # お届け先住所
   
   # マイページのルーティング
   resources :users, only: [:show, :edit, :update] do
-    resources :destinations, only: [:index, :new, :create, :edit, :update] # お届け先住所
+    resources :destinations, only: [:index] # お届け先住所
     resources :credit_cards, only: [:index, :update, :destroy] #  クレジットカード
       resources :purchase_histories, only: [:index] # 購入履歴
       member do

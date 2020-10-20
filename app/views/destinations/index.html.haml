@@ -9,8 +9,23 @@
     .destination
       .destination__title
         お届け先住所の登録・変更
-      .destination__registration
+      .destination__content
+        .destination__registration
+          = link_to "+ 新しいお届け先の追加", new_destination_path, class: "destination__registration--btn"
         .destination__list
-          = link_to "+ 新しいお届け先の追加", new_user_destination_path(current_user)
+          - if @destinations
+            = form_with model: @destination , id: "destination__select__form" do |f|
+              - @destinations.each do |destination|
+                %section
+                  .form__field
+                    = f.radio_button :destination, destination.id
+                    = f.label :destination, {value: destination.id, style: "display: none"}
+                  .destination__info
+                    %p= destination.family_name + destination.first_name
+                    %p= destination.city + destination.house_number 
+                  = link_to destination_path(destination.id), { method: :delete, data: {confirm: "本当に削除してよろしいですか？"}} do
+                    .delete__btn
+                      削除する
+              = f.submit "選択したカードを使う", id: "destination__change"
 
 = render "items/footer"

@@ -1,44 +1,58 @@
 // destination/new(お届け先住所の登録画面)
 .destination {
-  @include myPageContents();
 
   &__title {
     @include myPageTitle();
   }
   
-  &__form {
-    @include myPageForm();
-    
-    .formField {
-      margin-bottom: 10px;
-      
-      &__label {
-        margin-bottom: 5px;
-      }
-      
-      .mandatory {
-        @include mandatory();
-      }
+  &__content {
+    min-width: 60%;
+    text-align: center;
+    padding: 0 50px;
+  }
 
-      .optional {
-        @include optional();
-      }
-      
-      &__input--top {
-        margin-bottom: 10px;
-      }
+  &__registration {
+    padding: 20px 0;
+    border-bottom: 1px solid whitesmoke;
 
-        input {
-          @include myPageInput();
-        }
+    a {
+      @include aTag();
+    }
+  }
+
+  section {
+    min-width: 80%;
+    padding: 10px 30px;
+    border-bottom: 1px solid whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     
-      &__btn {
-        @include myPageBtn();
+    .destination__info {
+      width: 110px;
+      margin: 0 30px;
+      font-size: small;
+      text-align: left;
+    }
+    
+    .delete__btn {
+      height: 25px;
+      width: 60px;
+      padding: 3px;
+      border: 1px solid red;
+      border-radius: 3px;
+      font-size: small;
+      cursor: pointer;
+      color: red;
+      
+      &:hover {
+        background-color: red;
+        color: white;
       }
     }
   }
-    
-  a {
-    @include aTag();
+  
+  #destination__change {
+    @include myPageBtn();
   }
 }
