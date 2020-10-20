@@ -3,17 +3,18 @@ $(document).on('turbolinks:load', ()=> {
   // *** 手動設定変数 ***
 
   // 共通
-  const areaWithButton = '.ItemProfile__favorite'
   const item_id = $('.FavoriteButton').data('index');
   const button = '.FavoriteButton';
   // 登録
   const bookmark = '.BookmarkFavoriteButton';
   const bookmarkUrl = '/items/bookmark';
-  const deleteButton = `<div class="FavoriteButton DeleteFavoriteButton" data-index="14">★登録済み</div>`;
+  const deleteText = '★登録済み';
+  const bookmarkAlert = 'お気に入り登録に失敗しました';
   // 登録解除
   const deleteBookmark = '.DeleteFavoriteButton';
   const deleteUrl = '/items/delete_bookmark';
-  const bookmarkButton = `<div class="FavoriteButton BookmarkFavoriteButton" data-index="14">☆お気に入り</div>`;
+  const bookmarkText = '☆お気に入り';
+  const deleteAlert = 'お気に入り登録解除に失敗しました';
 
   // *** イベント ***
 
@@ -28,15 +29,15 @@ $(document).on('turbolinks:load', ()=> {
     .done(function(){
       $(button).removeClass(bookmark.slice(1));
       $(button).addClass(deleteBookmark.slice(1));
+      $(button).text(deleteText);
     })
     .fail(function(){
-      alert('お気に入り登録に失敗しました');
+      alert(bookmarkAlert);
     })
   })
 
   // 登録解除ボタンが押された時
   $(document).on('click', deleteBookmark, function(){
-    console.log('発火しました');
     $.ajax({
       url: deleteUrl,
       type: 'GET',
@@ -46,9 +47,10 @@ $(document).on('turbolinks:load', ()=> {
     .done(function(){
       $(button).removeClass(deleteBookmark.slice(1));
       $(button).addClass(bookmark.slice(1));
+      $(button).text(bookmarkText);
     })
     .fail(function(){
-      alert('お気に入り登録解除に失敗しました');
+      alert(deleteAlert);
     })
   })
 })

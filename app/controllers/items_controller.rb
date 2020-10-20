@@ -35,6 +35,7 @@ class ItemsController < ApplicationController
     @comments = Comment.includes(:user).where(item_id: @item.id)
     @comment = Comment.new
     get_categories_to_item
+    @whetherBookmarked = FavoriteItem.whetherBookmarked(current_user.id, @item.id)
   end
 
   def comment
