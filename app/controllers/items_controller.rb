@@ -46,6 +46,16 @@ class ItemsController < ApplicationController
     end
   end
   
+  def bookmark
+    if FavoriteItem.where(user_id: current_user.id, item_id: params[:item_id].to_i) == []
+      FavoriteItem.create(user_id: current_user.id, item_id: params[:item_id].to_i)
+    end
+  end
+
+  def delete_bookmark
+    FavoriteItem.where(user_id: current_user.id, item_id: params[:item_id].to_i).delete_all
+  end
+
   # 親カテゴリーが選択された後に動くアクション
   def get_category_children
     @category_children = Category.find("#{params[:parent_id]}").children
@@ -176,6 +186,5 @@ class ItemsController < ApplicationController
       redirect_to item_path(@item), alert: "この商品は購入できません"
     end
   end
-
 
 end
