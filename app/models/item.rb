@@ -11,8 +11,9 @@ class Item < ApplicationRecord
   belongs_to :brand, optional: true
   belongs_to_active_hash :preparation_day
   belongs_to_active_hash :prefecture
+  belongs_to_active_hash :trading_status
 
-  validates :name, :price, :introduction, :trading_status,
+  validates :name, :price, :introduction, :trading_status_id,
             :category, :condition_id, :shipping_cost_id,
             :preparation_day_id, :prefecture_id, presence: true
 

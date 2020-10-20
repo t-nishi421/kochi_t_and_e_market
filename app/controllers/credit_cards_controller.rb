@@ -22,7 +22,7 @@ class CreditCardsController < ApplicationController
       customer = Payjp::Customer.create(card: params[:payjp_token]) #顧客作成
       card = current_user.build_credit_card(customer_token: customer.id)
       if card.save
-        if session["return_path"]
+        if session["return_path"].present?
           redirect_to purchase_confirmation_item_path(session["return_path"]), notice: "カードを登録しました"
           session["return_path"].clear
         else

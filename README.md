@@ -118,7 +118,7 @@ Things you may want to cover:
 |name|string|null: false|
 |price|integer|null: false|
 |introduction|text|null: false|
-|trading_status|string|null: false|
+|trading_status_id|reference|null: false|
 |category_id|reference|null: false, foreign_key: true|
 |brand_id|reference|foreign_key: true|
 |condition_id|reference|null: false, foreign_key: true|
@@ -132,12 +132,13 @@ Things you may want to cover:
 - has_many :purchase_histories
 - has_many :comments
 - belongs_to :user
-- belongs_to :condition
-- belongs_to :shipping_cost
 - belongs_to :category
 - belongs_to :brand
-- belongs_to :preparation_day
-- belongs_to :prefecture
+- belongs_to_active_hash :condition
+- belongs_to_active_hash :shipping_cost
+- belongs_to_active_hash :preparation_day
+- belongs_to_active_hash :prefecture
+- belongs_to_active_hash :trading_status
 
 
 ## item_imagesテーブル
@@ -149,7 +150,6 @@ Things you may want to cover:
 
 ### Association
 - belongs_to :item
-
 
 ## conditionテーブル
 

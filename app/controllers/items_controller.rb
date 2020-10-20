@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :purchase_confirmation, :purchase, :purchase_completed, :edit, :update, :destroy]
   before_action :owner, only: [:purchase_confirmation, :purchase, :purchase_completed]
   before_action :other_owner, only: [:update, :destroy]
-  before_action :on_sale_only, only: [:purchase_confirmation, :purchase, :purchase_completed]
+  before_action :on_sale_only, only: [:purchase_confirmation, :purchase]
 
   def index
      @items = Item.includes(:item_images).order('created_at DESC').limit(5)
@@ -70,7 +70,7 @@ class ItemsController < ApplicationController
        customer: current_user.credit_card.customer_token, # 顧客のトークン
        currency: 'jpy'  # 通貨の種類
      )
-       @item.update(trading_status:  "完売")
+       @item.update(trading_status_id: 4)
        redirect_to purchase_completed_item_path(@item), notice: "お買い上げありがとうございます！"
     else
       redirect_to purchase_confirmation_item_path(@item), alert: "商品を購入できませんでした" 
@@ -119,7 +119,7 @@ class ItemsController < ApplicationController
     end
     params.require(:item).permit(:name, :price, :introduction, :condition_id,
                                  :shipping_cost_id, :preparation_day_id, :prefecture_id,
-                                 item_images_attributes: [:src, :_destroy, :id]).merge(trading_status: '出品中', category_id: category_params, brand_id: brand_id, user_id: current_user.id)
+                                 item_images_attributes: [:src, :_destroy, :id]).merge(trading_status_id: 2, category_id: category_params, brand_id: brand_id, user_id: current_user.id)
   end
 
   def brand_params
@@ -172,7 +172,7 @@ class ItemsController < ApplicationController
   end
 
   def on_sale_only # 出品中でないなら購入できない
-    unless @item.trading_status == "出品中"
+    unless @item.trading_status_id == 2
       redirect_to item_path(@item), alert: "この商品は購入できません"
     end
   end
