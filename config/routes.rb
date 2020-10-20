@@ -59,6 +59,7 @@ Rails.application.routes.draw do
       member do
       get 'on_sale' # 出品中の商品リスト
       get 'logout' # マイページのログアウト画面
+      get 'bookmark' # お気に入り登録リスト
     end
   end
 
