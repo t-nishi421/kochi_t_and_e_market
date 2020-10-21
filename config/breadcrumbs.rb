@@ -3,7 +3,7 @@ crumb :root do
 end
 
 crumb :mypage do
-  link "マイページ", user_path(current_user)
+  link current_user.nick_name + "さん", user_path(current_user)
   parent :root
 end
 
@@ -28,7 +28,12 @@ crumb :destination do
 end
 
 crumb :destination_new do
-  link "お届け先住所の登録",  new_user_destination_path(current_user)
+  link "お届け先住所の登録",  new_destination_path
+  parent :destination
+end
+
+crumb :destination_show do
+  link "お届け先住所の詳細",  destination_path(params[:id])
   parent :destination
 end
 

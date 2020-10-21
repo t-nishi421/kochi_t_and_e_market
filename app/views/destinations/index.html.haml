@@ -1,6 +1,7 @@
 = render "items/header"
 - breadcrumb :destination
 = render "layouts/breadcrumbs"
+= render "layouts/notice"
 .myPage
   .myPage__sidebar
     = render "users/sidebar"
@@ -11,21 +12,22 @@
         お届け先住所の登録・変更
       .destination__content
         .destination__registration
-          = link_to "+ 新しいお届け先の追加", new_destination_path, class: "destination__registration--btn"
+          = link_to "+ 新しいお届け先の追加", new_destination_path
         .destination__list
           - if @destinations
-            = form_with model: @destination , id: "destination__select__form" do |f|
+            = form_with url: change_user_destinations_path, id: "destination__select__form", local: true do |f|
               - @destinations.each do |destination|
                 %section
                   .form__field
-                    = f.radio_button :destination, destination.id
+                    = f.radio_button :destination, destination.id, {checked: (destination.use)}
                     = f.label :destination, {value: destination.id, style: "display: none"}
                   .destination__info
-                    %p= destination.family_name + destination.first_name
-                    %p= destination.city + destination.house_number 
-                  = link_to destination_path(destination.id), { method: :delete, data: {confirm: "本当に削除してよろしいですか？"}} do
-                    .delete__btn
-                      削除する
+                    = link_to "#{destination.family_name}" + "#{destination.first_name}", destination_path(destination)
+                    %p= destination.city + destination.house_number
+                  - if @destinations.count != 1
+                    = link_to destination_path(destination), { method: :delete, data: {confirm: "本当に削除してよろしいですか？"}} do
+                      .delete__btn
+                        削除する
               = f.submit "選択したカードを使う", id: "destination__change"
 
 = render "items/footer"
