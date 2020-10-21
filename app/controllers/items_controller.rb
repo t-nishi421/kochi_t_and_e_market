@@ -27,6 +27,7 @@ class ItemsController < ApplicationController
       end
       get_categories_to_item
       @category_parent_array = Category.where(ancestry: nil)
+      flash.now[:alert] = "入力に不備があります"
       render "new"
     end
   end
@@ -115,6 +116,7 @@ class ItemsController < ApplicationController
     else
       get_categories_to_item
       get_categories_array
+      flash.now[:alert] = "入力に不備があります"
       render "edit"
     end
   end
