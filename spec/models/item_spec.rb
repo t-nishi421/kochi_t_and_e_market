@@ -63,4 +63,27 @@ describe Item do
       expect(@item.errors[:prefecture_id]).to include("を入力してください")
     end
   end
+
+  describe ".search" do
+    it "商品名に一致するもの検索できる" do
+      item = create(:item, name: "ピカチューのぬいぐるみ")
+      keyword = "ピカチュー"
+      expect(described_class.search(keyword).length).to eq 1
+
+    end
+
+    it "商品名に一致しないものは検索できない" do
+      item = create(:item, name: "ピカチューのぬいぐるみ")
+      keyword = "pika"
+      expect(described_class.search(keyword).length).to eq 0
+    end
+
+    it "keywordがない場合は全ての商品を表示する" do
+      item = create(:item)
+      keyword = ""
+      expect(described_class.search(keyword).length).to eq 1
+    end
+
+  end
+
 end
