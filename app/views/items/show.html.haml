@@ -68,25 +68,24 @@
         （税込）
       .ItemProfile__priceBox__shipping
         送料込み
-    - if user_signed_in?
-      - if @item.user_id == current_user.id # 出品者本人
-        = link_to edit_item_path(@item.id) do
+    // *** 条件分岐 ***
+    - if @item.trading_status_id == 2 # 出品中か
+      - if user_signed_in? # ログインしているか
+        - if @item.user_id == current_user.id # 出品者本人か
+          = link_to edit_item_path(@item.id) do
+            .ItemProfile__buyButton
+              商品の編集
+          = link_to item_path, method: :delete, data: { confirm: "本当に削除してもよろしいですか？" } do
+            .ItemProfile__deleteButton
+              商品を削除する
+        - else
+          = link_to purchase_confirmation_item_path do
+            .ItemProfile__buyButton
+              購入画面に進む
+      - else
+        = link_to new_user_session_path do
           .ItemProfile__buyButton
-            商品の編集
-        = link_to item_path, method: :delete, data: { confirm: "本当に削除してもよろしいですか？" } do
-          .ItemProfile__deleteButton
-            商品を削除する
-      - elsif @item.trading_status_id == 2 #  出品中なら購入できる
-        = link_to purchase_confirmation_item_path do
-          .ItemProfile__buyButton
-            購入画面に進む
-      - else # 出品中ではないので購入できない
-        .ItemProfile__soldOutButton
-          売り切れ
-    - elsif @item.trading_status_id == 2
-      = link_to new_user_session_path do
-        .ItemProfile__buyButton
-          ログインして商品を購入する
+            ログインして商品を購入する
     - else
       .ItemProfile__soldOutButton
         売り切れ
