@@ -81,38 +81,23 @@
         = link_to('新規投稿商品', '#', class: 'title')
     .mainCategory__productLists
       - @items.each do |item|
-        -if item.trading_status_id == 4
-          .mainCategory__productLists__list
-            = link_to item_path(item.id), class: 'product' do
-              %figure.productPict
-                = image_tag item.item_images.first.src.url
-              .body
-                %h3.name
-                  = item.name
-                .price
-                  %ul
-                    %li
-                      = item.price.to_s.reverse.gsub( /(\d{3})(?=\d)/, '\1,').reverse
-                      = "円"
-                  %p (税込)
+        .mainCategory__productLists__list
+          = link_to item_path(item.id), class: 'product' do
+            %figure.productPict
+              = image_tag item.item_images.first.src.url
+            .body
+              %h3.name
+                = item.name
+              .price
+                %ul
+                  %li
+                    = item.price.to_s.reverse.gsub( /(\d{3})(?=\d)/, '\1,').reverse
+                    = "円"
+                %p (税込)
+            -if item.trading_status_id == 4
               .soldList
                 .soldList__text
-                  SOLD
-              
-        - else
-          .mainCategory__productLists__list
-            = link_to item_path(item.id), class: 'product' do
-              %figure.productPict
-                = image_tag item.item_images.first.src.url
-              .body
-                %h3.name
-                  = item.name
-                .price
-                  %ul
-                    %li
-                      = item.price.to_s.reverse.gsub( /(\d{3})(?=\d)/, '\1,').reverse
-                      = "円"
-                  %p (税込)         
+                  SOLD    
       
       
   .mainCategory
@@ -122,36 +107,21 @@
         = link_to('アーカイバ', '#', class: 'title')
     .mainCategory__productLists
       - @items.each do |item|
-        -if item.trading_status_id == 4
-          .mainCategory__productLists__list
-            = link_to item_path(item.id), class: 'product' do
-              %figure.productPict
-                = image_tag item.item_images.first.src.url
-              .body
-                %h3.name
-                  = item.name
-                .price
-                  %ul
-                    %li
-                      = item.price.to_s.reverse.gsub( /(\d{3})(?=\d)/, '\1,').reverse
-                      = "円"
-                  %p (税込)
+        .mainCategory__productLists__list
+          = link_to item_path(item.id), class: 'product' do
+            %figure.productPict
+              = image_tag item.item_images.first.src.url
+            .body
+              %h3.name
+                = item.name
+              .price
+                %ul
+                  %li
+                    = item.price.to_s.reverse.gsub( /(\d{3})(?=\d)/, '\1,').reverse
+                    = "円"
+                %p (税込)
+            -if item.trading_status_id == 4
               .soldList
                 .soldList__text
                   SOLD
-              
-        - else
-          .mainCategory__productLists__list
-            = link_to item_path(item.id), class: 'product' do
-              %figure.productPict
-                = image_tag item.item_images.first.src.url
-              .body
-                %h3.name
-                  = item.name
-                .price
-                  %ul
-                    %li
-                      = item.price.to_s.reverse.gsub( /(\d{3})(?=\d)/, '\1,').reverse
-                      = "円"
-                  %p (税込)
        
