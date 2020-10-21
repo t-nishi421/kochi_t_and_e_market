@@ -6,7 +6,7 @@
       #{@keyword}の検索結果一覧
     .itemSearchContents__body__itemBox
       - @search_items.each do |item|
-        - if item.trading_status == '完売'
+        - if item.trading_status_id == 4
           .itemSearchContents__body__itemBox__content
             = link_to item_path(item.id), class: 'product' do
               %figure.content__img

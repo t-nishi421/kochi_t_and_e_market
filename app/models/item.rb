@@ -21,8 +21,7 @@ class Item < ApplicationRecord
       Item.all
     end
   end
-
-  validates :name, :price, :introduction, :trading_status,
+  
   validates :name, :price, :introduction, :trading_status_id,
             :category, :condition_id, :shipping_cost_id,
             :preparation_day_id, :prefecture_id, presence: true
