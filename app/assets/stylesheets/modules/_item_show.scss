@@ -11,6 +11,16 @@
   background-color: #f5f5f5;
 }
 
+@mixin favorite-button {
+  height: 40px;
+  line-height: 40px;
+  width: 130px;
+  display: block;
+  text-align: center;
+  border-radius: 25px;
+  cursor : pointer;
+}
+
 .ItemPage {
   height: 100vh;
   width: 100vw;
@@ -53,6 +63,7 @@
           bottom: 0;
           margin: auto;
           max-width: 100%;
+          max-height: 100%;
           height: auto;
           width: auto;
           cursor : pointer;
@@ -145,6 +156,25 @@
     text-align: left;
     word-break: break-all;
   }
+  &__favorite {
+    margin-top: 35px;
+    text-align: left;
+    .BookmarkFavoriteButton {
+      @include favorite-button();
+      font-size: 14px;
+      color: black;
+      background-color: #eee;
+    }
+    .DeleteFavoriteButton {
+      @include favorite-button();
+      font-size: 15px;
+      color: white;
+      background-color: #3CCACE;
+    }
+    :hover {
+      @include opacity();
+    }
+  }
 }
 
 .CommentForm {
@@ -160,6 +190,7 @@
     min-height: 100px;
     height: 100px;
     width: 620px;
+    padding: 10px;
   }
 
   &__info {
@@ -184,6 +215,46 @@
     outline: 0;
     @include opacity();
     cursor : pointer;
+  }
+}
+
+.CommentBox {
+  max-width: 620px;
+  min-width: 620px;
+  margin-bottom: 20px;
+  @include flex-bundle("","");
+  &__leftItems {
+    &__userImage {
+      height: 50px;
+      width: 50px;
+      object-fit: cover;
+      border: solid #555 2px;
+      border-radius: 50%;
+    }
+    &__isTheUserASeller {
+      padding: 1px 2px;
+      font-size: 14px;
+      color: #fff;
+      background-color: #3CCACE;
+      border-radius: 5px;
+    }
+  }
+  &__rightItems {
+    width: 100%;
+    margin-left: 10px;
+    text-align: left;
+    &__userName {
+      margin-left: 10px;
+      font-weight: bold;
+    }
+    &__message {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      font-size: 14px;
+      background-color: #efefef;
+      border-radius: 10px;
+    }
   }
 }
 

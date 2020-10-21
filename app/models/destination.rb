@@ -24,7 +24,7 @@ class Destination < ApplicationRecord
       message: "は全角カタカナで入力して下さい"
     }
   validates :postal_code, presence: true, length: { is: 7 }, numericality: :only_integer
-  validates :prefecture, presence: true
+  validates :prefecture_id, presence: true
   validates :city, presence: true
   validates :house_number, presence: true
   with_options unless: -> { telephone == "" } do

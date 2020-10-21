@@ -92,7 +92,7 @@ describe Destination do
     it "都道府県が未入力だとエラー" do
       @destination.prefecture = nil
       @destination.valid?
-      expect(@destination.errors[:prefecture]).to include("を入力してください")
+      expect(@destination.errors[:prefecture_id]).to include("を入力してください")
     end
 
     it "市区町村が未入力だとエラー" do

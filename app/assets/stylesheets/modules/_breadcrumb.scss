@@ -1,0 +1,31 @@
+nav.breadcrumbs {
+  padding: 0 60px;
+  border-top: 1px solid whitesmoke;
+  background-color: white;
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16);
+
+  .breadcrumbs {
+    max-width: 1040px;
+    width: 100%;
+    min-height: 50px;
+    padding: 15px 0;
+    margin: 0 auto;
+    font-size: 14px;
+
+    a {
+      margin-right: 5px;
+      text-decoration: none;
+      color: #333;
+      cursor: pointer;
+      user-select: none;
+      &:hover {
+        text-decoration: underline;
+        opacity: 0.3;
+      }
+    }
+
+    .current {
+      font-weight: bold;
+    }
+  }
+}
