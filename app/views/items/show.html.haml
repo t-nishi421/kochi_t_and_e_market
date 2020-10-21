@@ -10,6 +10,10 @@
       .ItemProfile__status__images
         .ItemProfile__status__images__selected
           = image_tag("#{@item.item_images[0].src}", alt: '商品画像', class: 'SelectedImage')
+          - if @item.trading_status_id == 4
+            .soldList
+              .soldList__text
+                SOLD
         .ItemProfile__status__images__list
           - @item.item_images.length.times do |i|
             = image_tag("#{@item.item_images[i].src}", alt: '商品画像', class: "ListImage")
@@ -66,25 +70,23 @@
         （税込）
       .ItemProfile__priceBox__shipping
         送料込み
-    - if user_signed_in?
-      - if @item.user_id == current_user.id # 出品者本人
-        = link_to edit_item_path(@item.id) do
+    - if @item.trading_status_id == 2 # 出品中か
+      - if user_signed_in? # ログインしているか
+        - if @item.user_id == current_user.id # 出品者本人か
+          = link_to edit_item_path(@item.id) do
+            .ItemProfile__buyButton
+              商品の編集
+          = link_to item_path, method: :delete, data: { confirm: "本当に削除してもよろしいですか？" } do
+            .ItemProfile__deleteButton
+              商品を削除する
+        - else
+          = link_to purchase_confirmation_item_path do
+            .ItemProfile__buyButton
+              購入画面に進む
+      - else
+        = link_to new_user_session_path do
           .ItemProfile__buyButton
-            商品の編集
-        = link_to item_path, method: :delete, data: { confirm: "本当に削除してもよろしいですか？" } do
-          .ItemProfile__deleteButton
-            商品を削除する
-      - elsif @item.trading_status_id == 2 #  出品中なら購入できる
-        = link_to purchase_confirmation_item_path do
-          .ItemProfile__buyButton
-            購入画面に進む
-      - else # 出品中ではないので購入できない
-        .ItemProfile__soldOutButton
-          売り切れ
-    - elsif @item.trading_status_id == 2
-      = link_to new_user_session_path do
-        .ItemProfile__buyButton
-          ログインして商品を購入する
+            ログインして商品を購入する
     - else
       .ItemProfile__soldOutButton
         売り切れ
@@ -117,11 +119,15 @@
       .CommentForm__info
         %div 相手のことを考え丁寧なコメントを心がけましょう。
         %div 不快な言葉遣いなどは利用制限や退会処分となることがあります。
-      - if user_signed_in?
-        = f.submit 'コメントする', class: 'CommentForm__button'
+      - if @item.trading_status_id == 4
+        .CommentForm__soldButton
+          売り切れのためコメント出来ません
       - else
-        = link_to new_user_session_path, class: 'CommentForm__button' do
-          ログインしてコメントする
+        - if user_signed_in?
+          = f.submit 'コメントする', class: 'CommentForm__button'
+        - else
+          = link_to new_user_session_path, class: 'CommentForm__button' do
+            ログインしてコメントする
   = render 'banner'
   = render 'footer'
   .ViewImageArea
