@@ -10,6 +10,7 @@ class SignupsController < ApplicationController
       session["regist_data"][:user]["password"] = params[:user][:password]
       redirect_to action: :step2
     else
+      flash.now[:alert] = "入力に不備があります"
       render "step1"
     end
   end
@@ -24,6 +25,7 @@ class SignupsController < ApplicationController
       session["regist_data"][:profile] = @profile
       redirect_to action: :step3
     else
+      flash.now[:alert] = "入力に不備があります"
       render "step2"
     end
   end
@@ -43,6 +45,7 @@ class SignupsController < ApplicationController
       sign_in(:user, @user)
       redirect_to root_path
     else
+      flash.now[:alert] = "入力に不備があります"
       render "step3"
     end
   end
