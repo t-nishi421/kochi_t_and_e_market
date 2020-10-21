@@ -71,7 +71,7 @@ class ItemsController < ApplicationController
   
   def purchase_confirmation # 購入内容確認画面
     @destination = Destination.find_by(user_id: current_user)
-    @prefecture = Prefecture.find_by(id: @destination.prefecture_id)
+    @prefecture = Prefecture.find(@destination.prefecture_id)
     @image = @item.item_images.first
     @card = CreditCard.get_card(current_user.credit_card.customer_token) if current_user.credit_card
   end
