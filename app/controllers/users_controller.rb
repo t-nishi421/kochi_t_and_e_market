@@ -4,12 +4,6 @@ class UsersController < ApplicationController
   def show
   end
 
-  def edit
-  end
-
-  def update
-  end
-
   def on_sale
     @items = current_user.items.includes(:user).references(:user).where(trading_status_id: 2)
   end

@@ -54,7 +54,7 @@ crumb :card_regist do
 end
 
 crumb :user_edit do
-  link "メール/パスワードの変更", edit_user_path(current_user)
+  link "メール/パスワードの変更", edit_user_registration_path
   parent :mypage
 end
 

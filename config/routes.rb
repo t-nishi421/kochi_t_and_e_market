@@ -54,7 +54,7 @@ Rails.application.routes.draw do
   resources :destinations, only: [:new, :create, :show, :update, :destroy] # お届け先住所
 
   # マイページのルーティング
-  resources :users, only: [:show, :edit, :update] do
+  resources :users, only: [:show] do
     resources :destinations, only: [:index] do # お届け先住所
       collection do
         post 'change'
