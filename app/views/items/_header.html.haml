@@ -17,14 +17,19 @@
       %ul.listLeft
         %li.listLeft__category
           = link_to '#', class: 'leftBtn' do
+            = image_tag 'icon/icon_category.png', alt: 'カテゴリー', class: 'Icon'
             カテゴリー
         %li.listLeft__brand
           = link_to '#', class: 'leftBtn' do
+            = image_tag 'icon/icon_brand.png', alt: 'カテゴリー', class: 'Icon'
             ブランド
 
       - if user_signed_in?
         %ul.listRight
           %li.listRight__logIn
+            = image_tag 'icon/member_photo_noimage_thumb.png', alt: 'カテゴリー', class: 'Icon'
+            .userName
+              = current_user.nick_name
             = link_to user_path(current_user), class: 'rightBtn' do
               マイページ
       - else

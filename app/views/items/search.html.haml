@@ -2,8 +2,11 @@
 .itemSearchContents
   = render "items/item_search"
   .itemSearchContents__body
-    .itemSearchContents__body__title 
-      #{@keyword}の検索結果一覧
+    .itemSearchContents__body__title
+      - if @keyword != ""
+        #{@keyword}の検索結果一覧
+      - else
+        商品一覧
     .itemSearchContents__body__itemBox
       - @search_items.each do |item|
         .itemSearchContents__body__itemBox__content
