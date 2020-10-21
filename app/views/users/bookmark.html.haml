@@ -15,12 +15,16 @@
           %section
             .item__image
               %figure
-                = image_tag "#{item.item.item_images.first.src}", alt: '商品画像' , size: '100x100'
+                = image_tag "#{item.item_images.first.src}", alt: '商品画像' , size: '100x100'
+                - if item.trading_status_id == 4
+                  .soldList
+                    .soldList__text
+                      SOLD
             .item__info
-              %p= "商品名:" + "#{item.item.name}"
-              %p= "¥ " + "#{item.item.price.to_s(:delimited)}"
-              = link_to "商品ページへ", item_path(item.item_id)
+              %p= "商品名:" + "#{item.name}"
+              %p= "¥ " + "#{item.price.to_s(:delimited)}"
+              = link_to "商品ページへ", item_path(item.id)
       - else
         .no__onSale
-          出品中の商品はありません
+          お気に入り登録した商品はありません
 = render "items/footer"
