@@ -4,19 +4,27 @@ $(document).on('turbolinks:load', ()=> {
   $(window).on('load resize', function(){
     const main = '.myPage__sidebar';
     const pair = '.myPage__main';
+    const sub = '.myPage';
     const initialSize = '300px';
+    const initialMargin = '30px 0 30px 5vw';
+    const pairMaxW = $(pair).css('max-width');
+    const pairMinW = $(pair).css('min-width');
 
     var winW = $(window).width();
-    var devW = 1150;
+    var devW = 1000;
     var pairW = $(pair).width();
     if (winW <= devW) {
       //devWpx以下の時の処理
-      $(main).css('max-width', pairW);
-      $(main).css('min-width', pairW);
+      $(main).css('max-width', pairMaxW);
+      $(main).css('min-width', pairMinW);
+      $(main).css('margin', '30px 5vw');
+      $(sub).css('flex-wrap', 'wrap-reverse');
     } else {
       //devWpxより大きい時の処理
       $(main).css('max-width', initialSize);
       $(main).css('min-width', initialSize);
+      $(main).css('margin', initialMargin);
+      $(sub).css('flex-wrap', '');
     }
   });
 
@@ -35,13 +43,11 @@ $(document).on('turbolinks:load', ()=> {
       $(main).css('max-width', pairW);
       $(main).css('min-width', pairW);
       $(sub).css('display', 'block');
-      console.log('小');
     } else {
       //devWpxより大きい時の処理
       $(main).css('max-width', initialSize);
       $(main).css('min-width', initialSize);
       $(sub).css('display', 'flex');
-      console.log('大');
     }
   });
 })
