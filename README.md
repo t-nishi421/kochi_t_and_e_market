@@ -87,7 +87,7 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
-|content|string|null: false|
+|content|text|null: false|
 |user_id|reference|null: false, foreign_key: true|
 
 ### Association
