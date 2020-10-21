@@ -11,17 +11,17 @@
     %li
       = link_to "出品中の商品", on_sale_user_path(current_user)
     %li
-      = link_to "購入した商品", '#'
+      = link_to "購入した商品", user_purchase_histories_path(current_user)
 
   %h3 設定
   %ul.config__list
     %li
-      = link_to "本人情報の変更", edit_user_profile_path(current_user, current_user.profile)
+      = link_to "本人情報の変更", edit_profile_path(current_user)
     %li
       = link_to "お届け先住所の登録・変更", user_destinations_path(current_user)
     %li
       = link_to "クレジットカードの登録・変更", user_credit_cards_path(current_user)
     %li
-      = link_to "メール/パスワードの変更", edit_user_path(current_user)
+      = link_to "メール/パスワードの変更",  edit_user_registration_path
     %li
       = link_to "ログアウト", logout_user_path(current_user)

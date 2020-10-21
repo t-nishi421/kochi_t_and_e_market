@@ -65,6 +65,7 @@
 
   &__form {
     @include myPageForm();
+    width: 70%;
 
     .formField {
       height: 50px;
@@ -150,54 +151,34 @@
       .item__info {
         padding: 16px;
 
+      img {
+        object-fit: cover;
       }
 
-      a {
-        @include aTag();
-        display: inline-block;
-        margin-top: 30px;
+    .item__info {
+      padding: 16px;
+
+    }
+
+    a {
+      text-decoration: none;
+      color: #333;
+      cursor: pointer;
+      user-select: none;
+      
+      &:hover {
+        text-decoration: underline;
+        opacity: 0.3;
       }
     }
-
-    .no__onSale {
-      font-size: larger;
-      margin-top: 20px;
-      opacity: 0.5;
-    }
-
-}
-
-// マイページのお届け先住所の登録・変更ページ(users/destination)
-.destination {
-  @include myPageContents();
-
-  &__title {
-    @include myPageTitle();
   }
 
-  &__registration {
-    padding: 20px 50px;
+  .no__onSale {
+    font-size: larger;
+    margin-top: 20px;
+    opacity: 0.5;
   }
 
-  a {
-    @include aTag();
-  }
-}
-
-// マイページのお届け先住所の登録・変更ページ(users/destination)
-.destination {
-  @include myPageContents();
-
-  &__title {
-    @include myPageTitle();
-  }
-
-  &__registration {
-    padding: 20px 50px;
-  }
-
-  a {
-    @include aTag();
   }
 }
 

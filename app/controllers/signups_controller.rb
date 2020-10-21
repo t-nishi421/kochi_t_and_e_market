@@ -40,7 +40,7 @@ class SignupsController < ApplicationController
       @user = User.create(session["regist_data"]["user"])
       @profile = Profile.new(session["regist_data"]["profile"].merge(user_id: @user.id))
       @profile.save
-      @destination = Destination.create(destination_params.merge(user_id: @user.id))
+      @destination = Destination.create(destination_params.merge(user_id: @user.id, use: true))
       session["regist_data"].clear
       sign_in(:user, @user)
       redirect_to root_path

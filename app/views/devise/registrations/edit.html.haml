@@ -1,15 +1,18 @@
 = render "items/header"
 - breadcrumb :user_edit
 = render "layouts/breadcrumbs"
+= render "layouts/notice"
 .myPage
   .myPage__sidebar
-    = render "sidebar"
+    = render "users/sidebar"
 
   .myPage__main
     .mailPass
       .mailPass__title
         メール/パスワードの変更
-      = form_with model: @user do |f|
+      = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+        .ErrorMessages
+          = devise_error_messages!
         .formField
           .formField__label
             = f.label :current_password, "現在のパスワード"

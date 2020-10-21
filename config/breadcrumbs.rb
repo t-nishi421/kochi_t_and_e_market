@@ -3,7 +3,7 @@ crumb :root do
 end
 
 crumb :mypage do
-  link "マイページ", user_path(current_user)
+  link current_user.nick_name + "さん", user_path(current_user)
   parent :root
 end
 
@@ -12,8 +12,13 @@ crumb :on_sale do
   parent :mypage
 end
 
+crumb :purchase_history do
+  link "購入した商品", user_purchase_histories_path(current_user)
+  parent :mypage
+end
+
 crumb :profile do
-  link "本人情報の変更",  edit_user_profile_path(current_user, current_user.profile)
+  link "本人情報の変更",  edit_profile_path(current_user)
   parent :mypage
 end
 
@@ -23,7 +28,12 @@ crumb :destination do
 end
 
 crumb :destination_new do
-  link "お届け先住所の登録",  new_user_destination_path(current_user)
+  link "お届け先住所の登録",  new_destination_path
+  parent :destination
+end
+
+crumb :destination_show do
+  link "お届け先住所の詳細",  destination_path(params[:id])
   parent :destination
 end
 
@@ -44,13 +54,18 @@ crumb :card_regist do
 end
 
 crumb :user_edit do
-  link "メール/パスワードの変更", edit_user_path(current_user)
+  link "メール/パスワードの変更", edit_user_registration_path
   parent :mypage
 end
 
 crumb :logout do
   link "ログアウト", logout_user_path(current_user)
   parent :mypage
+end
+
+crumb :item do |item|
+  link item.name, item_path(item.id)
+  parent :root
 end
 
 crumb :bookmark do
