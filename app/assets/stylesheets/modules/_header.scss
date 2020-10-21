@@ -41,19 +41,15 @@
               padding: 8px;
               height: 35px;
               &__icon{
-              img{
-                width: 100%;
-                vertical-align: bottom;
-              }
+                img{
+                  width: 100%;
+                  vertical-align: bottom;
+                }
               }
             }
-          
           }
         }
       }
-
-
-
     }
     &__nav{
       font-size: 14px;
@@ -78,13 +74,27 @@
           text-decoration: none;
           color: #333333;
           margin-left: 16px;
-
         }
-
-
+        .Icon {
+          height: 25px;
+          width: 25px;
+          margin-bottom: -7px;
+        }
+        .userName {
+          display: inline;
+          text-decoration: none;
+          color: #333333;
+          margin-left: 4px;
+        }
+        .rightBtn:hover{
+          color: #ffb340;
+        }
       }
-
+      .Icon {
+        height: 20px;
+        width: 20px;
+        margin-bottom: -5px;
+      }
     }
   }
-
 }

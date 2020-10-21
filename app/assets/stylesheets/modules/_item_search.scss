@@ -16,10 +16,10 @@
       margin: 26px auto;
       display: flex;
       justify-content: space-around;
+      flex-wrap: wrap;
       &__content{
         width: 220px;
         display: inline-block;
-        float: left;
         @include opacity();
         a {
           background-color: #fff;

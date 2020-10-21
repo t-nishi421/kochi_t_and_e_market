@@ -13,6 +13,6 @@ class User < ApplicationRecord
   has_many :destinations, dependent: :destroy
   has_many :favorite_items, dependent: :destroy
   has_many :purchase_histories
-  has_many :items, dependent: :destroy
+  has_many :items
 
 end
