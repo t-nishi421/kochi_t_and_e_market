@@ -3,8 +3,8 @@ class Item < ApplicationRecord
   has_many :item_images, dependent: :destroy
   accepts_nested_attributes_for :item_images, reject_if: :reject_item_image_blank, allow_destroy: true
   # has_many :purchase_histories
-  has_many :comments
-  has_many :favorite_items
+  has_many :comments, dependent: :destroy
+  has_many :favorite_items, dependent: :destroy
   belongs_to :user
   belongs_to_active_hash :condition
   belongs_to_active_hash :shipping_cost

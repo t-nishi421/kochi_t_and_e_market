@@ -7,12 +7,12 @@ class User < ApplicationRecord
   validates :nick_name, presence: true, uniqueness: {case_sensitive: true}
   validates :password, confirmation: true
 
-  has_one :profile
-  has_many :comments
+  has_one :profile, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_one :credit_card, dependent: :destroy
-  has_many :destinations
-  has_many :favorite_items
+  has_many :destinations, dependent: :destroy
+  has_many :favorite_items, dependent: :destroy
   # has_many :purchase_histories
-  has_many :items
+  has_many :items, dependent: :destroy
 
 end
