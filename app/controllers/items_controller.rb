@@ -70,7 +70,7 @@ class ItemsController < ApplicationController
   end
   
   def purchase_confirmation # 購入内容確認画面
-    @destination = Destination.find_by(user_id: current_user)
+    @destination = Destination.find_by(user_id: current_user, use: true)
     @prefecture = Prefecture.find(@destination.prefecture_id)
     @image = @item.item_images.first
     @card = CreditCard.get_card(current_user.credit_card.customer_token) if current_user.credit_card
@@ -91,7 +91,7 @@ class ItemsController < ApplicationController
   end
   
   def purchase_completed # 購入完了画面
-    @destination = Destination.find_by(user_id: current_user)
+    @destination = Destination.find_by(user_id: current_user, use: true)
     @prefecture = Prefecture.find_by(id: @destination.prefecture_id)
     @image = @item.item_images.first
     @card = CreditCard.get_card(current_user.credit_card.customer_token)
