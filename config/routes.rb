@@ -53,9 +53,10 @@ Rails.application.routes.draw do
   resources :credit_cards, only: [:new, :create] #  クレジットカード
   resources :profiles, only: [:edit, :update] # 本人情報
   resources :destinations, only: [:new, :create, :show, :update, :destroy] # お届け先住所
-
+  
   # マイページのルーティング
   resources :users, only: [:show] do
+    resources :introductions, only: [:show, :create, :update] # 自己紹介
     resources :destinations, only: [:index] do # お届け先住所
       collection do
         post 'change'

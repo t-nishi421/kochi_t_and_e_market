@@ -63,40 +63,48 @@
     @include myPageContents();
   }
 
+  
+  .user {
+    height: 100px;
+    width: 100%;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid whitesmoke;
+    background: linear-gradient(-225deg, #3CCACE 0%, #C5C1FF 56%, #3CCACE 100%);
+    &__icon {
+      margin-right: 20px;
+    }
+    &__name {
+      font-size: x-large;
+    }
+  }
+  
   &__form {
     @include myPageForm();
     width: 70%;
 
-    .formField {
-      height: 50px;
+    .comment {
+      width: 100%;
       margin-bottom: 30px;
-      display: flex;
-      align-items: center;
-      
-      &__icon {
-        margin-right: 20px;
+      text-align: center;
+
+      h2 {
+        font-size: large;
+        text-align: left;
       }
       
-      input {
-        @include myPageInput();
+      textarea {
+        height: 200px;
+        width: 100%;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
       }
     }
   }
     
-  &__comment {
-    width: 100%;
-    margin-bottom: 30px;
-    text-align: center;
-
-    textarea {
-      height: 200px;
-      width: 100%;
-      padding: 5px;
-      border: 1px solid #ccc;
-      border-radius: 3px;
-    }
-  }
-
   &__btn {
     @include myPageBtn();
   }
