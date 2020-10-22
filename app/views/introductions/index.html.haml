@@ -1,0 +1,40 @@
+= render "items/header"
+- breadcrumb :intro, @intro
+= render "layouts/breadcrumbs"
+= render "layouts/notice"
+
+%section.introduction
+  .intro
+    .intro__box
+      .intro__profile
+        .user__icon
+          = image_tag 'icon/member_photo_noimage_thumb.png', width: '100', height: '100'
+        .user__name
+          =@intro.user.nick_name
+        .user__score
+          %span.left= "お気に入り" + "#{@favorite.count}"
+          %span= "出品数 " + "#{@items.count}"
+    .intro__content
+      %p= @intro.content
+
+    %h2 この出品者の商品
+    .item__list
+      - @items.each do |item|
+        %section
+          = link_to item_path(item.id), class: 'product' do
+            %figure
+              = image_tag "#{item.item_images.first.src}", alt: '商品画像' , size: '220x220'
+            .body
+              %h3.name
+                = item.name
+              .price
+                %ul
+                  %li
+                    = item.price.to_s.reverse.gsub( /(\d{3})(?=\d)/, '\1,').reverse
+                    = "円"
+                %p (税込)
+            -if item.trading_status_id == 4
+              .soldList
+                .soldList__text
+                  SOLD    
+= render "items/footer"

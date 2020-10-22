@@ -1,8 +1,10 @@
 class IntroductionsController < ApplicationController
   before_action :authenticate_user!
 
-  def show
-    @introduction = Introduction.find(params[:id])
+  def index
+    @intro = Introduction.find_by(user_id: params[:user_id])
+    @favorite = FavoriteItem.where(item_id: current_user.items.ids)
+    @items = Item.where(user_id: @intro.user_id)
   end
 
   def create

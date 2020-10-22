@@ -72,3 +72,9 @@ crumb :bookmark do
   link "お気に入り一覧", bookmark_user_path(current_user)
   parent :mypage
 end
+
+crumb :intro do |intro|
+  link intro.user.nick_name, '#'
+  parent :root
+end
+

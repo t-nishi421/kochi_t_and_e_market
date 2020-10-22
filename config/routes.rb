@@ -56,7 +56,7 @@ Rails.application.routes.draw do
   
   # マイページのルーティング
   resources :users, only: [:show] do
-    resources :introductions, only: [:show, :create, :update] # 自己紹介
+    resources :introductions, only: [:index, :create, :update] # 自己紹介
     resources :destinations, only: [:index] do # お届け先住所
       collection do
         post 'change'

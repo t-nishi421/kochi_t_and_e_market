@@ -23,7 +23,7 @@
             %th
               出品者
             %td
-              = link_to "#" do
+              = link_to user_introductions_path(@item.user_id) do
                 = @item.user.nick_name
           %tr
             %th
