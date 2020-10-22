@@ -42,7 +42,7 @@ class CreditCardsController < ApplicationController
     customer = Payjp::Customer.retrieve(current_user.credit_card.customer_token)
     customer.default_card = params[:credit_card][:card]
     if customer.save
-      if session["return_path"]
+      if session["return_path"].present?
         redirect_to purchase_confirmation_item_path(session["return_path"]), notice: "お支払い方法を変更しました"
         session["return_path"].clear
       else
