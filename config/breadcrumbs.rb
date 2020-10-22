@@ -23,7 +23,7 @@ crumb :profile do
 end
 
 crumb :destination do
-  link "お届け先住所",  user_destinations_path(current_user)
+  link "お届け先住所の選択",  user_destinations_path(current_user)
   parent :mypage
 end
 
