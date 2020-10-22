@@ -89,7 +89,7 @@
       .ItemProfile__soldOutButton
         売り切れ
     .ItemProfile__text
-      = @item.introduction
+      = simple_format(@item.introduction)
     - if user_signed_in?
       .ItemProfile__favorite
         - if @whetherBookmarked
