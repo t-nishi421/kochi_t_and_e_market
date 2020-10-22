@@ -10,16 +10,16 @@
       .purchaseHistory__title
         購入した商品
       .purchaseHistory__content
-      - if @history.present?
-        - @history.each do |history|
+      - if @items.present?
+        - @items.each do |item|
           %section
             .item__image
               %figure
-                = image_tag "#{history.item.item_images.first.src}", alt: '商品画像' , size: '100x100'
+                = image_tag "#{item.item_images.first.src}", alt: '商品画像' , size: '100x100'
             .item__info
-              =link_to history.item.name, item_path(history.item.id)
-              %p= "¥" + "#{history.item.price.to_s(:delimited)}"
-              %p= history.created_at.strftime("%Y年%m月%d日 %H時%M分")
+              =link_to item.name, item_path(item.id)
+              %p= "¥" + "#{item.price.to_s(:delimited)}"
+              %p= item.updated_at.strftime("%Y年%m月%d日 %H時%M分")
       - else
         .no__purchaseHistory
           購入した商品はありません
