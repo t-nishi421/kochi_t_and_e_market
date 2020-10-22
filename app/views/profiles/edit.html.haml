@@ -1,6 +1,7 @@
 = render "items/header"
 - breadcrumb :profile
 = render "layouts/breadcrumbs"
+= render "layouts/notice"
 .myPage
   .myPage__sidebar
     = render "users/sidebar"
@@ -9,30 +10,26 @@
     .profile
       .profile__title
         本人情報の変更
-      = form_with class: "profile__form" do |f|  #@profileが必要
+      = form_with model: @profile, class: "profile__form" do |f|
         .formField
           .formField__label
             = f.label "お名前"
             %span.mandatory 必須
           .formField__input
-            .formField__input--top
-              = f.text_field :family_name
-            .formField__input--bottom
-              = f.text_field :first_name
+            = f.text_field :family_name
+            = f.text_field :first_name
         .formField
           .formField__label
-            = f.label "お名前（カナ）"
+            = f.label "お名前(カナ)"
             %span.mandatory 必須
           .formField__input
-            .formField__input--top
-              = f.text_field :family_name_kana
-            .formField__input--bottom
-              = f.text_field :first_name
+            = f.text_field :family_name_kana
+            = f.text_field :first_name_kana
         .formField
           .formField__label
             = f.label "生年月日"
             %span.mandatory 必須
-          .formField__input--birthday
+          .formField__input
             = f.date_select :birthday, {use_month_numbers: true, start_year: (Time.now.year - 130), end_year: (Time.now.year), default: Date.new(1990, 1, 1)}
         = f.submit '変更する', class: "formField__btn"
 = render "items/footer"

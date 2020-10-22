@@ -51,12 +51,18 @@ Rails.application.routes.draw do
   end
 
   resources :credit_cards, only: [:new, :create] #  クレジットカード
+  resources :profiles, only: [:edit, :update] # 本人情報
+  resources :destinations, only: [:new, :create, :show, :update, :destroy] # お届け先住所
 
   # マイページのルーティング
-  resources :users, only: [:show, :edit, :update] do
-      resources :credit_cards, only: [:index, :update, :destroy] #  クレジットカード
-      resources :destinations, only: [:index, :new, :create, :edit, :update] # お届け先住所
-      resources :profiles, only: [:edit, :update] # 本人情報
+  resources :users, only: [:show] do
+    resources :destinations, only: [:index] do # お届け先住所
+      collection do
+        post 'change'
+      end
+    end
+    resources :credit_cards, only: [:index, :update, :destroy] #  クレジットカード
+      resources :purchase_histories, only: [:index] # 購入履歴
       member do
       get 'on_sale' # 出品中の商品リスト
       get 'logout' # マイページのログアウト画面

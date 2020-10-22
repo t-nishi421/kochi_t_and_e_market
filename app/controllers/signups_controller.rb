@@ -10,6 +10,7 @@ class SignupsController < ApplicationController
       session["regist_data"][:user]["password"] = params[:user][:password]
       redirect_to action: :step2
     else
+      flash.now[:alert] = "入力に不備があります"
       render "step1"
     end
   end
@@ -24,6 +25,7 @@ class SignupsController < ApplicationController
       session["regist_data"][:profile] = @profile
       redirect_to action: :step3
     else
+      flash.now[:alert] = "入力に不備があります"
       render "step2"
     end
   end
@@ -38,11 +40,12 @@ class SignupsController < ApplicationController
       @user = User.create(session["regist_data"]["user"])
       @profile = Profile.new(session["regist_data"]["profile"].merge(user_id: @user.id))
       @profile.save
-      @destination = Destination.create(destination_params.merge(user_id: @user.id))
+      @destination = Destination.create(destination_params.merge(user_id: @user.id, use: true))
       session["regist_data"].clear
       sign_in(:user, @user)
       redirect_to root_path
     else
+      flash.now[:alert] = "入力に不備があります"
       render "step3"
     end
   end

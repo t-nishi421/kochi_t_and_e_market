@@ -69,6 +69,7 @@
   
   #card__form {
     @include myPageForm();
+    width: 350px;
     
     .formField {
       margin-bottom: 10px;

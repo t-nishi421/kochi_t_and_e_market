@@ -1,5 +1,5 @@
 = render "items/header"
-- breadcrumb :destination_new
+- breadcrumb :destination_show
 = render "layouts/breadcrumbs"
 = render "layouts/notice"
 .myPage
@@ -8,7 +8,7 @@
   .myPage__main
     .destination
       .destination__title
-        お届け先住所の登録
+        お届け先住所の詳細
       = form_with model: @destination, class: "destination__form", local: true do |f|
         .formField
           .formField__label
@@ -65,7 +65,7 @@
           .formField__input
             = f.text_field :telephone, {placeholder: "例)09012345678", type: "tel"}
 
-        = f.submit "登録", class: "formField__btn"
+        = f.submit "変更する", class: "formField__btn"
 
       .back
         = link_to '前の画面へ', :back

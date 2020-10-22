@@ -74,11 +74,13 @@ Things you may want to cover:
 ## commentsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|content|string|
+|comment|string|
 |user_id|reference|null: false|
+|item_id|reference|null: false|
 
 ### Association
 - belongs_to :user
+- belongs_to :item
 
 
 ## destinationsテーブル
@@ -95,6 +97,7 @@ Things you may want to cover:
 |house_number|string|null: false|
 |building_name|string|
 |telephone|string|
+|use|boolean|null: false|
 |user_id|reference|null: false, foreign_key: true|
 
 ### Association
@@ -103,7 +106,6 @@ Things you may want to cover:
 ## purchase_historiesテーブル
 |Column|Type|Options|
 |------|----|-------|
-|trading_day|datetime|
 |user_id|reference|foreign_key: true|
 |item_id|reference|foreign_key: true|
 

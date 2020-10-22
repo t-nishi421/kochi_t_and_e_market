@@ -27,6 +27,7 @@ class ItemsController < ApplicationController
       end
       get_categories_to_item
       @category_parent_array = Category.where(ancestry: nil)
+      flash.now[:alert] = "入力に不備があります"
       render "new"
     end
   end
@@ -75,8 +76,8 @@ class ItemsController < ApplicationController
   end
   
   def purchase_confirmation # 購入内容確認画面
-    @destination = Destination.find_by(user_id: current_user)
-    @prefecture = Prefecture.find_by(id: @destination.prefecture_id)
+    @destination = Destination.find_by(user_id: current_user, use: true)
+    @prefecture = Prefecture.find(@destination.prefecture_id)
     @image = @item.item_images.first
     @card = CreditCard.get_card(current_user.credit_card.customer_token) if current_user.credit_card
   end
@@ -96,7 +97,7 @@ class ItemsController < ApplicationController
   end
   
   def purchase_completed # 購入完了画面
-    @destination = Destination.find_by(user_id: current_user)
+    @destination = Destination.find_by(user_id: current_user, use: true)
     @prefecture = Prefecture.find_by(id: @destination.prefecture_id)
     @image = @item.item_images.first
     @card = CreditCard.get_card(current_user.credit_card.customer_token)
@@ -115,6 +116,7 @@ class ItemsController < ApplicationController
     else
       get_categories_to_item
       get_categories_array
+      flash.now[:alert] = "入力に不備があります"
       render "edit"
     end
   end
@@ -171,6 +173,10 @@ class ItemsController < ApplicationController
 
   def save_unregistered_brands
     Brand.saveIfNotPresent(brand_params)
+  end
+
+  def history_params
+    params.permit(:user_id, :item_id).merge(user_id: current_user.id, item_id: params[:id])
   end
 
   def set_item
