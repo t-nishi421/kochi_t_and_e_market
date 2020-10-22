@@ -90,6 +90,7 @@ class ItemsController < ApplicationController
        currency: 'jpy'  # 通貨の種類
      )
        @item.update(trading_status_id: 4)
+       PurchaseHistory.create(user_id: current_user.id, item_id: @item.id)
        redirect_to purchase_completed_item_path(@item), notice: "お買い上げありがとうございます！"
     else
       redirect_to purchase_confirmation_item_path(@item), alert: "商品を購入できませんでした" 
@@ -112,7 +113,7 @@ class ItemsController < ApplicationController
   def update
     save_unregistered_brands()
     if @item.valid? && @item.update(item_params)
-      redirect_to item_path(params[:id])
+      redirect_to item_path(params[:id]), notice: "商品の編集を完了しました"
     else
       get_categories_to_item
       get_categories_array
@@ -157,9 +158,21 @@ class ItemsController < ApplicationController
   def get_categories_to_item
     @category_id = @item.category_id
     unless @category_id == 0 || @category_id == nil
-      @category_parent = Category.find(@category_id).parent.parent
-      @category_child = Category.find(@category_id).parent
-      @category_grandchild = Category.find(@category_id)
+      categories = []
+      categories.push(@category_under = Category.find(@category_id))
+      categories.push(@category_middle = Category.find(@category_id).parent)
+      categories.push(@category_top = Category.find(@category_id).parent.parent)
+      categories.delete(nil)
+      if categories.length == 3
+        @category_parent = categories[2]
+        @category_child = categories[1]
+        @category_grandchild = categories[0]
+      elsif categories.length == 2
+        @category_parent = categories[1]
+        @category_child = categories[0]
+      else
+        @category_parent = categories[0]
+      end
     end
   end
 

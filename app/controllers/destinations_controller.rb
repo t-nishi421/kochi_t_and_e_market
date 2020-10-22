@@ -15,8 +15,8 @@ class DestinationsController < ApplicationController
     if @destination.save
       redirect_to user_destinations_path(current_user), notice: "新しいお届け先を登録しました"
     else
-      render :new
       flash.now[:alert] = "お届け先を登録できませんでした"
+      render :new
     end
   end
   
@@ -27,8 +27,8 @@ class DestinationsController < ApplicationController
     if @destination.update(destination_params)
       redirect_to user_destinations_path(@destination), notice: "お届け先の情報を変更しました"
     else
-      render :show
       flash.now[:alert] = "お届け先の情報を変更できませんでした"
+      render :show
     end
   end
 

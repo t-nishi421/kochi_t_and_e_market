@@ -122,6 +122,7 @@
           background-color: white;
           @include table-border-color();
           a {
+            display: block;
             color: #0099e8;
             @include opacity();
           }
@@ -155,13 +156,13 @@
   }
   
   &__deleteButton {
-    @include item-btn(red);
+    @include item-btn(#FF4500);
     @include flex-bundle(center, center);
     @include opacity();
   }
 
   &__soldOutButton {
-    @include item-btn(red);
+    @include item-btn(#FF4500);
     @include flex-bundle(center, center);
   }
 

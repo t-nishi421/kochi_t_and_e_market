@@ -29,13 +29,11 @@
             %th
               カテゴリー
             %td
-              - if @category_parent
-                = link_to ">#{@category_parent.name}", "#" 
-              %br
-              - if @category_child
+              = link_to ">#{@category_parent.name}", "#" 
+              - unless @category_child == nil
                 = link_to ">#{@category_child.name}", "#"
-              %br
-              = link_to ">#{@category_grandchild.name}", "#"
+              - unless @category_grandchild == nil
+                = link_to ">#{@category_grandchild.name}", "#"
           %tr
             %th
               ブランド
@@ -115,7 +113,10 @@
     = form_with model: @comment, url: comment_item_path(@item.id) do |f|
       .FormField__errorMessage
         = @comment.errors.full_messages_for(:comment).first
-      = f.text_area :comment, class: 'CommentForm__textArea'
+      - if @item.trading_status_id == 4 || !user_signed_in?
+        = f.text_area :comment, class: 'CommentForm__textArea', disabled: true
+      - else
+        = f.text_area :comment, class: 'CommentForm__textArea'
       .CommentForm__info
         %div 相手のことを考え丁寧なコメントを心がけましょう。
         %div 不快な言葉遣いなどは利用制限や退会処分となることがあります。

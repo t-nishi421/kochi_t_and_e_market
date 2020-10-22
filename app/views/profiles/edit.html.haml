@@ -5,16 +5,18 @@
 .myPage
   .myPage__sidebar
     = render "users/sidebar"
-
   .myPage__main
     .profile
       .profile__title
         本人情報の変更
-      = form_with model: @profile, class: "profile__form" do |f|
+      = form_with model: @profile, class: "profile__form", local: true do |f|
         .formField
           .formField__label
             = f.label "お名前"
             %span.mandatory 必須
+          .FormField__errorMessage--profileEdit
+            = @profile.errors.full_messages_for(:family_name).first
+            = @profile.errors.full_messages_for(:first_name).first
           .formField__input
             = f.text_field :family_name
             = f.text_field :first_name
@@ -22,6 +24,9 @@
           .formField__label
             = f.label "お名前(カナ)"
             %span.mandatory 必須
+          .FormField__errorMessage--profileEdit
+            = @profile.errors.full_messages_for(:family_name_kana).first
+            = @profile.errors.full_messages_for(:first_name_kana).first
           .formField__input
             = f.text_field :family_name_kana
             = f.text_field :first_name_kana
