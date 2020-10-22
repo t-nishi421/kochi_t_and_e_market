@@ -41,6 +41,9 @@ section.introduction {
     &__content {
       padding: 50px 30px;
       border-bottom: 3px solid whitesmoke;
+      p {
+        white-space: pre-wrap;
+      }
     }
     
     h2 {
