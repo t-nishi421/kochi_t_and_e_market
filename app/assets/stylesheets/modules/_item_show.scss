@@ -155,13 +155,13 @@
   }
   
   &__deleteButton {
-    @include item-btn(red);
+    @include item-btn(#FF4500);
     @include flex-bundle(center, center);
     @include opacity();
   }
 
   &__soldOutButton {
-    @include item-btn(red);
+    @include item-btn(#FF4500);
     @include flex-bundle(center, center);
   }
 
