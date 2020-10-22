@@ -85,6 +85,13 @@
     text-align: left;
     font-size: 14px;
     margin-left: 103px;
+    &--profileEdit {
+      color: red;
+      text-align: left;
+      font-size: 14px;
+      display: block;
+      margin: 5px 0;
+    }
   }
   input {
     border: 1px solid #ccc;

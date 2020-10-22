@@ -117,7 +117,6 @@ class ItemsController < ApplicationController
       get_categories_to_item
       get_categories_array
       flash.now[:alert] = "入力に不備があります"
-      render "edit"
     end
   end
   

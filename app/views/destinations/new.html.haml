@@ -68,6 +68,6 @@
         = f.submit "登録", class: "formField__btn"
 
       .back
-        = link_to '前の画面へ', :back
+        = link_to '前の画面へ', user_destinations_path(current_user.id)
         
 = render "items/footer"
