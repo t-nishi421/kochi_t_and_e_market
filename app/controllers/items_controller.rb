@@ -90,6 +90,7 @@ class ItemsController < ApplicationController
        currency: 'jpy'  # 通貨の種類
      )
        @item.update(trading_status_id: 4)
+       PurchaseHistory.create(user_id: current_user.id, item_id: @item.id)
        redirect_to purchase_completed_item_path(@item), notice: "お買い上げありがとうございます！"
     else
       redirect_to purchase_confirmation_item_path(@item), alert: "商品を購入できませんでした" 
@@ -117,7 +118,6 @@ class ItemsController < ApplicationController
       get_categories_to_item
       get_categories_array
       flash.now[:alert] = "入力に不備があります"
-      render "edit"
     end
   end
   
