@@ -204,6 +204,11 @@
   
   form {
     @include myPageForm();
+
+    .ErrorMessages {
+      color: red;
+      text-align: left;
+    }
     
     .formField {
       margin-bottom: 10px;
