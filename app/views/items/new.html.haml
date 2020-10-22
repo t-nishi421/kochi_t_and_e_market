@@ -45,7 +45,7 @@
             .ErrorMessage
               = @item.errors.full_messages_for(:category).first
             .categoryChoice
-              = f.collection_select :category_parent, @category_parent_array, :id, :name, { include_blank: '選択してください' }, { class: 'selectBoxBtn__form', id: 'parent_category' }
+              = f.collection_select :category_id, @category_parent_array, :id, :name, { include_blank: '選択してください' }, { class: 'selectBoxBtn__form', id: 'parent_category' }
               
           .itemDetailName
             %label.label ブランド
