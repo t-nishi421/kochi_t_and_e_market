@@ -73,8 +73,8 @@ crumb :bookmark do
   parent :mypage
 end
 
-crumb :intro do |intro|
-  link intro.user.nick_name, '#'
+crumb :intro do |item|
+  link item.user.nick_name, '#'
   parent :root
 end
 

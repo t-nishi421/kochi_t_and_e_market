@@ -3,8 +3,8 @@ class IntroductionsController < ApplicationController
 
   def index
     @intro = Introduction.find_by(user_id: params[:user_id])
-    @favorite = FavoriteItem.where(item_id: current_user.items.ids)
-    @items = Item.where(user_id: @intro.user_id)
+    @items = Item.where(user_id: params[:user_id])
+    @favorite = FavoriteItem.where(item_id: @items.ids)
   end
 
   def create

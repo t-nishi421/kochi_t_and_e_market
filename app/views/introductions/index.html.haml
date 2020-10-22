@@ -1,5 +1,5 @@
 = render "items/header"
-- breadcrumb :intro, @intro
+- breadcrumb :intro, @items.first
 = render "layouts/breadcrumbs"
 = render "layouts/notice"
 
@@ -10,12 +10,13 @@
         .user__icon
           = image_tag 'icon/member_photo_noimage_thumb.png', width: '100', height: '100'
         .user__name
-          =@intro.user.nick_name
+          =@items.first.user.nick_name
         .user__score
           %span.left= "お気に入り" + "#{@favorite.count}"
           %span= "出品数 " + "#{@items.count}"
-    .intro__content
-      %p= @intro.content
+    - if @intro
+      .intro__content
+        %p= @intro.content
 
     %h2 この出品者の商品
     .item__list
