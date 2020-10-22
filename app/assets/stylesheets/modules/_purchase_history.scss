@@ -9,13 +9,20 @@
   &__content {
     width: 80%;
     padding: 0 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
     
     section {
-      padding: 10px 0;
+      width: 350px;
       border-bottom: 1px solid whitesmoke;
       display: flex;
-      justify-content: center;
+
+      figure {
+        position: relative;
+        }
+      }
 
         img {
           object-fit: cover;
@@ -23,26 +30,14 @@
   
       .item__info {
         padding: 16px;
-
-      }
-
-      a {
-        text-decoration: none;
-        color: #333;
-        cursor: pointer;
-        user-select: none;
-        
-        &:hover {
-          text-decoration: underline;
-          opacity: 0.3;
+        a {
+          @include aTag();
         }
       }
-    }
 
     .no__purchaseHistory {
       font-size: larger;
       margin-top: 20px;
       opacity: 0.5;
     }
-
 }

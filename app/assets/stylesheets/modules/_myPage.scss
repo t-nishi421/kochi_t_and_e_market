@@ -61,42 +61,54 @@
   // マイページのトップページ(users/show)
   &__contents {
     @include myPageContents();
+
+    .title {
+      @include myPageTitle();
+    }
   }
 
+  
+  .user {
+    height: 100px;
+    width: 63%;
+    margin: 30px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid whitesmoke;
+    background: linear-gradient(-225deg, #3CCACE 0%, #C5C1FF 56%, #3CCACE 100%);
+    &__icon {
+      margin-right: 20px;
+    }
+    &__name {
+      font-size: large;
+    }
+  }
+  
   &__form {
     @include myPageForm();
     width: 70%;
 
-    .formField {
-      height: 50px;
+    .comment {
+      width: 100%;
       margin-bottom: 30px;
-      display: flex;
-      align-items: center;
-      
-      &__icon {
-        margin-right: 20px;
+      text-align: center;
+
+      h2 {
+        font-size: large;
+        text-align: left;
       }
       
-      input {
-        @include myPageInput();
+      textarea {
+        height: 200px;
+        width: 100%;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
       }
     }
   }
     
-  &__comment {
-    width: 100%;
-    margin-bottom: 30px;
-    text-align: center;
-
-    textarea {
-      height: 200px;
-      width: 100%;
-      padding: 5px;
-      border: 1px solid #ccc;
-      border-radius: 3px;
-    }
-  }
-
   &__btn {
     @include myPageBtn();
   }
@@ -112,13 +124,16 @@
   &__content {
     width: 80%;
     padding: 0 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
     
     section {
-      padding: 10px 0;
+      width: 350px;
+      padding-top: 10px;
       border-bottom: 1px solid whitesmoke;
       display: flex;
-      justify-content: center;
 
       figure {
         position: relative;
@@ -150,28 +165,10 @@
   
       .item__info {
         padding: 16px;
-
-      img {
-        object-fit: cover;
+        a {
+          @include aTag();
+        }
       }
-
-    .item__info {
-      padding: 16px;
-
-    }
-
-    a {
-      text-decoration: none;
-      color: #333;
-      cursor: pointer;
-      user-select: none;
-      
-      &:hover {
-        text-decoration: underline;
-        opacity: 0.3;
-      }
-    }
-  }
 
   .no__onSale {
     font-size: larger;
@@ -192,6 +189,11 @@
   
   form {
     @include myPageForm();
+
+    .ErrorMessages {
+      color: red;
+      text-align: left;
+    }
     
     .formField {
       margin-bottom: 10px;

@@ -29,7 +29,9 @@
           %li.listRight__logIn
             = image_tag 'icon/member_photo_noimage_thumb.png', alt: 'カテゴリー', class: 'Icon'
             .userName
-              = link_to current_user.nick_name, user_path(current_user), class: 'rightBtn'
+              = current_user.nick_name
+            = link_to user_path(current_user), class: 'rightBtn' do
+              マイページ
       - else
         %ul.listRight
           %li.listRight__logIn

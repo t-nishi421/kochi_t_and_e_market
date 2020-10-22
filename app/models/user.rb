@@ -8,8 +8,9 @@ class User < ApplicationRecord
   validates :password, confirmation: true
 
   has_one :profile, dependent: :destroy
-  has_many :comments, dependent: :destroy
   has_one :credit_card, dependent: :destroy
+  has_one :introduction, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_many :destinations, dependent: :destroy
   has_many :favorite_items, dependent: :destroy
   has_many :purchase_histories
