@@ -10,17 +10,22 @@
       .purchaseHistory__title
         購入した商品
       .purchaseHistory__content
-      - if @items.present?
-        - @items.each do |item|
-          %section
-            .item__image
-              %figure
-                = image_tag "#{item.item_images.first.src}", alt: '商品画像' , size: '100x100'
-            .item__info
-              =link_to item.name, item_path(item.id)
-              %p= "¥" + "#{item.price.to_s(:delimited)}"
-              %p= item.updated_at.strftime("%Y年%m月%d日 %H時%M分")
-      - else
-        .no__purchaseHistory
-          購入した商品はありません
+        - if @items.present?
+          - @items.each do |item|
+            %section
+              .item__image
+                %figure
+                  = image_tag "#{item.item_images.first.src}", alt: '商品画像' , size: '100x100'
+                  - if item.trading_status_id == 4
+                    .soldList
+                      .soldList__text
+                        SOLD
+              .item__info
+                %p=item.name
+                %p= "¥ " + "#{item.price.to_s(:delimited)}"
+                %p= item.updated_at.strftime("%Y年%m月%d日 %H時%M分")
+                = link_to "商品ページへ", item_path(item.id)
+        - else
+          .no__purchaseHistory
+            購入した商品はありません
 = render "items/footer"
