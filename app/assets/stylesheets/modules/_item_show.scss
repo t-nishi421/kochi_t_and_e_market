@@ -122,6 +122,7 @@
           background-color: white;
           @include table-border-color();
           a {
+            display: block;
             color: #0099e8;
             @include opacity();
           }

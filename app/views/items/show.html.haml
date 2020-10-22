@@ -29,13 +29,11 @@
             %th
               カテゴリー
             %td
-              - if @category_parent
-                = link_to ">#{@category_parent.name}", "#" 
-              %br
-              - if @category_child
+              = link_to ">#{@category_parent.name}", "#" 
+              - unless @category_child == nil
                 = link_to ">#{@category_child.name}", "#"
-              %br
-              = link_to ">#{@category_grandchild.name}", "#"
+              - unless @category_grandchild == nil
+                = link_to ">#{@category_grandchild.name}", "#"
           %tr
             %th
               ブランド
